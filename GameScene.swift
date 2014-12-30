@@ -14,6 +14,13 @@ class GameScene: SKScene {
 	
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+		for var x = 0; x < 24; x++ {
+			for var y = 0; y < 24; y++ {
+				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), withImage: "IronTile")
+				world.append(groundTile)
+				addChild(groundTile)
+			}
+		}
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
