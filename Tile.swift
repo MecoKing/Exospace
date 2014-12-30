@@ -12,12 +12,13 @@ import SpriteKit
 class Tile : SKNode {
 	var cartesianPoint:CGPoint
 	var sprite:SKSpriteNode
+	var highlighted = false
 	
 	init (atPoint:CGPoint, withImage:NSString) {
 		cartesianPoint = atPoint
 		sprite = SKSpriteNode (imageNamed: withImage)
-		sprite.xScale = 2
-		sprite.yScale = 2
+		sprite.xScale = 3
+		sprite.yScale = 3
 		sprite.texture?.filteringMode = SKTextureFilteringMode.Nearest
 		super.init ()
 		position = cartesianPoint.toUsefulIsometric()
@@ -26,5 +27,13 @@ class Tile : SKNode {
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
+	}
+	
+	func highlight () {
+		sprite.removeFromParent()
+		highlighted = (highlighted) ? false : true
+		sprite.color = SKColor.greenColor()
+		sprite.colorBlendFactor = (highlighted) ? 1 : 0
+		addChild(sprite)
 	}
 }
