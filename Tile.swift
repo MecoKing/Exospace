@@ -44,10 +44,11 @@ class Tile : SKNode {
 	}
 	
 	func stackItemFromList (index:Int, chance:Int) {
-		var path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
-//		var availableItems = NSArray(contentsOfFile: path!)
-		let availableItems = ["StoneBricks", "ClayPots", "Crates"]
-		let itemIndex = Int(rand() % 3)
+		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
+		let stringsFromPList = NSArray(contentsOfFile: path!)
+		var availableItems:Array<String> = stringsFromPList as Array<String>
+		
+		let itemIndex = Int(rand()) % (availableItems.count - 1)
 		let randomItem = Item (spriteName: availableItems [itemIndex], heightOffset:(index * 48))
 		items.push(randomItem)
 		addChild(randomItem)
