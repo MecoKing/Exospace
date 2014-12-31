@@ -23,6 +23,7 @@ class Tile : SKSpriteNode {
 		xScale = 3
 		yScale = 3
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
+		color = SKColor.clearColor()
 		if Int(rand() % 10) == 0 {
 			stackItemFromList(0, chance: 10)
 		}
@@ -35,7 +36,6 @@ class Tile : SKSpriteNode {
 	
 	func highlight () {
 		highlighted = (highlighted) ? false : true
-		color = (items.topItem? == nil) ? SKColor.clearColor() : SKColor.greenColor()
 		colorBlendFactor = (highlighted) ? 0.4 : 0
 	}
 	
