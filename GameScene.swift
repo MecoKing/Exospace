@@ -47,6 +47,16 @@ class GameScene: SKScene {
         }
     }
 	
+	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+		for touch: AnyObject in touches {
+			let location = touch.locationInNode(self).toCartesian()
+			for tile in world {
+				if tile.highlighted {
+					tile.highlight()
+				}
+			}
+		}
+	}
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
