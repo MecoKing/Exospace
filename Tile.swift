@@ -15,9 +15,10 @@ class Tile : SKNode {
 	var highlighted = false
 	var items:Stack<Item>
 	
-	init (atPoint:CGPoint, withImage:NSString) {
+	init (atPoint:CGPoint, spriteName:NSString) {
 		cartesianPoint = atPoint
-		sprite = SKSpriteNode (imageNamed: withImage)
+		let spriteFrame = CGRect(x: CGFloat (rand() % 4)/4, y: 0, width: 0.25, height: 1)
+		sprite = SKSpriteNode(texture: SKTexture(rect: spriteFrame, inTexture: SKTexture(imageNamed: spriteName)))
 		sprite.xScale = 3
 		sprite.yScale = 3
 		sprite.texture?.filteringMode = SKTextureFilteringMode.Nearest

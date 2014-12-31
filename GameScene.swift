@@ -16,7 +16,7 @@ class GameScene: SKScene {
         /* Setup your scene here */
 		for var x = 0; x < 16; x++ {
 			for var y = 0; y < 16; y++ {
-				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), withImage: "IronTile")
+				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: "Grass")
 				world.append(groundTile)
 				addChild(groundTile)
 			}
