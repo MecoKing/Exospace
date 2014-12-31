@@ -38,7 +38,21 @@ class GameScene: SKScene {
 			}
         }
     }
-   
+	
+	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+		for touch: AnyObject in touches {
+			let location = touch.locationInNode(self).toCartesian()
+			for tile in world {
+				if tile.highlighted {
+					tile.highlight()
+				}
+				if location == tile.cartesianPoint {
+					tile.highlight()
+				}
+			}
+		}
+	}
+	
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
