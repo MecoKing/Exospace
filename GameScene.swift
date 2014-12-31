@@ -57,38 +57,16 @@ class GameScene: SKScene {
 				if tile.highlighted {
 					tile.highlight()
 				}
-				if location.x > firstSelect.x {
-					if location.y > firstSelect.y {
-						if tile.cartesianPoint.x <= location.x && tile.cartesianPoint.x >= firstSelect.x {
-							if tile.cartesianPoint.y <= location.y && tile.cartesianPoint.y >= firstSelect.y {
-								tile.highlight()
-							}
-						}
-					}
-					else {
-						if tile.cartesianPoint.x <= location.x && tile.cartesianPoint.x >= firstSelect.x {
-							if tile.cartesianPoint.y >= location.y && tile.cartesianPoint.y <= firstSelect.y {
-								tile.highlight()
-							}
-						}
+				var minX = (location.x < firstSelect.x) ? location.x : firstSelect.x
+				var maxX = (location.x > firstSelect.x) ? location.x : firstSelect.x
+				var minY = (location.y < firstSelect.y) ? location.y : firstSelect.y
+				var maxY = (location.y > firstSelect.y) ? location.y : firstSelect.y
+				if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
+					if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
+						tile.highlight()
 					}
 				}
-				else {
-					if location.y > firstSelect.y {
-						if tile.cartesianPoint.x >= location.x && tile.cartesianPoint.x <= firstSelect.x {
-							if tile.cartesianPoint.y <= location.y && tile.cartesianPoint.y >= firstSelect.y {
-								tile.highlight()
-							}
-						}
-					}
-					else {
-						if tile.cartesianPoint.x >= location.x && tile.cartesianPoint.x <= firstSelect.x {
-							if tile.cartesianPoint.y >= location.y && tile.cartesianPoint.y <= firstSelect.y {
-								tile.highlight()
-							}
-						}
-					}
-				}
+				
 			}
 		}
 	}
