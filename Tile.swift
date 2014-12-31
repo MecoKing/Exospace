@@ -24,8 +24,8 @@ class Tile : SKNode {
 		sprite.texture?.filteringMode = SKTextureFilteringMode.Nearest
 		items = Stack<Item> ()
 		super.init ()
-		if Int(rand() % 5) == 0 {
-			stackItemFromList()
+		if Int(rand() % 10) == 0 {
+			stackItemFromList(0, chance: 10)
 		}
 		position = cartesianPoint.toUsefulIsometric()
 		addChild(sprite);
@@ -43,13 +43,16 @@ class Tile : SKNode {
 		addChild(sprite)
 	}
 	
-	func stackItemFromList () {
+	func stackItemFromList (index:Int, chance:Int) {
 		var path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
 //		var availableItems = NSArray(contentsOfFile: path!)
 		let availableItems = ["StoneBricks", "ClayPots", "Crates"]
 		let itemIndex = Int(rand() % 3)
-		let randomItem = Item (spriteName: availableItems [itemIndex])//Choose randomly from availableItems
+		let randomItem = Item (spriteName: availableItems [itemIndex], heightOffset:(index * 48))
 		items.push(randomItem)
 		addChild(randomItem)
+		if Int(rand()) % chance * 2 == 0 {
+			stackItemFromList(index + 1, chance: chance * 2)
+		}
 	}
 }
