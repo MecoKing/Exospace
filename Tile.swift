@@ -13,6 +13,7 @@ class Tile : SKNode {
 	var cartesianPoint:CGPoint
 	var sprite:SKSpriteNode
 	var highlighted = false
+	var items:Stack<Item>
 	
 	init (atPoint:CGPoint, withImage:NSString) {
 		cartesianPoint = atPoint
@@ -20,7 +21,11 @@ class Tile : SKNode {
 		sprite.xScale = 3
 		sprite.yScale = 3
 		sprite.texture?.filteringMode = SKTextureFilteringMode.Nearest
+		items = Stack<Item> ()
 		super.init ()
+		if Int(rand() % 5) == 0 {
+			stackItemFromList()
+		}
 		position = cartesianPoint.toUsefulIsometric()
 		addChild(sprite);
 	}
