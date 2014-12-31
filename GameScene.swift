@@ -21,8 +21,16 @@ class GameScene: SKScene {
 				addChild(groundTile)
 			}
 		}
+		for tile in world {
+			tile.zPosition = 0
+			for othertile in world {
+				if tile.position.y < othertile.position.y {
+					tile.zPosition += 1
+				}
+			}
+		}
     }
-    
+	
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
