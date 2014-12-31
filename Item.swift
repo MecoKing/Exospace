@@ -13,10 +13,10 @@ class Item : SKSpriteNode {
 	init (spriteName:String, heightOffset:Int) {
 		let image = SKTexture(imageNamed: spriteName)
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 32))		
-		xScale = 3
-		yScale = 3
+		xScale = 1
+		yScale = 1
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
-		position.y += CGFloat(24 + heightOffset)
+		position.y += CGFloat(8 + heightOffset)
 	}
 
 	required init?(coder aDecoder: NSCoder) {

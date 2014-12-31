@@ -9,26 +9,24 @@
 import Foundation
 import SpriteKit
 
-class Tile : SKNode {
+class Tile : SKSpriteNode {
 	var cartesianPoint:CGPoint
-	var sprite:SKSpriteNode
 	var highlighted = false
 	var items:Stack<Item>
 	
 	init (atPoint:CGPoint, spriteName:NSString) {
 		cartesianPoint = atPoint
 		let spriteFrame = CGRect(x: CGFloat (rand() % 4)/4, y: 0, width: 0.25, height: 1)
-		sprite = SKSpriteNode(texture: SKTexture(rect: spriteFrame, inTexture: SKTexture(imageNamed: spriteName)))
-		sprite.xScale = 3
-		sprite.yScale = 3
-		sprite.texture?.filteringMode = SKTextureFilteringMode.Nearest
+		let image = SKTexture(rect: spriteFrame, inTexture: SKTexture(imageNamed: spriteName))
 		items = Stack<Item> ()
-		super.init ()
+		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 16))
+		xScale = 3
+		yScale = 3
+		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		if Int(rand() % 10) == 0 {
 			stackItemFromList(0, chance: 10)
 		}
 		position = cartesianPoint.toUsefulIsometric()
-		addChild(sprite);
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -36,11 +34,9 @@ class Tile : SKNode {
 	}
 	
 	func highlight () {
-		sprite.removeFromParent()
 		highlighted = (highlighted) ? false : true
-		sprite.color = (items.topItem? == nil) ? SKColor.clearColor() : SKColor.greenColor()
-		sprite.colorBlendFactor = (highlighted) ? 0.4 : 0
-		addChild(sprite)
+		color = (items.topItem? == nil) ? SKColor.clearColor() : SKColor.greenColor()
+		colorBlendFactor = (highlighted) ? 0.4 : 0
 	}
 	
 	func stackItemFromList (index:Int, chance:Int) {
@@ -49,7 +45,7 @@ class Tile : SKNode {
 		var availableItems:Array<String> = stringsFromPList as Array<String>
 		
 		let itemIndex = Int(rand()) % (availableItems.count - 1)
-		let randomItem = Item (spriteName: availableItems [itemIndex], heightOffset:(index * 48))
+		let randomItem = Item (spriteName: availableItems [itemIndex], heightOffset:(index * 16))
 		items.push(randomItem)
 		addChild(randomItem)
 		if Int(rand()) % chance * 2 == 0 {
