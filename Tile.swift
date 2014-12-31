@@ -38,8 +38,8 @@ class Tile : SKNode {
 	func highlight () {
 		sprite.removeFromParent()
 		highlighted = (highlighted) ? false : true
-		sprite.color = SKColor.redColor()
-		sprite.colorBlendFactor = (highlighted) ? 1 : 0
+		sprite.color = (items.topItem? == nil) ? SKColor.clearColor() : SKColor.greenColor()
+		sprite.colorBlendFactor = (highlighted) ? 0.4 : 0
 		addChild(sprite)
 	}
 	
