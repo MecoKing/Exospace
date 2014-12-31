@@ -14,7 +14,6 @@ class GameScene: SKScene {
 	var firstSelect = CGPoint(x: 0, y: 0)
 	
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		for var x = 0; x < 16; x++ {
 			for var y = 0; y < 16; y++ {
@@ -34,8 +33,6 @@ class GameScene: SKScene {
     }
 	
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-        
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
 			firstSelect = location
