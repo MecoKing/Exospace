@@ -2,8 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>StoneBricks</string>
-	<string>ClayPots</string>
-	<string>Crates</string>
+	<string>clayPotBlue</string>
+	<string>clayPotGreen</string>
+	<string>clayPotRed</string>
+	<string>clayPotYellow</string>
+	<string>crateDamaged</string>
+	<string>crateScience</string>
+	<string>crateWooden</string>
+	<string>crateWoodenOpen</string>
+	<string>stoneBricks</string>
+	<string>stoneBricksDamaged</string>
+	<string>stoneBricksMossy</string>
 </array>
 </plist>

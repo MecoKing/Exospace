@@ -11,8 +11,7 @@ import SpriteKit
 
 class Item : SKSpriteNode {
 	init (spriteName:String, heightOffset:Int) {
-		let spriteFrame = CGRect(x: CGFloat (rand() % 4)/4, y: 0, width: 0.25, height: 1)
-		let image = SKTexture(rect: spriteFrame, inTexture: SKTexture(imageNamed: spriteName))
+		let image = SKTexture(imageNamed: spriteName)
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 32))		
 		xScale = 3
 		yScale = 3
