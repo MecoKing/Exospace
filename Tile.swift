@@ -41,4 +41,14 @@ class Tile : SKNode {
 		sprite.colorBlendFactor = (highlighted) ? 1 : 0
 		addChild(sprite)
 	}
+	
+	func stackItemFromList () {
+		var path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
+//		var availableItems = NSArray(contentsOfFile: path!)
+		let availableItems = ["StoneBricks", "ClayPots", "Crates"]
+		let itemIndex = Int(rand() % 3)
+		let randomItem = Item (spriteName: availableItems [itemIndex])//Choose randomly from availableItems
+		items.push(randomItem)
+		addChild(randomItem)
+	}
 }
