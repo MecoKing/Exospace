@@ -41,9 +41,7 @@ class Tile : SKSpriteNode {
 	
 	func stackItemFromList (index:Int, chance:Int) {
 		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
-		let stringsFromPList = NSArray(contentsOfFile: path!)
-		var availableItems:Array<String> = stringsFromPList as Array<String>
-		
+		let availableItems:Array<String> = NSArray(contentsOfFile: path!) as Array<String>
 		let itemIndex = Int(rand()) % (availableItems.count - 1)
 		let randomItem = Item (spriteName: availableItems [itemIndex], heightOffset:(index * 16))
 		items.push(randomItem)
