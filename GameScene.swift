@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
 	
 	var world = Array<Tile> ()
+	var firstSelect = CGPoint(x: 0, y: 0)
 	
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -36,6 +37,7 @@ class GameScene: SKScene {
         
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
+			firstSelect = location
 			for tile in world {
 				if tile.highlighted {
 					tile.highlight()
@@ -54,8 +56,37 @@ class GameScene: SKScene {
 				if tile.highlighted {
 					tile.highlight()
 				}
-				if location == tile.cartesianPoint {
-					tile.highlight()
+				if location.x > firstSelect.x {
+					if location.y > firstSelect.y {
+						if tile.cartesianPoint.x <= location.x && tile.cartesianPoint.x >= firstSelect.x {
+							if tile.cartesianPoint.y <= location.y && tile.cartesianPoint.y >= firstSelect.y {
+								tile.highlight()
+							}
+						}
+					}
+					else {
+						if tile.cartesianPoint.x <= location.x && tile.cartesianPoint.x >= firstSelect.x {
+							if tile.cartesianPoint.y >= location.y && tile.cartesianPoint.y <= firstSelect.y {
+								tile.highlight()
+							}
+						}
+					}
+				}
+				else {
+					if location.y > firstSelect.y {
+						if tile.cartesianPoint.x >= location.x && tile.cartesianPoint.x <= firstSelect.x {
+							if tile.cartesianPoint.y <= location.y && tile.cartesianPoint.y >= firstSelect.y {
+								tile.highlight()
+							}
+						}
+					}
+					else {
+						if tile.cartesianPoint.x >= location.x && tile.cartesianPoint.x <= firstSelect.x {
+							if tile.cartesianPoint.y >= location.y && tile.cartesianPoint.y <= firstSelect.y {
+								tile.highlight()
+							}
+						}
+					}
 				}
 			}
 		}
