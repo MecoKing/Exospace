@@ -14,9 +14,13 @@ class Tile : SKSpriteNode {
 	var highlighted = false
 	var items:Stack<Item>
 	
+	override class func initialize() {
+		srandomdev()
+	}
+	
 	init (atPoint:CGPoint, spriteName:NSString) {
 		cartesianPoint = atPoint
-		let spriteFrame = CGRect(x: CGFloat (rand() % 4)/4, y: 0, width: 0.25, height: 1)
+		let spriteFrame = CGRect(x: CGFloat (random() % 4)/4, y: 0, width: 0.25, height: 1)
 		let image = SKTexture(rect: spriteFrame, inTexture: SKTexture(imageNamed: spriteName))
 		items = Stack<Item> ()
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 16))
@@ -24,7 +28,7 @@ class Tile : SKSpriteNode {
 		yScale = 3
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		color = SKColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.2)
-		if Int(rand() % 10) == 0 {
+		if Int(random() % 10) == 0 {
 			stackItemFromList(0, chance: 10)
 		}
 		position = cartesianPoint.toUsefulIsometric()
@@ -46,7 +50,7 @@ class Tile : SKSpriteNode {
 		let randomItem = Item (spriteName: availableItems [itemIndex], heightOffset:(index * 16))
 		items.push(randomItem)
 		addChild(randomItem)
-		if Int(rand()) % chance * 2 == 0 {
+		if Int(random()) % chance * 2 == 0 {
 			stackItemFromList(index + 1, chance: chance * 2)
 		}
 	}
