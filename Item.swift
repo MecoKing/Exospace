@@ -10,8 +10,11 @@ import Foundation
 import SpriteKit
 
 class Item : SKSpriteNode {
-	init (spriteName:String, heightOffset:Int) {
+	var isStackable:Bool
+	
+	init (spriteName:String, heightOffset:Int, stackable:Bool) {
 		let image = SKTexture(imageNamed: spriteName)
+		isStackable = stackable
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 32))		
 		xScale = 1
 		yScale = 1
