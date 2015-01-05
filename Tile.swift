@@ -23,11 +23,10 @@ class Tile : SKSpriteNode {
 		let spriteFrame = CGRect(x: CGFloat (random() % 4)/4, y: 0, width: 0.25, height: 1)
 		let image = SKTexture(rect: spriteFrame, inTexture: SKTexture(imageNamed: spriteName))
 		items = Stack<Item> ()
-		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 16))
-		xScale = 3
-		yScale = 3
+		super.init(texture: image, color: SKColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.2), size: CGSize(width: 24, height: 12))
+		xScale = 4
+		yScale = 4
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
-		color = SKColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.2)
 		if Int(random() % 10) == 0 {
 			stackItemFromList(0, chance: 10)
 		}
