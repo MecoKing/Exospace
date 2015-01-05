@@ -28,7 +28,7 @@ class Tile : SKSpriteNode {
 		yScale = 4
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		if Int(random() % 10) == 0 {
-			stackItemFromList(0, chance: 10)
+//			stackItemFromList(0, chance: 10)
 		}
 		position = cartesianPoint.toUsefulIsometric()
 	}

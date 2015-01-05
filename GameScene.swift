@@ -15,8 +15,8 @@ class GameScene: SKScene {
 	
     override func didMoveToView(view: SKView) {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
-		for var x = 0; x < 16; x++ {
-			for var y = 0; y < 16; y++ {
+		for var x = 0; x < 12; x++ {
+			for var y = 0; y < 12; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: "Grass")
 				world.append(groundTile)
 				addChild(groundTile)
