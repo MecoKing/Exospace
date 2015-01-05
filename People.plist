@@ -4,6 +4,8 @@
 <array>
 	<string>humanCitizenFemale</string>
 	<string>humanCitizenMale</string>
+	<string>humanInmateFemale</string>
+	<string>humanInmateMale</string>
 	<string>venusianCitizenFemale</string>
 	<string>venusianInmateFemale</string>
 	<string>venusianInmateMale</string>
