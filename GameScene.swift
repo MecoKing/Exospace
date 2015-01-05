@@ -48,12 +48,13 @@ class GameScene: SKScene {
 			for tile in world {
 				if tile.highlighted {
 					tile.highlight()
-				}
-				if tile.cartesianPoint == location {
-					let human = Person(atPoint: tile.cartesianPoint, spriteName: "humanCitizenFemale")
-					population.append(human)
-					updateZPosition()
-					addChild(human)
+					if !tile.occupied {
+						tile.occupied = true
+						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
+						population.append(human)
+						updateZPosition()
+						addChild(human)
+					}
 				}
 			}
 		}
