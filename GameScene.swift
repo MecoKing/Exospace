@@ -24,14 +24,7 @@ class GameScene: SKScene {
 				addChild(groundTile)
 			}
 		}
-		for tile in world {
-			tile.zPosition = 0
-			for othertile in world {
-				if tile.position.y < othertile.position.y {
-					tile.zPosition += 1
-				}
-			}
-		}
+		updateZPosition()
     }
 	
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -82,6 +75,29 @@ class GameScene: SKScene {
 					}
 				}
 				
+			}
+		}
+	}
+	
+	func updateZPosition () {
+		var highestZPos = 0;
+		for tile in world {
+			tile.zPosition = 0
+			for othertile in world {
+				if tile.position.y < othertile.position.y {
+					tile.zPosition += 1
+				}
+			}
+			if Int(tile.zPosition) > highestZPos {
+				highestZPos = Int(tile.zPosition)
+			}
+		}
+		for human in population {
+			human.zPosition = CGFloat(highestZPos)
+			for otherhuman in population {
+				if human.position.y < otherhuman.position.y {
+					human.zPosition += 1
+				}
 			}
 		}
 	}
