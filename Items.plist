@@ -35,6 +35,10 @@
 		<string>NO</string>
 	</array>
 	<array>
+		<string>shrubSmall</string>
+		<string>NO</string>
+	</array>
+	<array>
 		<string>stoneBricks</string>
 		<string>YES</string>
 	</array>
