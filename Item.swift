@@ -25,4 +25,12 @@ class Item : SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+	
+	class func randomItem (atIndex:Int) -> Item {
+		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
+		let availableItems:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
+		let itemIndex = Int(rand()) % availableItems.count
+		let stackItem = (availableItems [itemIndex][1] == "YES") ? true : false
+		return Item(spriteName: availableItems [itemIndex][0], heightOffset:(atIndex * 16), stackable: stackItem)
+	}
 }

@@ -13,6 +13,7 @@ class Tile : SKSpriteNode {
 	var cartesianPoint:CGPoint
 	var highlighted = false
 	var items:Stack<Item>
+	var occupied = false
 	
 	override class func initialize() {
 		srandomdev()
@@ -43,14 +44,10 @@ class Tile : SKSpriteNode {
 	}
 	
 	func stackItemFromList (index:Int, chance:Int) {
-		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
-		let availableItems:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
-		let itemIndex = Int(rand()) % (availableItems.count - 1)
-		let stackItem = (availableItems [itemIndex][1] == "YES") ? true : false
-		let randomItem = Item (spriteName: availableItems [itemIndex][0], heightOffset:(index * 16), stackable: stackItem)
-		items.push(randomItem)
-		addChild(randomItem)
-		if Int(random()) % chance == 0 && stackItem {
+		let newItem = Item.randomItem(index)
+		items.push(newItem)
+		addChild(newItem)
+		if Int(random()) % chance == 0 && newItem.isStackable {
 			stackItemFromList(index + 1, chance: chance)
 		}
 	}
