@@ -31,6 +31,13 @@ class Person : SKSpriteNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	class func randomPersonAtPoint (pt:CGPoint) -> Person {
+		let path = NSBundle.mainBundle().pathForResource("People", ofType: "plist")
+		let people:Array<String> = NSArray(contentsOfFile: path!) as Array<String>
+		let index = Int(rand()) % people.count
+		return Person(atPoint: pt, spriteName: people [index])
+	}
+	
 	func animate () {
 		animFrame.origin.x += 0.25
 		if animFrame.origin.x >= 1 {
