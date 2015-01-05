@@ -48,6 +48,7 @@ class GameScene: SKScene {
 			for tile in world {
 				if tile.highlighted {
 					tile.highlight()
+					
 					if !tile.occupied {
 						tile.occupied = true
 						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
@@ -80,6 +81,15 @@ class GameScene: SKScene {
 		}
 	}
 	
+	func tileAtCartesian (pt:CGPoint) -> Tile {
+		for tile in world {
+			if tile.cartesianPoint == pt {
+				return tile
+			}
+		}
+		return Tile(atPoint: CGPoint(), spriteName: "Grass")
+	}
+	
 	func updateZPosition () {
 		var highestZPos = 0;
 		for tile in world {
@@ -94,12 +104,7 @@ class GameScene: SKScene {
 			}
 		}
 		for human in population {
-			human.zPosition = CGFloat(highestZPos)
-			for otherhuman in population {
-				if human.position.y < otherhuman.position.y {
-					human.zPosition += 1
-				}
-			}
+			human.zPosition = tileAtCartesian(human.cartesianPoint).zPosition
 		}
 	}
 	
