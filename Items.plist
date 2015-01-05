@@ -3,52 +3,12 @@
 <plist version="1.0">
 <array>
 	<array>
-		<string>clayPotBlue</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>clayPotGreen</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>clayPotRed</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>clayPotYellow</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>crateDamaged</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>crateScience</string>
-		<string>NO</string>
-	</array>
-	<array>
 		<string>crateWooden</string>
-		<string>NO</string>
+		<string>YES</string>
 	</array>
 	<array>
 		<string>crateWoodenOpen</string>
 		<string>NO</string>
-	</array>
-	<array>
-		<string>shrubSmall</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>stoneBricks</string>
-		<string>YES</string>
-	</array>
-	<array>
-		<string>stoneBricksDamaged</string>
-		<string>YES</string>
-	</array>
-	<array>
-		<string>stoneBricksMossy</string>
-		<string>YES</string>
 	</array>
 </array>
 </plist>
