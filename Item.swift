@@ -31,6 +31,6 @@ class Item : SKSpriteNode {
 		let availableItems:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
 		let itemIndex = Int(rand()) % availableItems.count
 		let stackItem = (availableItems [itemIndex][1] == "YES") ? true : false
-		return Item(spriteName: availableItems [itemIndex][0], heightOffset:(atIndex * 16), stackable: stackItem)
+		return Item(spriteName: availableItems [itemIndex][0], heightOffset:(atIndex * 12), stackable: stackItem)
 	}
 }

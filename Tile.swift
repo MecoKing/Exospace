@@ -29,7 +29,7 @@ class Tile : SKSpriteNode {
 		yScale = 4
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		if Int(random() % 10) == 0 {
-//			stackItemFromList(0, chance: 10)
+			stackItemFromList(0, chance: 10)
 		}
 		position = cartesianPoint.toUsefulIsometric()
 	}
@@ -44,6 +44,7 @@ class Tile : SKSpriteNode {
 	}
 	
 	func stackItemFromList (index:Int, chance:Int) {
+		occupied = true
 		let newItem = Item.randomItem(index)
 		items.push(newItem)
 		addChild(newItem)
