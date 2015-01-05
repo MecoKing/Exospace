@@ -15,11 +15,11 @@ class Item : SKSpriteNode {
 	init (spriteName:String, heightOffset:Int, stackable:Bool) {
 		let image = SKTexture(imageNamed: spriteName)
 		isStackable = stackable
-		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 32, height: 32))		
+		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		xScale = 1
 		yScale = 1
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
-		position.y += CGFloat(8 + heightOffset)
+		position.y += CGFloat(6 + heightOffset)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
