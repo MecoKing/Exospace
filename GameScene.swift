@@ -11,7 +11,9 @@ import SpriteKit
 class GameScene: SKScene {
 	
 	var world = Array<Tile> ()
+	var population = Array<Person> ()
 	var firstSelect = CGPoint(x: 0, y: 0)
+	var timerTick = 0
 	
     override func didMoveToView(view: SKView) {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
@@ -54,6 +56,12 @@ class GameScene: SKScene {
 				if tile.highlighted {
 					tile.highlight()
 				}
+				if tile.cartesianPoint == location {
+					let human = Person(atPoint: tile.cartesianPoint, spriteName: "humanCitizenFemale")
+					population.append(human)
+					updateZPosition()
+					addChild(human)
+				}
 			}
 		}
 	}
@@ -80,5 +88,11 @@ class GameScene: SKScene {
 	
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+		timerTick++
+		if timerTick % 5 == 0 {
+			for human in population {
+				human.animate()
+			}
+		}
     }
 }
