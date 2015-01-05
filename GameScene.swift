@@ -21,10 +21,10 @@ class GameScene: SKScene {
 			for var y = 0; y < 12; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: "Grass")
 				world.append(groundTile)
+				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
 				addChild(groundTile)
 			}
 		}
-		updateZPosition()
     }
 	
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -91,18 +91,7 @@ class GameScene: SKScene {
 	}
 	
 	func updateZPosition () {
-		var highestZPos = 0;
-		for tile in world {
-			tile.zPosition = 0
-			for othertile in world {
-				if tile.position.y < othertile.position.y {
-					tile.zPosition += 1
-				}
-			}
-			if Int(tile.zPosition) > highestZPos {
-				highestZPos = Int(tile.zPosition)
-			}
-		}
+		
 		for human in population {
 			human.zPosition = tileAtCartesian(human.cartesianPoint).zPosition
 		}
