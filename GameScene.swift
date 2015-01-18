@@ -97,6 +97,13 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
 		timerTick++
+		if timerTick % 50 == 0 {
+			for human in population {
+				if human.state == "idle" {
+					human.pathFind()
+				}
+			}
+		}
 		if timerTick % 5 == 0 {
 			for human in population {
 				human.animate()
