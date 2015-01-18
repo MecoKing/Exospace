@@ -48,12 +48,10 @@ class GameScene: SKScene {
 			for tile in world {
 				if tile.highlighted {
 					tile.highlight()
-					
 					if !tile.occupied {
 						tile.occupied = true
 						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
 						population.append(human)
-						updateZPosition()
 						addChild(human)
 					}
 				}
@@ -91,7 +89,6 @@ class GameScene: SKScene {
 	}
 	
 	func updateZPosition () {
-		
 		for human in population {
 			human.zPosition = tileAtCartesian(human.cartesianPoint).zPosition
 		}
@@ -105,5 +102,6 @@ class GameScene: SKScene {
 				human.animate()
 			}
 		}
+		updateZPosition();
     }
 }
