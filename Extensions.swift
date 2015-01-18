@@ -24,4 +24,10 @@ extension CGPoint {
 	func fromUsefulIsometric () -> CGPoint {
 		return CGPoint(x: (x / 48) - 10.75, y: (y / 48) - 2.5)
 	}
+	func distanceFrom (pt:CGPoint) -> Int {
+		var xDist = (pt.x - x) * (pt.x - x)
+		var yDist = (pt.y - y) * (pt.y - y)
+		var xPlusY = xDist + yDist
+		return Int(sqrt(xPlusY))
+	}
 }
