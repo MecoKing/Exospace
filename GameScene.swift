@@ -97,7 +97,11 @@ class GameScene: SKScene {
 	func giveDestinationTo (human:Person) {
 		let destination = human.randomDestination()
 		if destination.x >= 0 && destination.x <= 11 && destination.y >= 0 && destination.y <= 11 {
+			if !tileAtCartesian(destination).occupied {
+				tileAtCartesian(human.cartesianPoint).occupied = false
+				tileAtCartesian(destination).occupied = true
 				human.moveTo(destination)
+			}
 		}
 	}
 	
