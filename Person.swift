@@ -67,7 +67,7 @@ class Person : SKSpriteNode {
 		if cartesian.x >= 0 && cartesian.x <= 11 && cartesian.y >= 0 && cartesian.y <= 11 {
 			state = "walking"
 			let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 44)
-			let moveTime = position.distanceFrom(isoLocation) / 12
+			let moveTime = position.distanceFrom(isoLocation) / 24
 			runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
 				self.cartesianPoint = cartesian
 				self.state = "idle"
