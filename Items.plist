@@ -3,22 +3,6 @@
 <plist version="1.0">
 <array>
 	<array>
-		<string>crateDamaged</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>crateScience</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>crateWooden</string>
-		<string>NO</string>
-	</array>
-	<array>
-		<string>crateWoodenOpen</string>
-		<string>NO</string>
-	</array>
-	<array>
 		<string>stoneBricks</string>
 		<string>YES</string>
 	</array>
