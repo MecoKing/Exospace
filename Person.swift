@@ -39,20 +39,12 @@ class Person : SKSpriteNode {
 		return Person(atPoint: pt, spriteName: people [index])
 	}
 	
-	func pathFind () {
-		let direction = random() % 4
-		if direction == 0 {
-			moveTo(CGPoint(x: cartesianPoint.x + 1, y: cartesianPoint.y))
-		}
-		else if direction == 1 {
-			moveTo(CGPoint(x: cartesianPoint.x - 1, y: cartesianPoint.y))
-		}
-		else if direction == 2 {
-			moveTo(CGPoint(x: cartesianPoint.x, y: cartesianPoint.y + 1))
-		}
-		else {
-			moveTo(CGPoint(x: cartesianPoint.x, y: cartesianPoint.y - 1))
-		}
+	func randomDestination () -> CGPoint {
+		let moveDirection = random() % 2
+		let moveDistance = CGFloat((random() % 4) - 2)
+		let xMove = (moveDirection == 0) ? cartesianPoint.x + moveDistance : cartesianPoint.x
+		let yMove = (moveDirection == 1) ? cartesianPoint.y + moveDistance : cartesianPoint.y
+		return CGPoint(x: xMove, y: yMove)
 	}
 	
 	func animate () {
@@ -64,14 +56,12 @@ class Person : SKSpriteNode {
 	}
 	
 	func moveTo (cartesian:CGPoint) {
-		if cartesian.x >= 0 && cartesian.x <= 11 && cartesian.y >= 0 && cartesian.y <= 11 {
-			state = "walking"
-			let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 44)
-			let moveTime = position.distanceFrom(isoLocation) / 24
-			runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
-				self.cartesianPoint = cartesian
-				self.state = "idle"
-			}
+		state = "walking"
+		let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 44)
+		let moveTime = position.distanceFrom(isoLocation) / 24
+		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
+			self.cartesianPoint = cartesian
+			self.state = "idle"
 		}
 	}
 }

@@ -94,13 +94,20 @@ class GameScene: SKScene {
 		}
 	}
 	
+	func giveDestinationTo (human:Person) {
+		let destination = human.randomDestination()
+		if destination.x >= 0 && destination.x <= 11 && destination.y >= 0 && destination.y <= 11 {
+				human.moveTo(destination)
+		}
+	}
+	
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
 		timerTick++
 		if timerTick % 5 == 0 {
 			for human in population {
 				if human.state == "idle" {
-					human.pathFind()
+					giveDestinationTo(human)
 				}
 				human.animate()
 			}
