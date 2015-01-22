@@ -45,7 +45,7 @@ class Tile : SKSpriteNode {
 	
 	func stackItemFromList (index:Int, chance:Int) {
 		occupied = true
-		let newItem = Item.randomItem(index)
+		let newItem = Item.randomItem(atIndex: index)
 		items.push(newItem)
 		addChild(newItem)
 		if Int(random()) % chance == 0 && newItem.isStackable {
