@@ -12,13 +12,18 @@ import SpriteKit
 class Person : SKSpriteNode {
 	var cartesianPoint:CGPoint
 	var animFrame:CGRect
+	var clothes:Outfit
+	let gender:String
+	
 	var state = "idle"
 	var facingFore = true
 	
-	init(atPoint:CGPoint, spriteName:String) {
+	init(atPoint:CGPoint, spriteName:String, genderName:String) {
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: spriteName))
 		cartesianPoint = atPoint
+		gender = genderName
+		clothes = Outfit(spriteName: "cavepersonFemale")
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		name = spriteName
 		xScale = 4
@@ -27,6 +32,7 @@ class Person : SKSpriteNode {
 		position = cartesianPoint.toUsefulIsometric()
 		position.y += 28
 		zPosition = 100
+		addChild (clothes)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -35,9 +41,9 @@ class Person : SKSpriteNode {
 	
 	class func randomPersonAtPoint (pt:CGPoint) -> Person {
 		let path = NSBundle.mainBundle().pathForResource("People", ofType: "plist")
-		let people:Array<String> = NSArray(contentsOfFile: path!) as Array<String>
+		let people:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
 		let index = Int(rand()) % people.count
-		return Person(atPoint: pt, spriteName: people [index])
+		return Person(atPoint: pt, spriteName: people [index][0], genderName: people [index][1])
 	}
 	
 	func randomDestination () -> CGPoint {
@@ -56,6 +62,7 @@ class Person : SKSpriteNode {
 		animFrame.origin.y = (state == "idle") ? 0.5 : 0.75
 		animFrame.origin.y -= (facingFore) ? 0 : 0.5
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
+		clothes.animateWithFrame(animFrame)
 	}
 	
 	func moveTo (cartesian:CGPoint) {
