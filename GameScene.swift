@@ -36,22 +36,6 @@ class GameScene: SKScene {
         }
     }
 	
-	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-		for touch: AnyObject in touches {
-			let location = touch.locationInNode(self).toCartesian()
-			for tile in world.map {
-				if tile.highlighted {
-					tile.highlight()
-					if !tile.occupied {
-						tile.occupied = true
-						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
-						population.append(human)
-						addChild(human)
-					}
-				}
-			}
-		}
-	}
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
@@ -69,6 +53,23 @@ class GameScene: SKScene {
 					}
 				}
 				
+			}
+		}
+	}
+	
+	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+		for touch: AnyObject in touches {
+			let location = touch.locationInNode(self).toCartesian()
+			for tile in world.map {
+				if tile.highlighted {
+					tile.highlight()
+					if !tile.occupied {
+						tile.occupied = true
+						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
+						population.append(human)
+						addChild(human)
+					}
+				}
 			}
 		}
 	}
