@@ -18,15 +18,15 @@ class Person : SKSpriteNode {
 	var state = "idle"
 	var facingFore = true
 	
-	init(atPoint:CGPoint, spriteName:String, genderName:String) {
+	init(atPoint:CGPoint, species:String, genderName:String) {
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
-		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: spriteName))
-		cartesianPoint = atPoint
 		gender = genderName
+		cartesianPoint = atPoint
 		clothes = Outfit(spriteName: Outfit.randomJob () + genderName)
+		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		addChild (clothes)
-		name = spriteName
+		name = species + gender
 		xScale = 4
 		yScale = 4
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
@@ -40,10 +40,10 @@ class Person : SKSpriteNode {
 	}
 	
 	class func randomPersonAtPoint (pt:CGPoint) -> Person {
-		let path = NSBundle.mainBundle().pathForResource("People", ofType: "plist")
-		let people:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
-		let index = Int(rand()) % people.count
-		return Person(atPoint: pt, spriteName: people [index][0], genderName: people [index][1])
+		let allSpecies = ["human"]
+		let species = allSpecies [World.randomInt(allSpecies.count)]
+		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
+		return Person(atPoint: pt, species: species, genderName: gender)
 	}
 	
 	func randomDestination () -> CGPoint {
