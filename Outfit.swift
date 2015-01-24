@@ -32,8 +32,8 @@ class Outfit : SKSpriteNode {
 	
 	class func randomJob () -> String {
 		let path = NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")
-		let jobs:Array<String> = NSArray (contentsOfFile: path!) as Array<String>
-		return jobs [Int(rand ()) % jobs.count]
+		let jobs:Array<Dictionary<String, String>> = NSArray (contentsOfFile: path!) as Array<Dictionary<String, String>>
+		return jobs [World.randomInt(jobs.count)] ["Name"]!
 	}
 	
 }
