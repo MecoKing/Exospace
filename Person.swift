@@ -23,8 +23,9 @@ class Person : SKSpriteNode {
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: spriteName))
 		cartesianPoint = atPoint
 		gender = genderName
-		clothes = Outfit(spriteName: "cavepersonFemale")
+		clothes = Outfit(spriteName: Outfit.randomJob () + genderName)
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
+		addChild (clothes)
 		name = spriteName
 		xScale = 4
 		yScale = 4
@@ -32,7 +33,6 @@ class Person : SKSpriteNode {
 		position = cartesianPoint.toUsefulIsometric()
 		position.y += 28
 		zPosition = 100
-		addChild (clothes)
 	}
 
 	required init?(coder aDecoder: NSCoder) {

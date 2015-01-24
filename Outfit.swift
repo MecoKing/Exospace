@@ -30,4 +30,10 @@ class Outfit : SKSpriteNode {
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
 	}
 	
+	class func randomJob () -> String {
+		let path = NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")
+		let jobs:Array<String> = NSArray (contentsOfFile: path!) as Array<String>
+		return jobs [Int(rand ()) % jobs.count]
+	}
+	
 }
