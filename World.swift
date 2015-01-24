@@ -42,4 +42,12 @@ class World : SKNode {
 		return Tile(atPoint: CGPoint(), spriteName: "Grass")
 	}
 	
+	
+	class func randomInt (range:Int) -> Int {
+		return random () % range
+	}
+	class func randomInt (start:Int, end:Int) -> Int {
+		return Int(random () % end) + start
+	}
+	
 }
