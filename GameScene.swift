@@ -10,28 +10,22 @@ import SpriteKit
 
 class GameScene: SKScene {
 	
-	var world = Array<Tile> ()
+	var world = World ()
 	var population = Array<Person> ()
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	
     override func didMoveToView(view: SKView) {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
-		for var x = 0; x < 12; x++ {
-			for var y = 0; y < 12; y++ {
-				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: "Grass")
-				world.append(groundTile)
-				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
-				addChild(groundTile)
-			}
-		}
+		addChild(world)
+		world.generateMap()
     }
 	
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
 			firstSelect = location
-			for tile in world {
+			for tile in world.map {
 				if tile.highlighted {
 					tile.highlight()
 				}
@@ -45,7 +39,7 @@ class GameScene: SKScene {
 	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
-			for tile in world {
+			for tile in world.map {
 				if tile.highlighted {
 					tile.highlight()
 					if !tile.occupied {
@@ -61,7 +55,7 @@ class GameScene: SKScene {
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
-			for tile in world {
+			for tile in world.map {
 				if tile.highlighted {
 					tile.highlight()
 				}
@@ -79,27 +73,18 @@ class GameScene: SKScene {
 		}
 	}
 	
-	func tileAtCartesian (pt:CGPoint) -> Tile {
-		for tile in world {
-			if tile.cartesianPoint == pt {
-				return tile
-			}
-		}
-		return Tile(atPoint: CGPoint(), spriteName: "Grass")
-	}
-	
 	func updateZPosition () {
 		for human in population {
-			human.zPosition = tileAtCartesian(human.cartesianPoint).zPosition
+			human.zPosition = world.tileAtCartesian(human.cartesianPoint).zPosition
 		}
 	}
 	
 	func giveDestinationTo (human:Person) {
 		let destination = human.randomDestination()
 		if destination.x >= 0 && destination.x <= 11 && destination.y >= 0 && destination.y <= 11 {
-			if !tileAtCartesian(destination).occupied {
-				tileAtCartesian(human.cartesianPoint).occupied = false
-				tileAtCartesian(destination).occupied = true
+			if !world.tileAtCartesian(destination).occupied {
+				world.tileAtCartesian(human.cartesianPoint).occupied = false
+				world.tileAtCartesian(destination).occupied = true
 				human.moveTo(destination)
 			}
 		}
