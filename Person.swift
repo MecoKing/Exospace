@@ -39,6 +39,7 @@ class Person : SKSpriteNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	//Create a random Person
 	class func randomPersonAtPoint (pt:CGPoint) -> Person {
 		let allSpecies = ["human"]
 		let species = allSpecies [World.randomInt(allSpecies.count)]
@@ -46,6 +47,7 @@ class Person : SKSpriteNode {
 		return Person(atPoint: pt, species: species, genderName: gender)
 	}
 	
+	//Create a random destination from my Position
 	func randomDestination () -> CGPoint {
 		let moveDirection = World.randomInt(2)
 		let moveDistance = CGFloat(World.randomInt(-2, to: 3))
@@ -54,6 +56,7 @@ class Person : SKSpriteNode {
 		return CGPoint(x: xMove, y: yMove)
 	}
 	
+	//Animate the person sprite as well as all accessories
 	func animate () {
 		animFrame.origin.x += 0.25
 		if animFrame.origin.x >= 1 {
@@ -65,6 +68,7 @@ class Person : SKSpriteNode {
 		clothes.animateWithFrame(animFrame)
 	}
 	
+	//Move me to this destination
 	func moveTo (cartesian:CGPoint) {
 		state = "walking"
 		let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 28)

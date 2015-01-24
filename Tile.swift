@@ -38,11 +38,13 @@ class Tile : SKSpriteNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	//Highlight the tile (By making it transparent :P)
 	func highlight () {
 		highlighted = (highlighted) ? false : true
 		colorBlendFactor = (highlighted) ? 0.4 : 0
 	}
 	
+	//Add an item to the pile!
 	func stackItemFromList (index:Int, chance:Int) {
 		occupied = true
 		let newItem = Item.randomItem(atIndex: index)

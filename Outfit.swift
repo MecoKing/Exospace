@@ -25,11 +25,13 @@ class Outfit : SKSpriteNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	//Animate according to the given frame
 	func animateWithFrame (newFrame:CGRect) {
 		animFrame = newFrame
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
 	}
 	
+	//Get a random job name
 	class func randomJob () -> String {
 		let path = NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")
 		let jobs:Array<Dictionary<String, String>> = NSArray (contentsOfFile: path!) as Array<Dictionary<String, String>>

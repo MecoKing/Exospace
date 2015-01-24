@@ -21,6 +21,7 @@ class World : SKNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	//Generate a random map
 	func generateMap () {
 		removeAllChildren()
 		for var x = 0; x < 12; x++ {
@@ -33,6 +34,7 @@ class World : SKNode {
 		}
 	}
 	
+	//return the tile at this point
 	func tileAtCartesian (pt:CGPoint) -> Tile {
 		for tile in map {
 			if tile.cartesianPoint == pt {
@@ -42,7 +44,7 @@ class World : SKNode {
 		return Tile(atPoint: CGPoint(), spriteName: "Grass")
 	}
 	
-	
+	//Random functions easier than Swift's
 	class func randomInt (range:Int) -> Int {
 		return random () % range
 	}

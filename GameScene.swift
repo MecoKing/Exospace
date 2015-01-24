@@ -21,6 +21,7 @@ class GameScene: SKScene {
 		world.generateMap()
     }
 	
+	//Select the tile you touched
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
@@ -36,6 +37,7 @@ class GameScene: SKScene {
         }
     }
 	
+	//Select all the tiles in a rectangle from where you first touched to where you are touching
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
@@ -57,6 +59,7 @@ class GameScene: SKScene {
 		}
 	}
 	
+	//When touches are released, do something with the selected tiles
 	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
@@ -74,12 +77,14 @@ class GameScene: SKScene {
 		}
 	}
 	
+	//Update the zPosition of all people
 	func updateZPosition () {
 		for human in population {
 			human.zPosition = world.tileAtCartesian(human.cartesianPoint).zPosition
 		}
 	}
 	
+	//Make a random destination and send a person there
 	func giveDestinationTo (human:Person) {
 		let destination = human.randomDestination()
 		if destination.x >= 0 && destination.x <= 11 && destination.y >= 0 && destination.y <= 11 {
@@ -91,6 +96,7 @@ class GameScene: SKScene {
 		}
 	}
 	
+	//Run the Game Logic
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
 		timerTick++

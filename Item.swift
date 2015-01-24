@@ -26,6 +26,7 @@ class Item : SKSpriteNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	//Create a random Item
 	class func randomItem (atIndex index:Int) -> Item {
 		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
 		let availableItems:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
