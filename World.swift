@@ -46,8 +46,8 @@ class World : SKNode {
 	class func randomInt (range:Int) -> Int {
 		return random () % range
 	}
-	class func randomInt (start:Int, end:Int) -> Int {
-		return Int(random () % end) + start
+	class func randomInt (from:Int, to:Int) -> Int {
+		return Int(random () % (to - from)) + from
 	}
 	
 }
