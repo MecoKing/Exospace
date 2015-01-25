@@ -44,13 +44,18 @@ class GameScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
 			firstSelect = location
+			var tileSelected = false
 			for tile in world.map {
 				if tile.highlighted {
 					tile.highlight()
 				}
 				if location == tile.cartesianPoint {
 					tile.highlight()
+					tileSelected = true
 				}
+			}
+			if !tileSelected {
+				world.generateMap ()
 			}
         }
     }
