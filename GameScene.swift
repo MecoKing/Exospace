@@ -14,7 +14,6 @@ class GameScene: SKScene {
 	var population = Array<Person> ()
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
-	var species = ""
 	
 	//----------------------------------------------------------------
 	
@@ -22,20 +21,6 @@ class GameScene: SKScene {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		addChild(world)
 		world.generateMap()
-		
-		let allSpecies = ["human", "argonian"]
-		species = allSpecies [World.randomInt(allSpecies.count)]
-		population.append(Person(atPoint: CGPoint(x: 5, y: 4), species: species, genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 5, y: 5), species: species, genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 5, y: 6), species: species, genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 5, y: 7), species: species, genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 4), species: species, genderName: "Female"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 5), species: species, genderName: "Female"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 6), species: species, genderName: "Female"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 7), species: species, genderName: "Female"))
-		for person in population {
-			addChild(person)
-		}
     }
 	
 	//----------------------------------------------------------------
@@ -92,7 +77,7 @@ class GameScene: SKScene {
 					tile.highlight()
 					if !tile.occupied {
 						tile.occupied = true
-						let human = Person.randomPersonAtPoint(tile.cartesianPoint, withSpecies:species)
+						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
 						population.append(human)
 						addChild(human)
 					}

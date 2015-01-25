@@ -42,7 +42,9 @@ class Person : SKSpriteNode {
 	}
 	
 	//Create a random Person
-	class func randomPersonAtPoint (pt:CGPoint, withSpecies species:String) -> Person {
+	class func randomPersonAtPoint (pt:CGPoint) -> Person {
+		let allSpecies = ["human", "argonian"]
+		let species = allSpecies [World.randomInt(allSpecies.count)]
 		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
 		return Person(atPoint: pt, species: species, genderName: gender)
 	}
