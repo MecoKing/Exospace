@@ -29,10 +29,10 @@ class Item : SKSpriteNode {
 	//Create a random Item
 	class func randomItem (atIndex index:Int) -> Item {
 		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
-		let availableItems:Array<Array<String>> = NSArray(contentsOfFile: path!) as Array<Array<String>>
+		let availableItems:Array<Dictionary<String, String>> = NSArray(contentsOfFile: path!) as Array<Dictionary<String, String>>
 		let itemIndex = World.randomInt(availableItems.count)
-		let stackItem = (availableItems [itemIndex][1] == "YES") ? true : false
-		let newItem = Item(spriteName: availableItems [itemIndex][0], heightOffset:(index * 12), stackable: stackItem)
+		let stackItem = (availableItems [itemIndex]["stackable"] == "YES") ? true : false
+		let newItem = Item(spriteName: availableItems [itemIndex]["imageName"]!, heightOffset:(index * 12), stackable: stackItem)
 		newItem.zPosition = CGFloat(index)
 		return newItem
 	}

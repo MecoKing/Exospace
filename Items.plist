@@ -2,17 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<array>
+	<dict>
+		<key>imageName</key>
 		<string>stoneBricks</string>
+		<key>stackable</key>
 		<string>YES</string>
-	</array>
-	<array>
+	</dict>
+	<dict>
+		<key>imageName</key>
 		<string>stoneBricksDamaged</string>
+		<key>stackable</key>
 		<string>NO</string>
-	</array>
-	<array>
+	</dict>
+	<dict>
+		<key>imageName</key>
 		<string>stoneBricksMossy</string>
+		<key>stackable</key>
 		<string>YES</string>
-	</array>
+	</dict>
 </array>
 </plist>
