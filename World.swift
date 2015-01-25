@@ -24,6 +24,7 @@ class World : SKNode {
 	//Generate a random map
 	func generateMap () {
 		removeAllChildren()
+		map.removeAll(keepCapacity: false)
 		for var x = 0; x < 12; x++ {
 			for var y = 0; y < 12; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: "Grass")
