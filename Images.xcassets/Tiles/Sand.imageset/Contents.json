@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Steel.png"
+      "filename" : "Sand.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Steel2x.png"
+      "filename" : "Sand2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "Steel3x.png"
+      "filename" : "Sand3x.png"
     }
   ],
   "info" : {
