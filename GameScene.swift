@@ -89,13 +89,6 @@ class GameScene: SKScene {
 		}
 	}
 	
-	//Update the zPosition of all people
-	func updateZPosition () {
-		for human in population {
-			human.zPosition = world.tileAtCartesian(human.cartesianPoint).zPosition
-		}
-	}
-	
 	//Make a random destination and send a person there
 	func giveDestinationTo (human:Person) {
 		let destination = human.randomDestination()
@@ -117,9 +110,9 @@ class GameScene: SKScene {
 				if human.state == "idle" {
 					giveDestinationTo(human)
 				}
+				human.updateZPosition ()
 				human.animate()
 			}
 		}
-		updateZPosition();
     }
 }

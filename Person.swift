@@ -50,10 +50,14 @@ class Person : SKSpriteNode {
 	//Create a random destination from my Position
 	func randomDestination () -> CGPoint {
 		let moveDirection = World.randomInt(2)
-		let moveDistance = CGFloat(World.randomInt(-2, to: 3))
+		let moveDistance = CGFloat(World.randomInt(-1, to: 2))
 		let xMove = (moveDirection == 0) ? cartesianPoint.x + moveDistance : cartesianPoint.x
 		let yMove = (moveDirection == 1) ? cartesianPoint.y + moveDistance : cartesianPoint.y
 		return CGPoint(x: xMove, y: yMove)
+	}
+	
+	func updateZPosition () {
+		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
 	}
 	
 	//Animate the person sprite as well as all accessories
