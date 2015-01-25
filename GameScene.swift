@@ -15,6 +15,8 @@ class GameScene: SKScene {
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	
+	//----------------------------------------------------------------
+	
     override func didMoveToView(view: SKView) {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		addChild(world)
@@ -32,6 +34,8 @@ class GameScene: SKScene {
 			addChild(person)
 		}
     }
+	
+	//----------------------------------------------------------------
 	
 	//Select the tile you touched
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -89,6 +93,8 @@ class GameScene: SKScene {
 		}
 	}
 	
+	//----------------------------------------------------------------
+	
 	//Make a random destination and send a person there
 	func giveDestinationTo (human:Person) {
 		let destination = human.randomDestination()
@@ -100,6 +106,8 @@ class GameScene: SKScene {
 			}
 		}
 	}
+	
+	//----------------------------------------------------------------
 	
 	//Run the Game Logic
     override func update(currentTime: CFTimeInterval) {

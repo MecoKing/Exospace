@@ -18,6 +18,8 @@ class Person : SKSpriteNode {
 	var state = "idle"
 	var facingFore = true
 	
+	//----------------------------------------------------------------
+	
 	init(atPoint:CGPoint, species:String, genderName:String) {
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
 		gender = genderName
@@ -46,6 +48,8 @@ class Person : SKSpriteNode {
 		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
 		return Person(atPoint: pt, species: species, genderName: gender)
 	}
+	
+	//----------------------------------------------------------------
 	
 	//Create a random destination from my Position
 	func randomDestination () -> CGPoint {

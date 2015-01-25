@@ -13,6 +13,8 @@ class World : SKNode {
 	
 	var map = Array<Tile> ()
 	
+	//----------------------------------------------------------------
+	
 	override init () {
 		super.init()
 	}
@@ -20,6 +22,8 @@ class World : SKNode {
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+	
+	//----------------------------------------------------------------
 	
 	//Generate a random map
 	func generateMap () {
@@ -47,6 +51,8 @@ class World : SKNode {
 		}
 		return Tile(atPoint: CGPoint(), spriteName: "Grass")
 	}
+	
+	//----------------------------------------------------------------
 	
 	//Random functions easier than Swift's
 	class func randomInt (range:Int) -> Int {

@@ -14,6 +14,8 @@ class Tile : SKSpriteNode {
 	var highlighted = false
 	var occupied = false
 	
+	//----------------------------------------------------------------
+	
 	override class func initialize() {
 		srandomdev()
 	}
@@ -32,6 +34,8 @@ class Tile : SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+	
+	//----------------------------------------------------------------
 	
 	//Highlight the tile (By making it transparent :P)
 	func highlight () {

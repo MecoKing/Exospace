@@ -12,6 +12,8 @@ import SpriteKit
 class Item : SKSpriteNode {
 	var isStackable:Bool
 	
+	//----------------------------------------------------------------
+	
 	init (spriteName:String, heightOffset:Int, stackable:Bool) {
 		let image = SKTexture(imageNamed: spriteName)
 		isStackable = stackable
@@ -36,4 +38,7 @@ class Item : SKSpriteNode {
 		newItem.zPosition = CGFloat(index)
 		return newItem
 	}
+	
+	//----------------------------------------------------------------
+	
 }
