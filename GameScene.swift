@@ -19,6 +19,18 @@ class GameScene: SKScene {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		addChild(world)
 		world.generateMap()
+		
+		population.append(Person(atPoint: CGPoint(x: 6, y: 5), species: "human", genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 6), species: "human", genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 7), species: "human", genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 8), species: "human", genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 7, y: 5), species: "human", genderName: "Female"))
+		population.append(Person(atPoint: CGPoint(x: 7, y: 6), species: "human", genderName: "Female"))
+		population.append(Person(atPoint: CGPoint(x: 7, y: 7), species: "human", genderName: "Female"))
+		population.append(Person(atPoint: CGPoint(x: 7, y: 8), species: "human", genderName: "Female"))
+		for person in population {
+			addChild(person)
+		}
     }
 	
 	//Select the tile you touched
