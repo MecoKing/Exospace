@@ -22,14 +22,16 @@ class GameScene: SKScene {
 		addChild(world)
 		world.generateMap()
 		
-		population.append(Person(atPoint: CGPoint(x: 5, y: 4), species: "human", genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 5, y: 5), species: "human", genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 5, y: 6), species: "human", genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 5, y: 7), species: "human", genderName: "Male"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 4), species: "human", genderName: "Female"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 5), species: "human", genderName: "Female"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 6), species: "human", genderName: "Female"))
-		population.append(Person(atPoint: CGPoint(x: 6, y: 7), species: "human", genderName: "Female"))
+		let allSpecies = ["human", "argonian"]
+		let species = allSpecies [World.randomInt(allSpecies.count)]
+		population.append(Person(atPoint: CGPoint(x: 5, y: 4), species: species, genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 5, y: 5), species: species, genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 5, y: 6), species: species, genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 5, y: 7), species: species, genderName: "Male"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 4), species: species, genderName: "Female"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 5), species: species, genderName: "Female"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 6), species: species, genderName: "Female"))
+		population.append(Person(atPoint: CGPoint(x: 6, y: 7), species: species, genderName: "Female"))
 		for person in population {
 			addChild(person)
 		}
