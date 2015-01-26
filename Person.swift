@@ -27,7 +27,7 @@ class Person : SKSpriteNode {
 		gender = genderName
 		cartesianPoint = atPoint
 		clothes = Outfit.randomOutfitForGender(gender)
-		hairdo = Hairstyle(spriteName: "human"+gender+"Hair01")
+		hairdo = Hairstyle(spriteName: species+gender+"Hair01")
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		addChild (clothes)
