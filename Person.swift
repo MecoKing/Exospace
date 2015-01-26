@@ -15,6 +15,8 @@ class Person : SKSpriteNode {
 	var clothes:Outfit
 	let gender:String
 	
+	var hairstyle:SKSpriteNode
+	
 	var state = "idle"
 	var facingFore = true
 	
@@ -25,9 +27,12 @@ class Person : SKSpriteNode {
 		gender = genderName
 		cartesianPoint = atPoint
 		clothes = Outfit(spriteName: Outfit.randomJob () + genderName)
+		hairstyle = SKSpriteNode(texture: SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: "humanMaleHair01")))
+		hairstyle.zPosition = 10
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		addChild (clothes)
+		addChild(hairstyle)
 		name = species + gender
 		xScale = 4
 		yScale = 4
@@ -74,6 +79,8 @@ class Person : SKSpriteNode {
 		animFrame.origin.y -= (facingFore) ? 0 : 0.5
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
 		clothes.animateWithFrame(animFrame)
+		
+		hairstyle.texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: "humanMaleHair01"))
 	}
 	
 	//Move me to this destination
