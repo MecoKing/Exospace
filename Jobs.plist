@@ -8,11 +8,5 @@
 		<key>Headpiece</key>
 		<string>NO</string>
 	</dict>
-	<dict>
-		<key>Name</key>
-		<string>americanHero</string>
-		<key>Headpiece</key>
-		<string>YES</string>
-	</dict>
 </array>
 </plist>
