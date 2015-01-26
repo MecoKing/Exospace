@@ -20,7 +20,7 @@ class Outfit : SKSpriteNode {
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: spriteName))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		name = spriteName
-		zPosition = 5
+		zPosition = 0.1
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
 
