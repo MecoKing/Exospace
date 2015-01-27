@@ -11,17 +11,21 @@ import SpriteKit
 
 class Item : SKSpriteNode {
 	var isStackable:Bool
+	var cartesianPoint:CGPoint
 	
 	//----------------------------------------------------------------
 	
-	init (spriteName:String, heightOffset:Int, stackable:Bool) {
+	init (atPoint:CGPoint, spriteName:String, stackable:Bool) {
 		let image = SKTexture(imageNamed: spriteName)
 		isStackable = stackable
+		cartesianPoint = atPoint
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
-		xScale = 1
-		yScale = 1
+		xScale = 4
+		yScale = 4
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
-		position.y += CGFloat(6 + heightOffset)
+		position = cartesianPoint.toUsefulIsometric()
+		position.y += 24
+		updateZPosition()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -29,16 +33,19 @@ class Item : SKSpriteNode {
 	}
 	
 	//Create a random Item
-	class func randomItem (atIndex index:Int) -> Item {
+	class func randomItemAtPoint (pt:CGPoint) -> Item {
 		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
 		let availableItems:Array<Dictionary<String, String>> = NSArray(contentsOfFile: path!) as Array<Dictionary<String, String>>
 		let itemIndex = World.randomInt(availableItems.count)
 		let stackItem = (availableItems [itemIndex]["stackable"] == "YES") ? true : false
-		let newItem = Item(spriteName: availableItems [itemIndex]["imageName"]!, heightOffset:(index * 12), stackable: stackItem)
-		newItem.zPosition = CGFloat(index)
+		let newItem = Item(atPoint:pt, spriteName: availableItems [itemIndex]["imageName"]!, stackable: stackItem)
 		return newItem
 	}
 	
 	//----------------------------------------------------------------
+	
+	func updateZPosition () {
+		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
+	}
 	
 }

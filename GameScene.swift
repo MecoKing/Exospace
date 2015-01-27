@@ -12,6 +12,7 @@ class GameScene: SKScene {
 	
 	var world = World ()
 	var population = Array<Person> ()
+	var itemses = Array<Item> ()
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	
@@ -21,6 +22,7 @@ class GameScene: SKScene {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		addChild(world)
 		world.generateMap()
+		generateItems()
     }
 	
 	//----------------------------------------------------------------
@@ -42,6 +44,7 @@ class GameScene: SKScene {
 			}
 			if !tileSelected {
 				world.generateMap ()
+				generateItems()
 			}
         }
     }
@@ -96,6 +99,25 @@ class GameScene: SKScene {
 			if !world.tileAtCartesian(destination).occupied {
 				human.destination = destination
 				human.pathFind()
+			}
+		}
+	}
+	
+	//Generate random items all over the map
+	func generateItems () {
+		for item in itemses {
+			item.removeFromParent()
+		}
+		itemses.removeAll(keepCapacity: false)
+		
+		for i in 0..<World.randomInt(12, to: 16) {
+			var itemPoint = CGPoint(x:World.randomInt(0, to: 12), y:World.randomInt(0, to: 12))
+			while !world.tileAtCartesian(itemPoint).occupied {
+				itemPoint = (world.tileAtCartesian(itemPoint).occupied) ? CGPoint(x:World.randomInt(0, to: 12), y:World.randomInt(0, to: 12)) : itemPoint
+				let rndmItem = Item.randomItemAtPoint(itemPoint)
+				world.tileAtCartesian(rndmItem.cartesianPoint).occupied = true
+				itemses.append(rndmItem)
+				addChild(rndmItem)
 			}
 		}
 	}
