@@ -51,17 +51,8 @@ class Person : SKSpriteNode {
 	//Create a random Person
 	class func randomPersonAtPoint (pt:CGPoint, world:World, speciesBias:String) -> Person {
 		let allSpecies = ["human", "argonian"]
-		var species:String
-		switch speciesBias {
-			case "human":
-				let index = World.randomInt(allSpecies.count + 3)
-				species = (index >= allSpecies.count) ? speciesBias : allSpecies[index]
-			case "argonian":
-				let index = World.randomInt(allSpecies.count + 3)
-				species = (index >= allSpecies.count) ? speciesBias : allSpecies[index]
-			default:
-				species = allSpecies[World.randomInt(allSpecies.count)]
-		}
+		let index = (speciesBias != "none") ? World.randomInt(allSpecies.count + 3) : World.randomInt(allSpecies.count)
+		let species = (index >= allSpecies.count) ? speciesBias : allSpecies [index]
 		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
 		return Person(atPoint: pt, species: species, genderName: gender, inWorld:world)
 	}
