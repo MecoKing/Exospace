@@ -68,50 +68,37 @@ class Person : SKSpriteNode {
 		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
 	}
 	
-	func pathFind () {
+	func pathFind () {//USE A DYKSTRA ALGORITHM
 		let x = cartesianPoint.x, y = cartesianPoint.y, dx = destination.x, dy = destination.y
-		
-		if dx > x && !planet.tileAtCartesian(CGPoint(x: x + 1, y: y)).occupied {
-			if dy > y  && !planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied {
-				moveTo (CGPoint(x: x, y: y + 1))
-				planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
+		let xDirection = (dx > x) ? x+1 : x-1, negXDirection = (dx > x) ? x+1 : x-1
+		let yDirection = (dy > y) ? y+1 : y-1, negYDirection = (dy > y) ? y+1 : y-1
+		if dx != x {
+			if !planet.tileAtCartesian(CGPoint(x: xDirection, y: y)).occupied {
+				moveTo(CGPoint(x: xDirection, y: y))
+			} else if !planet.tileAtCartesian(CGPoint(x: x, y: yDirection)).occupied {
+				moveTo(CGPoint(x: x, y: yDirection))
+			} else if !planet.tileAtCartesian(CGPoint(x: x, y: negYDirection)).occupied {
+				moveTo(CGPoint(x: x, y: negYDirection))
+			} else if !planet.tileAtCartesian(CGPoint(x: negXDirection, y: y)).occupied{
+				moveTo(CGPoint(x: negXDirection, y: y))
 			} else {
-				moveTo (CGPoint(x: x + 1, y: y))
-				planet.tileAtCartesian(CGPoint(x: x + 1, y: y)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
+				"idle"
 			}
-		} else if dy > y  && !planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied {
-			if dx < x  && !planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied {
-				moveTo (CGPoint(x: x - 1, y: y))
-				planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
+		}
+		else if dy != y {
+			if !planet.tileAtCartesian(CGPoint(x: x, y: yDirection)).occupied {
+				moveTo(CGPoint(x: x, y: yDirection))
+			} else if !planet.tileAtCartesian(CGPoint(x: xDirection, y: y)).occupied {
+				moveTo(CGPoint(x: xDirection, y: y))
+			} else if !planet.tileAtCartesian(CGPoint(x: negXDirection, y: y)).occupied {
+				moveTo(CGPoint(x: negXDirection, y: y))
+			} else if !planet.tileAtCartesian(CGPoint(x: negYDirection, y: y)).occupied{
+				moveTo(CGPoint(x: x, y: negYDirection))
 			} else {
-				moveTo (CGPoint(x: x, y: y + 1))
-				planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
+				state = "idle"
 			}
-		} else if dx < x  && !planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied {
-			if dy < y  && !planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied {
-				moveTo (CGPoint(x: x, y: y - 1))
-				planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
-			} else {
-				moveTo (CGPoint(x: x - 1, y: y))
-				planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
-			}
-		} else if dy < y  && !planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied {
-			if dx > x && !planet.tileAtCartesian(CGPoint(x: x + 1, y: y)).occupied {
-				moveTo (CGPoint(x: x, y: y + 1))
-				planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
-			} else {
-				moveTo (CGPoint(x: x, y: y - 1))
-				planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied = true
-				planet.tileAtCartesian(cartesianPoint).occupied = false
-			}
-		} else {
+		}
+		else {
 			state = "idle"
 		}
 	}
@@ -136,6 +123,8 @@ class Person : SKSpriteNode {
 		let moveTime = position.distanceFrom(isoLocation) / 24
 		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
 		facingFore = (isoLocation.y < position.y) ? true : false
+		planet.tileAtCartesian(cartesian).occupied = true
+		planet.tileAtCartesian(cartesianPoint).occupied = false
 		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
 			self.cartesianPoint = cartesian
 			if self.destination == self.cartesianPoint {
