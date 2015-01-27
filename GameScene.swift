@@ -77,7 +77,7 @@ class GameScene: SKScene {
 					tile.highlight()
 					if !tile.occupied {
 						tile.occupied = true
-						let human = Person.randomPersonAtPoint(tile.cartesianPoint)
+						let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world)
 						population.append(human)
 						addChild(human)
 					}
@@ -93,9 +93,8 @@ class GameScene: SKScene {
 		let destination = human.randomDestination()
 		if destination.x >= 0 && destination.x <= 11 && destination.y >= 0 && destination.y <= 11 {
 			if !world.tileAtCartesian(destination).occupied {
-				world.tileAtCartesian(human.cartesianPoint).occupied = false
-				world.tileAtCartesian(destination).occupied = true
-				human.moveTo(destination)
+				human.destination = destination
+				human.pathFind()
 			}
 		}
 	}
@@ -113,6 +112,9 @@ class GameScene: SKScene {
 				}
 				human.updateZPosition ()
 				human.animate()
+				if !(human.planet === world) {
+					human.planet = world
+				}
 			}
 		}
     }

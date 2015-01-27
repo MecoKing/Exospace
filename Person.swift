@@ -14,20 +14,23 @@ class Person : SKSpriteNode {
 	var animFrame:CGRect
 	var clothes:Outfit
 	let gender:String
-	
 	var hairdo:Hairstyle
+	var destination:CGPoint
 	
+	var planet:World// REMOVE WHEN CLASS VARIABLES ARE ADDED!
 	var state = "idle"
 	var facingFore = true
 	
 	//----------------------------------------------------------------
 	
-	init(atPoint:CGPoint, species:String, genderName:String) {
+	init(atPoint:CGPoint, species:String, genderName:String, inWorld:World) {
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
 		gender = genderName
 		cartesianPoint = atPoint
+		destination = cartesianPoint
 		clothes = Outfit.randomOutfitForGender(gender)
 		hairdo = Hairstyle(spriteName: species+gender+"Hair01")
+		planet = inWorld
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		addChild (clothes)
@@ -46,26 +49,74 @@ class Person : SKSpriteNode {
 	}
 	
 	//Create a random Person
-	class func randomPersonAtPoint (pt:CGPoint) -> Person {
+	class func randomPersonAtPoint (pt:CGPoint, world:World) -> Person {
 		let allSpecies = ["human", "argonian"]
 		let species = allSpecies [World.randomInt(allSpecies.count)]
 		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
-		return Person(atPoint: pt, species: species, genderName: gender)
+		return Person(atPoint: pt, species: species, genderName: gender, inWorld:world)
 	}
 	
 	//----------------------------------------------------------------
 	
 	//Create a random destination from my Position
 	func randomDestination () -> CGPoint {
-		let moveDirection = World.randomInt(2)
-		let moveDistance = CGFloat(World.randomInt(-1, to: 2))
-		let xMove = (moveDirection == 0) ? cartesianPoint.x + moveDistance : cartesianPoint.x
-		let yMove = (moveDirection == 1) ? cartesianPoint.y + moveDistance : cartesianPoint.y
-		return CGPoint(x: xMove, y: yMove)
+//		let moveDirection = World.randomInt(2)
+//		let moveDistance = CGFloat(World.randomInt(-1, to: 2))
+//		let xMove = (moveDirection == 0) ? cartesianPoint.x + moveDistance : cartesianPoint.x
+//		let yMove = (moveDirection == 1) ? cartesianPoint.y + moveDistance : cartesianPoint.y
+		return CGPoint(x: World.randomInt(12), y: World.randomInt(12))
 	}
 	
 	func updateZPosition () {
 		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
+	}
+	
+	func pathFind () {
+		let x = cartesianPoint.x, y = cartesianPoint.y, dx = destination.x, dy = destination.y
+		
+		if dx > x && !planet.tileAtCartesian(CGPoint(x: x + 1, y: y)).occupied {
+			if dy > y  && !planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied {
+				moveTo (CGPoint(x: x, y: y + 1))
+				planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			} else {
+				moveTo (CGPoint(x: x + 1, y: y))
+				planet.tileAtCartesian(CGPoint(x: x + 1, y: y)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			}
+		} else if dy > y  && !planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied {
+			if dx < x  && !planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied {
+				moveTo (CGPoint(x: x - 1, y: y))
+				planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			} else {
+				moveTo (CGPoint(x: x, y: y + 1))
+				planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			}
+		} else if dx < x  && !planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied {
+			if dy < y  && !planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied {
+				moveTo (CGPoint(x: x, y: y - 1))
+				planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			} else {
+				moveTo (CGPoint(x: x - 1, y: y))
+				planet.tileAtCartesian(CGPoint(x: x - 1, y: y)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			}
+		} else if dy < y  && !planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied {
+			if dx > x && !planet.tileAtCartesian(CGPoint(x: x + 1, y: y)).occupied {
+				moveTo (CGPoint(x: x, y: y + 1))
+				planet.tileAtCartesian(CGPoint(x: x, y: y + 1)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			} else {
+				moveTo (CGPoint(x: x, y: y - 1))
+				planet.tileAtCartesian(CGPoint(x: x, y: y - 1)).occupied = true
+				planet.tileAtCartesian(cartesianPoint).occupied = false
+			}
+		} else {
+			state = "idle"
+		}
 	}
 	
 	//Animate the person sprite as well as all accessories
@@ -90,7 +141,12 @@ class Person : SKSpriteNode {
 		facingFore = (isoLocation.y < position.y) ? true : false
 		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
 			self.cartesianPoint = cartesian
-			self.state = "idle"
+			if self.destination == self.cartesianPoint {
+				self.state = "idle"
+			}
+			else {
+				self.pathFind()
+			}
 		}
 	}
 }
