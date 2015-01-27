@@ -50,7 +50,7 @@ class World : SKNode {
 				return tile
 			}
 		}
-		return Tile(atPoint: CGPoint(), spriteName: "Grass")
+		return Tile(atPoint: CGPoint(), spriteName: tileType)
 	}
 	
 	//----------------------------------------------------------------
