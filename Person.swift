@@ -68,12 +68,8 @@ class Person : SKSpriteNode {
 	
 	//----------------------------------------------------------------
 	
-	//Create a random destination from my Position
+	//Create a random destination
 	func randomDestination () -> CGPoint {
-//		let moveDirection = World.randomInt(2)
-//		let moveDistance = CGFloat(World.randomInt(-1, to: 2))
-//		let xMove = (moveDirection == 0) ? cartesianPoint.x + moveDistance : cartesianPoint.x
-//		let yMove = (moveDirection == 1) ? cartesianPoint.y + moveDistance : cartesianPoint.y
 		return CGPoint(x: World.randomInt(12), y: World.randomInt(12))
 	}
 	
