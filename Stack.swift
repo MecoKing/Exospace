@@ -8,17 +8,19 @@
 
 import Foundation
 
-struct Stack<AnyObject> {
+public struct Stack<AnyObject> {
+	public init() {}
+	
 	var items = [AnyObject]()
-	var topItem: AnyObject? {
+	public var topItem: AnyObject? {
 		return items.isEmpty ? nil : items[items.count - 1]
 	}
 	
-	mutating func push(item: AnyObject) {
+	public mutating func push(item: AnyObject) {
 		items.append(item)
 	}
 	
-	mutating func pop() -> AnyObject {
+	public mutating func pop() -> AnyObject {
 		return items.removeLast()
 	}
 }
