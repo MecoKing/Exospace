@@ -12,6 +12,7 @@ import SpriteKit
 class World : SKNode {
 	
 	var map = Array<Tile> ()
+	var tileType = "Grass"
 	
 	//----------------------------------------------------------------
 	
@@ -31,10 +32,10 @@ class World : SKNode {
 		map.removeAll(keepCapacity: false)
 		
 		let tileTypes = ["Grass", "Sand", "Steel", "Magma"]
-		let selectedType = tileTypes [World.randomInt(tileTypes.count)]
+		tileType = tileTypes [World.randomInt(tileTypes.count)]
 		for var x = 0; x < 12; x++ {
 			for var y = 0; y < 12; y++ {
-				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: selectedType)
+				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
 				map.append(groundTile)
 				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
 				addChild(groundTile)
