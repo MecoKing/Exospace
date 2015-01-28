@@ -86,7 +86,7 @@ class Person : SKSpriteNode {
 				}
 			}
 		}
-		if bestPath == cartesianPoint {state = "barricaded"}
+		if bestPath == cartesianPoint {state = "idle"}
 		else {moveTo(bestPath)}
 	}
 	
