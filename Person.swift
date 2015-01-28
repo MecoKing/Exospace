@@ -68,39 +68,26 @@ class Person : SKSpriteNode {
 		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
 	}
 	
-	func pathFind () {//USE A DYKSTRA ALGORITHM
-		let x = cartesianPoint.x, y = cartesianPoint.y, dx = destination.x, dy = destination.y
-		let xDirection = (dx > x) ? x+1 : x-1, negXDirection = (dx > x) ? x-1 : x+1
-		let yDirection = (dy > y) ? y+1 : y-1, negYDirection = (dy > y) ? y-1 : y+1
-		if dx != x {
-			if !planet.tileAtCartesian(CGPoint(x: xDirection, y: y)).occupied && xDirection>=0 && xDirection<=11 {
-				moveTo(CGPoint(x: xDirection, y: y))
-			} else if !planet.tileAtCartesian(CGPoint(x: x, y: yDirection)).occupied && yDirection>=0 && yDirection<=11 {
-				moveTo(CGPoint(x: x, y: yDirection))
-			} else if !planet.tileAtCartesian(CGPoint(x: x, y: negYDirection)).occupied && negYDirection>=0 && negYDirection<=11 {
-				moveTo(CGPoint(x: x, y: negYDirection))
-			} else if !planet.tileAtCartesian(CGPoint(x: negXDirection, y: y)).occupied && negXDirection>=0 && negXDirection<=11 {
-				moveTo(CGPoint(x: negXDirection, y: y))
-			} else {
-				"idle"
+	func pathFind () {
+		let H = abs(cartesianPoint.x - destination.x) + abs(cartesianPoint.y - destination.y)
+		let north = CGPoint (x: cartesianPoint.x, y: cartesianPoint.y+1)
+		let east = CGPoint (x: cartesianPoint.x+1, y: cartesianPoint.y)
+		let south = CGPoint (x: cartesianPoint.x, y: cartesianPoint.y-1)
+		let west = CGPoint (x: cartesianPoint.x-1, y: cartesianPoint.y)
+		
+		var bestPath = cartesianPoint
+		for point in [north, east, south, west] {
+			if point.x >= 0 && point.x <= 11 && point.y >= 0 && point.y <= 11 {
+				if !planet.tileAtCartesian(point).occupied {
+					let pointF = H + (abs(point.x - destination.x) + abs(point.y - destination.y)) + 1
+					if pointF < H + (abs(bestPath.x - destination.x) + abs(bestPath.y - destination.y)) + 1 {
+						bestPath = point
+					}
+				}
 			}
 		}
-		else if dy != y {
-			if !planet.tileAtCartesian(CGPoint(x: x, y: yDirection)).occupied && yDirection>=0 && yDirection<=11 {
-				moveTo(CGPoint(x: x, y: yDirection))
-			} else if !planet.tileAtCartesian(CGPoint(x: xDirection, y: y)).occupied && xDirection>=0 && xDirection<=11 {
-				moveTo(CGPoint(x: xDirection, y: y))
-			} else if !planet.tileAtCartesian(CGPoint(x: negXDirection, y: y)).occupied && negXDirection>=0 && negXDirection<=11 {
-				moveTo(CGPoint(x: negXDirection, y: y))
-			} else if !planet.tileAtCartesian(CGPoint(x: negYDirection, y: y)).occupied && negYDirection>=0 && negYDirection<=11 {
-				moveTo(CGPoint(x: x, y: negYDirection))
-			} else {
-				state = "idle"
-			}
-		}
-		else {
-			state = "idle"
-		}
+		if bestPath == cartesianPoint {state = "barricaded"}
+		else {moveTo(bestPath)}
 	}
 	
 	//Animate the person sprite as well as all accessories
@@ -109,7 +96,7 @@ class Person : SKSpriteNode {
 		if animFrame.origin.x >= 1 {
 			animFrame.origin.x = 0
 		}
-		animFrame.origin.y = (state == "idle") ? 0.5 : 0.75
+		animFrame.origin.y = (state == "walking") ? 0.75 : 0.5
 		animFrame.origin.y -= (facingFore) ? 0 : 0.5
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
 		clothes.animateWithFrame(animFrame)
@@ -120,7 +107,7 @@ class Person : SKSpriteNode {
 	func moveTo (cartesian:CGPoint) {
 		state = "walking"
 		let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 28)
-		let moveTime = position.distanceFrom(isoLocation) / 28
+		let moveTime = position.distanceFrom(isoLocation) / 26
 		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
 		facingFore = (isoLocation.y < position.y) ? true : false
 		planet.tileAtCartesian(cartesianPoint).occupied = false

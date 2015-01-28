@@ -124,11 +124,6 @@ class GameScene: SKScene {
 			human.removeFromParent()
 		}
 		population.removeAll(keepCapacity: false)
-//		for human in population {
-//			human.removeAllActions()
-//			human.planet = world
-//			human.pathFind()
-//		}
 	}
 	
 	//----------------------------------------------------------------
@@ -139,9 +134,8 @@ class GameScene: SKScene {
 		timerTick++
 		if timerTick % 5 == 0 {
 			for human in population {
-				if human.state == "idle" {
-					giveDestinationTo(human)
-				}
+				if human.state == "idle" { giveDestinationTo(human) }
+				else if human.state == "barricaded" { human.pathFind() }
 				human.updateZPosition ()
 				human.animate()
 			}
