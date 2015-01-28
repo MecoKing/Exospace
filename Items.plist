@@ -20,5 +20,11 @@
 		<key>stackable</key>
 		<string>YES</string>
 	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>firePit</string>
+		<key>stackable</key>
+		<string>NO</string>
+	</dict>
 </array>
 </plist>
