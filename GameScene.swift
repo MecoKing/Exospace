@@ -114,7 +114,7 @@ class GameScene: SKScene {
 			var itemPoint = CGPoint(x:World.randomInt(0, to: 12), y:World.randomInt(0, to: 12))
 			while !world.tileAtCartesian(itemPoint).occupied {
 				itemPoint = (world.tileAtCartesian(itemPoint).occupied) ? CGPoint(x:World.randomInt(0, to: 12), y:World.randomInt(0, to: 12)) : itemPoint
-				let rndmItem = Item.randomItemAtPoint(itemPoint)
+				let rndmItem = Item.randomItemAtPoint(itemPoint, forBiome: world.tileType)
 				world.tileAtCartesian(rndmItem.cartesianPoint).occupied = true
 				itemses.append(rndmItem)
 				addChild(rndmItem)
