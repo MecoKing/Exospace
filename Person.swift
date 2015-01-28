@@ -120,7 +120,7 @@ class Person : SKSpriteNode {
 	func moveTo (cartesian:CGPoint) {
 		state = "walking"
 		let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 28)
-		let moveTime = position.distanceFrom(isoLocation) / 24
+		let moveTime = position.distanceFrom(isoLocation) / 28
 		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
 		facingFore = (isoLocation.y < position.y) ? true : false
 		planet.tileAtCartesian(cartesianPoint).occupied = false
