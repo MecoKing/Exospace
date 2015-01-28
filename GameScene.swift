@@ -123,6 +123,7 @@ class GameScene: SKScene {
 		
 		for human in population {
 			human.removeAllActions()
+			human.planet = world
 			human.pathFind()
 		}
 	}
@@ -140,9 +141,6 @@ class GameScene: SKScene {
 				}
 				human.updateZPosition ()
 				human.animate()
-				if !(human.planet === world) {
-					human.planet = world
-				}
 			}
 		}
     }
