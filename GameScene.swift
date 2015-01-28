@@ -63,7 +63,7 @@ class GameScene: SKScene {
 				var maxY = (location.y > firstSelect.y) ? location.y : firstSelect.y
 				if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
 					if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
-						tile.highlight()
+						if !tile.occupied { tile.highlight() }
 					}
 				}
 				
