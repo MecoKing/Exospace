@@ -120,6 +120,11 @@ class GameScene: SKScene {
 				addChild(rndmItem)
 			}
 		}
+		
+		for human in population {
+			human.removeAllActions()
+			human.pathFind()
+		}
 	}
 	
 	//----------------------------------------------------------------
