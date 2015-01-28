@@ -16,6 +16,18 @@
 			<key>stackable</key>
 			<string>NO</string>
 		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>waterHole</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>wishingWell</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
 	</array>
 	<key>Magma</key>
 	<array>
