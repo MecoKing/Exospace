@@ -29,7 +29,7 @@ class Person : SKSpriteNode {
 		cartesianPoint = atPoint
 		destination = cartesianPoint
 		clothes = Outfit.randomOutfitForGender(gender)
-		hairdo = Hairstyle(spriteName: species+gender+"Hair01")
+		hairdo = Hairstyle(species:species, gender:gender)
 		planet = inWorld
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))

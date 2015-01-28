@@ -12,7 +12,8 @@ import SpriteKit
 class Hairstyle : SKSpriteNode {
 	var animFrame: CGRect;
 	
-	init(spriteName:String) {
+	init(species:String, gender:String) {
+		let spriteName = species + gender + Hairstyle.randomHair ()
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: spriteName))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
@@ -33,7 +34,6 @@ class Hairstyle : SKSpriteNode {
 	
 	//Get a random hair name
 	class func randomHair () -> String {
-		return "RANDOM" //Decided via lots of science and math and magic and things
-						//Guaranteed to be RANDOM every time!
+		return (World.randomInt(2) == 0) ? "Hair01" : "Hair02"
 	}
 }
