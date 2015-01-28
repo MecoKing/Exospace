@@ -124,9 +124,9 @@ class Person : SKSpriteNode {
 		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
 		facingFore = (isoLocation.y < position.y) ? true : false
 		planet.tileAtCartesian(cartesianPoint).occupied = false
+		planet.tileAtCartesian(cartesian).occupied = true
 		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
 			self.cartesianPoint = cartesian
-			self.planet.tileAtCartesian(self.cartesianPoint).occupied = true
 			if self.destination == self.cartesianPoint {
 				self.state = "idle"
 			}
