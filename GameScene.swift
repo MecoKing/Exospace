@@ -120,12 +120,15 @@ class GameScene: SKScene {
 				addChild(rndmItem)
 			}
 		}
-		
 		for human in population {
-			human.removeAllActions()
-			human.planet = world
-			human.pathFind()
+			human.removeFromParent()
 		}
+		population.removeAll(keepCapacity: false)
+//		for human in population {
+//			human.removeAllActions()
+//			human.planet = world
+//			human.pathFind()
+//		}
 	}
 	
 	//----------------------------------------------------------------
