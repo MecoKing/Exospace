@@ -16,6 +16,7 @@ class Person : SKSpriteNode {
 	let gender:String
 	var hairdo:Hairstyle
 	var destination:CGPoint
+	var immediateDestination:CGPoint
 	var fullName = "Person"
 	
 	var state = "idle"
@@ -28,6 +29,7 @@ class Person : SKSpriteNode {
 		gender = genderName
 		cartesianPoint = atPoint
 		destination = cartesianPoint
+		immediateDestination = cartesianPoint
 		clothes = Outfit.randomOutfitForGender(gender)
 		hairdo = Hairstyle(species:species, gender:gender)
 		fullName = Person.randomName(species, genderName: gender)
@@ -125,6 +127,7 @@ class Person : SKSpriteNode {
 		facingFore = (isoLocation.y < position.y) ? true : false
 		world.tileAtCartesian(cartesianPoint).occupied = false
 		world.tileAtCartesian(cartesian).occupied = true
+		immediateDestination = cartesian
 		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
 			self.cartesianPoint = cartesian
 			if self.destination == self.cartesianPoint {

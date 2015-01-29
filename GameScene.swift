@@ -86,7 +86,7 @@ class GameScene: SKScene {
 				var maxY = (location.y > firstSelect.y) ? location.y : firstSelect.y
 				if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
 					if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
-						if !tile.occupied { tile.highlight() }
+						tile.highlight()
 					}
 				}
 				
@@ -99,13 +99,12 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			
-			var buttonWasPressed = false
-			for button in UIButtons {
-				if button.selected { buttonWasPressed = true }
-			}
-			if !buttonWasPressed {
-				if state == "addPeople" { generatePeople() }
-				else if state == "addItems" { generateItems() }
+			if state == "addPeople" { generatePeople() }
+			else if state == "addItems" { generateItems() }
+			else if state == "removeItems" { removeThings() }
+			
+			for tile in world.map {
+				if tile.highlighted { tile.highlight() }
 			}
 		}
 	}
@@ -159,6 +158,24 @@ class GameScene: SKScene {
 					itemses.append(item)
 					addChild(item)
 				}
+			}
+		}
+	}
+	func removeThings () {
+		for var i=0; i < itemses.count; i++ {
+			if world.tileAtCartesian(itemses[i].cartesianPoint).highlighted {
+				itemses[i].removeFromParent()
+				world.tileAtCartesian(itemses[i].cartesianPoint).occupied = false
+				itemses.removeAtIndex(i)
+				i--
+			}
+		}
+		for var i=0; i < population.count; i++ {
+			if world.tileAtCartesian(population[i].cartesianPoint).highlighted {
+				population[i].removeFromParent()
+				world.tileAtCartesian(population[i].immediateDestination).occupied = false
+				population.removeAtIndex(i)
+				i--
 			}
 		}
 	}

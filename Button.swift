@@ -49,6 +49,8 @@ class Button : SKSpriteNode {
 				game.state = "addPeople"
 			case "spawnItems":
 				game.state = "addItems"
+			case "buildItems":
+				game.state = "removeItems"
 			default:
 				println("Button: \(name) has no job")
 		}
