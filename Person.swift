@@ -66,10 +66,6 @@ class Person : SKSpriteNode {
 		let index:Int = World.randomInt(names [speciesName]![genderName]!.count)
 		let namesForSpeciesGender = names [speciesName]![genderName]!
 		return namesForSpeciesGender [index]
-		
-//		let availableItems:Dictionary<String, Array<Dictionary<String, String>>> = NSDictionary(contentsOfFile: path!) as Dictionary<String, Array<Dictionary<String, String>>>
-//		let itemIndex = World.randomInt(availableItems [biome]!.count)
-//		let stackItem = (availableItems [biome]?[itemIndex]["stackable"] == "YES") ? true : false
 	}
 	
 	//----------------------------------------------------------------
@@ -138,4 +134,13 @@ class Person : SKSpriteNode {
 			}
 		}
 	}
+	
+	func chat () {
+		let chatType = (World.randomInt(2) == 0) ? "Environmental" : "Complaints"
+		let path = NSBundle.mainBundle().pathForResource("Chat", ofType: "plist")
+		let sentence:Dictionary<String, Array<String>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Array<String>>
+		let index = World.randomInt(sentence [chatType]!.count)
+		println ("[\(fullName)]" + sentence [chatType]![index])
+	}
+	
 }

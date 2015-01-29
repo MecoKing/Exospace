@@ -191,6 +191,7 @@ class GameScene: SKScene {
 				if human.state == "idle" { giveDestinationTo(human) }
 				human.updateZPosition ()
 				human.animate()
+				if World.randomInt(500) == 0 { human.chat() }
 			}
 		}
     }
