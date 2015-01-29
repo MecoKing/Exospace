@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Environmental</key>
+	<array>
+		<string>This looks like a great world to restart a species on!</string>
+		<string>It&apos;s wonderful waking up every morning to such a beautiful world!</string>
+		<string>Look at this place, isn&apos;t it great!</string>
+	</array>
+	<key>Complaints</key>
+	<array>
+		<string>Argh! Another sleepless night!</string>
+		<string>If only we had something to eat!</string>
+		<string>I&apos;m hungry...</string>
+		<string>Why couldn&apos;t we have settled a different planet?</string>
+	</array>
+</dict>
+</plist>
