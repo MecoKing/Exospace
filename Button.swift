@@ -19,6 +19,7 @@ class Button : SKSpriteNode {
 		let jobs = ["diceRollButton":"randomWorld", "buildButton":"buildItems", "spawnButton":"spawnPeople", "itemButton":"spawnItems"]
 		if jobs [buttonName] != nil { job = jobs [buttonName]! }
 		else { job = "noJob" }
+		selectBox.zPosition = 257
 		selectBox.texture?.filteringMode = SKTextureFilteringMode.Nearest
 		super.init(texture: SKTexture(imageNamed: buttonName), color: SKColor.clearColor(), size: CGSize(width: 96, height: 96))
 		name = buttonName
