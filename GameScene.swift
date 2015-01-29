@@ -16,6 +16,11 @@ class GameScene: SKScene {
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	
+	let UIButtons = [
+		Button(buttonName: "diceRollButton", index: 0),
+		Button(buttonName: "buildButton", index: 1)
+	]
+	
 	//----------------------------------------------------------------
 	
     override func didMoveToView(view: SKView) {
@@ -23,6 +28,9 @@ class GameScene: SKScene {
 		addChild(world)
 		world.generateMap()
 		generateItems()
+		for button in UIButtons {
+			addChild(button)
+		}
     }
 	
 	//----------------------------------------------------------------
@@ -31,6 +39,14 @@ class GameScene: SKScene {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
+			let screenLocation = touch.locationInNode(self)
+	
+			for button in UIButtons {
+				if button.frame.contains(screenLocation) {
+					button.runAction()
+				}
+			}
+
 			firstSelect = location
 			var tileSelected = false
 			for tile in world.map {
@@ -41,10 +57,6 @@ class GameScene: SKScene {
 					tile.highlight()
 					tileSelected = true
 				}
-			}
-			if !tileSelected {
-				world.generateMap ()
-				generateItems()
 			}
         }
     }
