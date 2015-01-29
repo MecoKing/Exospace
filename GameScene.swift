@@ -8,9 +8,11 @@
 
 import SpriteKit
 
+var world = World ()
+var game = GameScene ()
+
 class GameScene: SKScene {
 	
-	var world = World ()
 	var population = Array<Person> ()
 	var itemses = Array<Item> ()
 	var firstSelect = CGPoint(x: 0, y: 0)
@@ -24,6 +26,7 @@ class GameScene: SKScene {
 	//----------------------------------------------------------------
 	
     override func didMoveToView(view: SKView) {
+		game = self
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		addChild(world)
 		world.generateMap()

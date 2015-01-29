@@ -17,20 +17,18 @@ class Person : SKSpriteNode {
 	var hairdo:Hairstyle
 	var destination:CGPoint
 	
-	var planet:World// REMOVE WHEN CLASS VARIABLES ARE ADDED!
 	var state = "idle"
 	var facingFore = true
 	
 	//----------------------------------------------------------------
 	
-	init(atPoint:CGPoint, species:String, genderName:String, inWorld:World) {
+	init(atPoint:CGPoint, species:String, genderName:String) {
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
 		gender = genderName
 		cartesianPoint = atPoint
 		destination = cartesianPoint
 		clothes = Outfit.randomOutfitForGender(gender)
 		hairdo = Hairstyle(species:species, gender:gender)
-		planet = inWorld
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		addChild (clothes)
@@ -54,7 +52,7 @@ class Person : SKSpriteNode {
 		let index = (speciesBias != "none") ? World.randomInt(allSpecies.count + 3) : World.randomInt(allSpecies.count)
 		let species = (index >= allSpecies.count) ? speciesBias : allSpecies [index]
 		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
-		return Person(atPoint: pt, species: species, genderName: gender, inWorld:world)
+		return Person(atPoint: pt, species: species, genderName: gender)
 	}
 	
 	//----------------------------------------------------------------
@@ -78,7 +76,7 @@ class Person : SKSpriteNode {
 		var bestPath = cartesianPoint
 		for point in [north, east, south, west] {
 			if point.x >= 0 && point.x <= 11 && point.y >= 0 && point.y <= 11 {
-				if !planet.tileAtCartesian(point).occupied {
+				if !world.tileAtCartesian(point).occupied {
 					let pointF = H + (abs(point.x - destination.x) + abs(point.y - destination.y)) + 1
 					if pointF < H + (abs(bestPath.x - destination.x) + abs(bestPath.y - destination.y)) + 1 {
 						bestPath = point
