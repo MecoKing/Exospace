@@ -12,12 +12,6 @@
 		</dict>
 		<dict>
 			<key>imageName</key>
-			<string>stoneBricksMossy</string>
-			<key>stackable</key>
-			<string>NO</string>
-		</dict>
-		<dict>
-			<key>imageName</key>
 			<string>waterHole</string>
 			<key>stackable</key>
 			<string>NO</string>
@@ -25,6 +19,21 @@
 		<dict>
 			<key>imageName</key>
 			<string>wishingWell</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
+	</array>
+	<key>Jungle</key>
+	<array>
+		<dict>
+			<key>imageName</key>
+			<string>stoneBricksMossy</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>woodenLogs</string>
 			<key>stackable</key>
 			<string>NO</string>
 		</dict>
