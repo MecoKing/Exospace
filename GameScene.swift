@@ -20,7 +20,8 @@ class GameScene: SKScene {
 	
 	let UIButtons = [
 		Button(buttonName: "diceRollButton", index: 0),
-		Button(buttonName: "buildButton", index: 1)
+		Button(buttonName: "buildButton", index: 1),
+		Button(buttonName: "historyButton", index: 2),
 	]
 	
 	//----------------------------------------------------------------
@@ -46,7 +47,11 @@ class GameScene: SKScene {
 	
 			for button in UIButtons {
 				if button.frame.contains(screenLocation) {
+					button.select()
 					button.runAction()
+				}
+				else {
+					button.deselect()
 				}
 			}
 
