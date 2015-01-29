@@ -17,11 +17,13 @@ class GameScene: SKScene {
 	var itemses = Array<Item> ()
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
+	var state = "noAction"
 	
 	let UIButtons = [
 		Button(buttonName: "diceRollButton", index: 0),
 		Button(buttonName: "buildButton", index: 1),
-		Button(buttonName: "historyButton", index: 2),
+		Button(buttonName: "spawnButton", index: 2),
+		Button(buttonName: "itemButton", index: 3),
 	]
 	
 	//----------------------------------------------------------------
@@ -33,6 +35,7 @@ class GameScene: SKScene {
 		world.generateMap()
 		generateItems()
 		for button in UIButtons {
+			button.zPosition = 256
 			addChild(button)
 		}
     }
@@ -95,17 +98,14 @@ class GameScene: SKScene {
 	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
-			for tile in world.map {
-				if tile.highlighted {
-					tile.highlight()
-					if !tile.occupied {
-						tile.occupied = true
-						let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Magma") ? "argonian" : "none"
-						let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world, speciesBias: bias)
-						population.append(human)
-						addChild(human)
-					}
-				}
+			
+			var buttonWasPressed = false
+			for button in UIButtons {
+				if button.selected { buttonWasPressed = true }
+			}
+			if !buttonWasPressed {
+				if state == "addPeople" { generatePeople() }
+				else if state == "addItems" { generateItems() }
 			}
 		}
 	}
@@ -123,27 +123,44 @@ class GameScene: SKScene {
 		}
 	}
 	
-	//Generate random items all over the map
-	func generateItems () {
+	func resetWorld () {
 		for item in itemses {
 			item.removeFromParent()
 		}
 		itemses.removeAll(keepCapacity: false)
-		
-		for i in 0..<World.randomInt(12, to: 16) {
-			var itemPoint = CGPoint(x:World.randomInt(0, to: 12), y:World.randomInt(0, to: 12))
-			while !world.tileAtCartesian(itemPoint).occupied {
-				itemPoint = (world.tileAtCartesian(itemPoint).occupied) ? CGPoint(x:World.randomInt(0, to: 12), y:World.randomInt(0, to: 12)) : itemPoint
-				let rndmItem = Item.randomItemAtPoint(itemPoint, forBiome: world.tileType)
-				world.tileAtCartesian(rndmItem.cartesianPoint).occupied = true
-				itemses.append(rndmItem)
-				addChild(rndmItem)
-			}
-		}
 		for human in population {
 			human.removeFromParent()
 		}
 		population.removeAll(keepCapacity: false)
+		world.generateMap()
+	}
+	
+	func generatePeople () {
+		for tile in world.map {
+			if tile.highlighted {
+				tile.highlight()
+				if !tile.occupied {
+					tile.occupied = true
+					let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Magma") ? "argonian" : "none"
+					let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world, speciesBias: bias)
+					population.append(human)
+					addChild(human)
+				}
+			}
+		}
+	}
+	func generateItems () {
+		for tile in world.map {
+			if tile.highlighted {
+				tile.highlight()
+				if !tile.occupied {
+					tile.occupied = true
+					let item = Item.randomItemAtPoint(tile.cartesianPoint, forBiome: world.tileType)
+					itemses.append(item)
+					addChild(item)
+				}
+			}
+		}
 	}
 	
 	//----------------------------------------------------------------

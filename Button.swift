@@ -16,7 +16,7 @@ class Button : SKSpriteNode {
 	let job:String
 	
 	init (buttonName:String, index:Int) {
-		let jobs = ["diceRollButton":"randomWorld", "buildButton":"buildItems"]
+		let jobs = ["diceRollButton":"randomWorld", "buildButton":"buildItems", "spawnButton":"spawnPeople", "itemButton":"spawnItems"]
 		if jobs [buttonName] != nil { job = jobs [buttonName]! }
 		else { job = "noJob" }
 		selectBox.texture?.filteringMode = SKTextureFilteringMode.Nearest
@@ -44,8 +44,11 @@ class Button : SKSpriteNode {
 	func runAction () {
 		switch job {
 			case "randomWorld":
-				world.generateMap()
-				game.generateItems()
+				game.resetWorld()
+			case "spawnPeople":
+				game.state = "addPeople"
+			case "spawnItems":
+				game.state = "addItems"
 			default:
 				println("Button: \(name) has no job")
 		}
