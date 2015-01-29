@@ -52,9 +52,9 @@ class GameScene: SKScene {
 				if button.frame.contains(screenLocation) {
 					button.select()
 					button.runAction()
-				}
-				else {
-					button.deselect()
+					for otherButton in UIButtons {
+						if otherButton.selected && button !== otherButton { otherButton.deselect() }
+					}
 				}
 			}
 
