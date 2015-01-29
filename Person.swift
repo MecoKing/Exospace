@@ -16,6 +16,7 @@ class Person : SKSpriteNode {
 	let gender:String
 	var hairdo:Hairstyle
 	var destination:CGPoint
+	var fullName = "Person"
 	
 	var state = "idle"
 	var facingFore = true
@@ -29,6 +30,7 @@ class Person : SKSpriteNode {
 		destination = cartesianPoint
 		clothes = Outfit.randomOutfitForGender(gender)
 		hairdo = Hairstyle(species:species, gender:gender)
+		fullName = Person.randomName(species, genderName: gender)
 		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
 		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		addChild (clothes)
@@ -53,6 +55,19 @@ class Person : SKSpriteNode {
 		let species = (index >= allSpecies.count) ? speciesBias : allSpecies [index]
 		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
 		return Person(atPoint: pt, species: species, genderName: gender)
+	}
+	
+	//Get a random name from Names.plist
+	class func randomName (speciesName:String, genderName:String) -> String {
+		let path = NSBundle.mainBundle().pathForResource("Names", ofType: "plist")
+		let names:Dictionary<String, Dictionary<String, Array<String>>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
+		let index:Int = World.randomInt(names [speciesName]![genderName]!.count)
+		let namesForSpeciesGender = names [speciesName]![genderName]!
+		return namesForSpeciesGender [index]
+		
+//		let availableItems:Dictionary<String, Array<Dictionary<String, String>>> = NSDictionary(contentsOfFile: path!) as Dictionary<String, Array<Dictionary<String, String>>>
+//		let itemIndex = World.randomInt(availableItems [biome]!.count)
+//		let stackItem = (availableItems [biome]?[itemIndex]["stackable"] == "YES") ? true : false
 	}
 	
 	//----------------------------------------------------------------
@@ -84,8 +99,8 @@ class Person : SKSpriteNode {
 				}
 			}
 		}
-		if bestPath == cartesianPoint {state = "idle"}
-		else {moveTo(bestPath)}
+		if bestPath == cartesianPoint { state = "idle"; println("[\(fullName)] I'm stuck!") }
+		else { moveTo(bestPath) }
 	}
 	
 	//Animate the person sprite as well as all accessories
@@ -108,8 +123,8 @@ class Person : SKSpriteNode {
 		let moveTime = position.distanceFrom(isoLocation) / 26
 		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
 		facingFore = (isoLocation.y < position.y) ? true : false
-		planet.tileAtCartesian(cartesianPoint).occupied = false
-		planet.tileAtCartesian(cartesian).occupied = true
+		world.tileAtCartesian(cartesianPoint).occupied = false
+		world.tileAtCartesian(cartesian).occupied = true
 		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
 			self.cartesianPoint = cartesian
 			if self.destination == self.cartesianPoint {

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>human</key>
+	<dict>
+		<key>Female</key>
+		<array>
+			<string>Gwen</string>
+			<string>Kate</string>
+			<string>Becca</string>
+			<string>Kayla</string>
+		</array>
+		<key>Male</key>
+		<array>
+			<string>Mike</string>
+			<string>John</string>
+			<string>Dave</string>
+			<string>Cam</string>
+		</array>
+	</dict>
+	<key>argonian</key>
+	<dict>
+		<key>Female</key>
+		<array>
+			<string>Ara</string>
+			<string>Kye</string>
+			<string>Sari</string>
+			<string>Jema</string>
+		</array>
+		<key>Male</key>
+		<array>
+			<string>Koolo</string>
+			<string>Khor</string>
+			<string>Tal</string>
+			<string>Nork</string>
+		</array>
+	</dict>
+</dict>
+</plist>
