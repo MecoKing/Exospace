@@ -202,7 +202,7 @@ class GameScene: SKScene {
 		timerTick++
 		if timerTick % 5 == 0 {
 			for human in population {
-				if human.state == "idle" { giveDestinationTo(human) }
+				if human.state == "idle" && World.randomInt(50) == 0 { giveDestinationTo(human) }
 				human.updateZPosition ()
 				human.animate()
 				if World.randomInt(500) == 0 { human.chat() }

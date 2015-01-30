@@ -103,10 +103,10 @@ class Person : SKSpriteNode {
 	
 	//Animate the person sprite as well as all accessories
 	func animate () {
-		animFrame.origin.x += 0.25
-		if animFrame.origin.x >= 1 {
-			animFrame.origin.x = 0
-		}
+		if state != "idle" { animFrame.origin.x += 0.25 }
+		else { animFrame.origin.x = 0 }
+		
+		if animFrame.origin.x >= 1 { animFrame.origin.x = 0 }
 		animFrame.origin.y = (state == "walking") ? 0.75 : 0.5
 		animFrame.origin.y -= (facingFore) ? 0 : 0.5
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
