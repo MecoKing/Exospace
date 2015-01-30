@@ -18,6 +18,8 @@ class GameScene: SKScene {
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	var state = "noAction"
+	var chatLabel = SKLabelNode(fontNamed: "Comic Sans")
+	var chatLabelTrigger = 0
 	
 	let UIButtons = [
 		Button(buttonName: "diceRollButton", index: 0),
@@ -39,6 +41,12 @@ class GameScene: SKScene {
 			button.zPosition = 256
 			addChild(button)
 		}
+		chatLabel.zPosition = 256
+		chatLabel.text = "Welcome to Exospace"
+		chatLabel.fontColor = SKColor.whiteColor()
+		chatLabel.fontSize = 24
+		chatLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height - 128)
+		addChild(chatLabel)
     }
 	
 	//----------------------------------------------------------------
@@ -200,5 +208,6 @@ class GameScene: SKScene {
 				if World.randomInt(500) == 0 { human.chat() }
 			}
 		}
+		if timerTick - chatLabelTrigger >= 100 { chatLabel.runAction(SKAction.fadeAlphaBy(-0.01, duration: 5)) }
     }
 }

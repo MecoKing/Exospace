@@ -4,17 +4,19 @@
 <dict>
 	<key>Environmental</key>
 	<array>
-		<string>This is the perfect planet to reinvent our species!</string>
-		<string>It&apos;s wonderful waking up every morning to such a beautiful world!</string>
+		<string>Another day on this beautiful world</string>
 		<string>Look at this place, isn&apos;t it great!</string>
-		<string>This is going to be an adventure, I can&apos;t wait!</string>
+		<string>I like this planet, let&apos;s settle here...</string>
+		<string>It&apos;s so calm here!</string>
+		<string>What a wonderful world!</string>
 	</array>
 	<key>Complaints</key>
 	<array>
 		<string>Argh! Another sleepless night!</string>
 		<string>If only we had something to eat!</string>
 		<string>I&apos;m hungry...</string>
-		<string>Why couldn&apos;t we have settled a different planet?</string>
+		<string>Couldn&apos;t we have settled elsewhere?</string>
+		<string>This place is the worst!</string>
 	</array>
 </dict>
 </plist>

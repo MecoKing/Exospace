@@ -140,7 +140,11 @@ class Person : SKSpriteNode {
 		let path = NSBundle.mainBundle().pathForResource("Chat", ofType: "plist")
 		let sentence:Dictionary<String, Array<String>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Array<String>>
 		let index = World.randomInt(sentence [chatType]!.count)
+		game.chatLabel.removeAllActions()
+		game.chatLabel.text = ("[\(fullName)] " + sentence [chatType]![index])
 		println ("[\(fullName)]" + sentence [chatType]![index])
+		game.chatLabel.alpha = 1
+		game.chatLabelTrigger = game.timerTick
 	}
 	
 }
