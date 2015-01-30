@@ -12,7 +12,7 @@ import SpriteKit
 class Button : SKSpriteNode {
 	
 	var selected = false
-	let selectBox = SKSpriteNode(texture: SKTexture(imageNamed: "buttonSelect"), color: SKColor.clearColor(), size: CGSize(width: 96, height: 96))
+	let selectBox = SKSpriteNode(texture: SKTexture(imageNamed: "buttonSelect"), color: SKColor.clearColor(), size: CGSize(width: 72, height: 72))
 	let job:String
 	
 	init (buttonName:String, index:Int) {
@@ -21,9 +21,9 @@ class Button : SKSpriteNode {
 		else { job = "noJob" }
 		selectBox.zPosition = 257
 		selectBox.texture?.filteringMode = SKTextureFilteringMode.Nearest
-		super.init(texture: SKTexture(imageNamed: buttonName), color: SKColor.clearColor(), size: CGSize(width: 96, height: 96))
+		super.init(texture: SKTexture(imageNamed: buttonName), color: SKColor.clearColor(), size: CGSize(width: 72, height: 72))
 		name = buttonName
-		position = CGPoint(x: 48 + (96 * index), y: 144)
+		position = CGPoint(x: 36 + (72 * index), y: 132)
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
 	
