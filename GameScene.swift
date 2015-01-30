@@ -21,9 +21,10 @@ class GameScene: SKScene {
 	
 	let UIButtons = [
 		Button(buttonName: "diceRollButton", index: 0),
-		Button(buttonName: "buildButton", index: 1),
+		Button(buttonName: "moveButton", index: 1),
 		Button(buttonName: "spawnButton", index: 2),
 		Button(buttonName: "itemButton", index: 3),
+		Button(buttonName: "deleteButton", index: 4),
 	]
 	
 	//----------------------------------------------------------------
@@ -76,20 +77,25 @@ class GameScene: SKScene {
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
-			for tile in world.map {
-				if tile.highlighted {
-					tile.highlight()
-				}
-				var minX = (location.x < firstSelect.x) ? location.x : firstSelect.x
-				var maxX = (location.x > firstSelect.x) ? location.x : firstSelect.x
-				var minY = (location.y < firstSelect.y) ? location.y : firstSelect.y
-				var maxY = (location.y > firstSelect.y) ? location.y : firstSelect.y
-				if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
-					if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
+			let screenLocation = touch.locationInNode (self)
+			if state == "removeItems" {
+			}
+			else {
+				for tile in world.map {
+					if tile.highlighted {
 						tile.highlight()
 					}
-				}
+					var minX = (location.x < firstSelect.x) ? location.x : firstSelect.x
+					var maxX = (location.x > firstSelect.x) ? location.x : firstSelect.x
+					var minY = (location.y < firstSelect.y) ? location.y : firstSelect.y
+					var maxY = (location.y > firstSelect.y) ? location.y : firstSelect.y
+					if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
+						if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
+							tile.highlight()
+						}
+					}
 				
+				}
 			}
 		}
 	}

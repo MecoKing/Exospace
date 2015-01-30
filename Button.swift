@@ -16,7 +16,14 @@ class Button : SKSpriteNode {
 	let job:String
 	
 	init (buttonName:String, index:Int) {
-		let jobs = ["diceRollButton":"randomWorld", "buildButton":"buildItems", "spawnButton":"spawnPeople", "itemButton":"spawnItems"]
+		let jobs = [
+			"diceRollButton":"randomWorld",
+			"buildButton":"buildItems",
+			"spawnButton":"spawnPeople",
+			"itemButton":"spawnItems",
+			"deleteButton":"removeItems",
+			"moveButton":"selectThing"
+		]
 		if jobs [buttonName] != nil { job = jobs [buttonName]! }
 		else { job = "noJob" }
 		selectBox.zPosition = 257
@@ -50,9 +57,12 @@ class Button : SKSpriteNode {
 				game.state = "addPeople"
 			case "spawnItems":
 				game.state = "addItems"
-			case "buildItems":
+			case "removeItems":
 				game.state = "removeItems"
+			case "selectThing":
+				game.state = "selection"
 			default:
+				game.state = "noAction"
 				println("Button: \(name) has no job")
 		}
 	}
