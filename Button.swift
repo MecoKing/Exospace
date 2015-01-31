@@ -52,6 +52,7 @@ class Button : SKSpriteNode {
 	func runAction () {
 		switch job {
 			case "randomWorld":
+				game.state = "noAction"
 				world.resetWorld()
 			case "spawnPeople":
 				game.state = "addPeople"
