@@ -55,12 +55,7 @@ class World : SKNode {
 	
 	//----------------------------------------------------------------
 	
-	//Random functions easier than Swift's
-	class func randomInt (range:Int) -> Int {
-		return random () % range
 	}
-	class func randomInt (from:Int, to:Int) -> Int {
-		return Int(random () % (to - from)) + from
 	}
 	
 }

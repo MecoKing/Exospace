@@ -8,9 +8,6 @@
 
 import SpriteKit
 
-var world = World ()
-var game = GameScene ()
-
 class GameScene: SKScene {
 	
 	var population = Array<Person> ()
