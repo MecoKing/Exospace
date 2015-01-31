@@ -18,5 +18,13 @@
 		<string>Couldn&apos;t we have settled elsewhere?</string>
 		<string>This place is the worst!</string>
 	</array>
+	<key>Social</key>
+	<array>
+		<string>Everyone here is really nice!</string>
+		<string>Welcome to our little settlement...</string>
+		<string>Why do you think we are settling here?</string>
+		<string>Greetings!</string>
+		<string>How are you today!?</string>
+	</array>
 </dict>
 </plist>
