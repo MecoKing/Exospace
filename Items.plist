@@ -87,6 +87,18 @@
 	<array>
 		<dict>
 			<key>imageName</key>
+			<string>buriedChest</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>cactus</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
 			<string>firePit</string>
 			<key>stackable</key>
 			<string>NO</string>
