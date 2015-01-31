@@ -10,13 +10,17 @@
 			<string>Kate</string>
 			<string>Becca</string>
 			<string>Kayla</string>
+			<string>Hannah</string>
+			<string>Sam</string>
 		</array>
 		<key>Male</key>
 		<array>
 			<string>Mike</string>
-			<string>John</string>
-			<string>Dave</string>
+			<string>Quin</string>
+			<string>Mer</string>
 			<string>Cam</string>
+			<string>Zane</string>
+			<string>Ty</string>
 		</array>
 	</dict>
 	<key>argonian</key>
@@ -27,13 +31,17 @@
 			<string>Kye</string>
 			<string>Sari</string>
 			<string>Jema</string>
+			<string>Ola</string>
+			<string>Sola</string>
 		</array>
 		<key>Male</key>
 		<array>
-			<string>Koolo</string>
+			<string>Ohm</string>
 			<string>Khor</string>
 			<string>Tal</string>
-			<string>Nork</string>
+			<string>Nohs</string>
+			<string>Choe</string>
+			<string>Cal</string>
 		</array>
 	</dict>
 </dict>
