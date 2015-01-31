@@ -23,6 +23,16 @@ class Outfit : SKSpriteNode {
 		zPosition = 0.1
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
+	
+	init(spriteName:String, gender:String) {
+		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
+		hasHair = Outfit.jobHasHeadpeice(spriteName)
+		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: spriteName + gender))
+		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
+		name = spriteName + gender
+		zPosition = 0.1
+		texture?.filteringMode = SKTextureFilteringMode.Nearest
+	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
@@ -43,6 +53,14 @@ class Outfit : SKSpriteNode {
 			spriteName: jobs [jobIndex]["Name"]! + gender,
 			hasHeadpiece: (jobs [jobIndex]["Headpiece"]! == "YES") ? true : false
 		)
+	}
+	class func jobHasHeadpeice (job:String) -> Bool {
+		let path = NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")
+		let jobs:Array<Dictionary<String, String>> = NSArray (contentsOfFile: path!) as Array<Dictionary<String, String>>
+		for job in jobs {
+			if job ["Headpiece"]! == "YES" { return true }
+		}
+		return false
 	}
 	
 }

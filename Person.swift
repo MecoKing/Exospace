@@ -45,6 +45,27 @@ class Person : SKSpriteNode {
 		position.y += 28
 		zPosition = 100
 	}
+	init(atPoint:CGPoint, species:String, jobName:String) {
+		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
+		gender = (randomInt(2) == 0) ? "Male" : "Female"
+		cartesianPoint = atPoint
+		destination = cartesianPoint
+		immediateDestination = cartesianPoint
+		clothes = Outfit(spriteName: jobName, gender: gender)
+		hairdo = Hairstyle(species:species, gender:gender)
+		fullName = Person.randomName(species, genderName: gender)
+		let image = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: species + gender))
+		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
+		addChild (clothes)
+		addChild(hairdo)
+		name = species + gender
+		xScale = 4
+		yScale = 4
+		texture?.filteringMode = SKTextureFilteringMode.Nearest
+		position = cartesianPoint.toUsefulIsometric()
+		position.y += 28
+		zPosition = 100
+	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
