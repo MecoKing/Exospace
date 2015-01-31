@@ -18,7 +18,7 @@ class GameScene: SKScene {
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	var state = "noAction"
-	var chatLabel = SKLabelNode(fontNamed: "Comic Sans")
+	var chatLabel = SKLabelNode(fontNamed: "Copperplate")
 	var chatLabelTrigger = 0
 	
 	let UIButtons = [
@@ -43,7 +43,7 @@ class GameScene: SKScene {
 		}
 		chatLabel.zPosition = 256
 		chatLabel.text = "Welcome to Exospace"
-		chatLabel.fontColor = SKColor.whiteColor()
+		chatLabel.fontColor = SKColor.yellowColor()
 		chatLabel.fontSize = 24
 		chatLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height - 128)
 		addChild(chatLabel)
