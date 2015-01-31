@@ -57,6 +57,20 @@ class World : SKNode {
 			}
 		}
 	}
+	func generateMap (biome:String) {
+		removeAllChildren()
+		map.removeAll(keepCapacity: false)
+		
+		tileType = biome
+		for var x = 0; x < 12; x++ {
+			for var y = 0; y < 12; y++ {
+				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
+				map.append(groundTile)
+				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
+				addChild(groundTile)
+			}
+		}
+	}
 	
 	func resetWorld () {
 		for item in items {
@@ -86,6 +100,7 @@ class World : SKNode {
 			}
 		}
 	}
+	
 	func generateItems () {
 		for tile in world.map {
 			if tile.highlighted {
@@ -99,6 +114,7 @@ class World : SKNode {
 			}
 		}
 	}
+	
 	func removeThings () {
 		for var i=0; i < items.count; i++ {
 			if world.tileAtCartesian(items[i].cartesianPoint).highlighted {
