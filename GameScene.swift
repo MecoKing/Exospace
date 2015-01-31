@@ -10,8 +10,8 @@ import SpriteKit
 
 class GameScene: SKScene {
 	
-	
 	var firstSelect = CGPoint(x: 0, y: 0)
+	var selectedObject: SKSpriteNode?
 	var timerTick = 0
 	var state = "noAction"
 	var chatLabel = SKLabelNode(fontNamed: "Copperplate")
@@ -83,9 +83,7 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			let screenLocation = touch.locationInNode (self)
-			if state == "removeItems" || state == "addPeople" {
-			}
-			else {
+			if !(state == "removeItems" || state == "addPeople" || state == "selection") {
 				for tile in world.map {
 					if tile.highlighted {
 						tile.highlight()
@@ -113,18 +111,48 @@ class GameScene: SKScene {
 			if state == "addPeople" { world.generatePeople() }
 			else if state == "addItems" { world.generateItems() }
 			else if state == "removeItems" { world.removeThings() }
+			else if state == "selection" && selectedObject == nil {
+				if world.tileAtCartesian(location).occupied {
+					for item in world.items {
+						if world.tileAtCartesian(location) == world.tileAtCartesian(item.cartesianPoint) {
+							selectedObject = item
+							break
+						}
+					}
+					if selectedObject == nil {
+						for person in world.population {
+							if world.tileAtCartesian(location) == world.tileAtCartesian(person.cartesianPoint) {
+								selectedObject = person
+								break
+							}
+						}
+					}
+				}
+			}
+			else if state == "selection" {
+				if selectedObject is Person {
+					for person in world.population {
+						if person == selectedObject {
+							person.destination = location
+							person.removeAllActions ()
+							person.pathFind ()
+						}
+					}
+				}
+				else if selectedObject is Item {
+					for item in world.items {
+						//Set job to move item to that point
+					}
+				}
+				selectedObject = nil
+			}
 			
 			for tile in world.map {
 				if tile.highlighted { tile.highlight() }
 			}
 		}
 	}
-	
-	//----------------------------------------------------------------
-	
-	//Make a random destination and send a person there
-	
-	
+
 	//----------------------------------------------------------------
 	
 	//Run the Game Logic
