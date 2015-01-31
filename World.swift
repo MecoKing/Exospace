@@ -92,7 +92,7 @@ class World : SKNode {
 				tile.highlight()
 				if !tile.occupied {
 					tile.occupied = true
-					let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Magma") ? "argonian" : "none"
+					let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Jungle") ? "argonian" : "none"
 					let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world, speciesBias: bias)
 					population.append(human)
 					addChild(human)
