@@ -134,8 +134,7 @@ class GameScene: SKScene {
 					for person in world.population {
 						if person == selectedObject {
 							person.destination = location
-							person.removeAllActions ()
-							person.pathFind ()
+							if person.state == "idle" { person.pathFind () }
 						}
 					}
 				}
