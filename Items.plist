@@ -63,6 +63,12 @@
 	<array>
 		<dict>
 			<key>imageName</key>
+			<string>iceBlocks</string>
+			<key>stackable</key>
+			<string>YES</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
 			<string>snowman</string>
 			<key>stackable</key>
 			<string>NO</string>
