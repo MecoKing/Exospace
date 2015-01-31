@@ -12,6 +12,18 @@
 		</dict>
 		<dict>
 			<key>imageName</key>
+			<string>logWall</string>
+			<key>stackable</key>
+			<string>YES</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>pineTree</string>
+			<key>stackable</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
 			<string>wishingWell</string>
 			<key>stackable</key>
 			<string>NO</string>
