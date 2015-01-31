@@ -14,6 +14,9 @@ class World : SKNode {
 	var map = Array<Tile> ()
 	var tileType = "Grass"
 	
+	var population = Array<Person> ()
+	var items = Array<Item> ()
+	
 	//----------------------------------------------------------------
 	
 	override init () {
@@ -22,6 +25,18 @@ class World : SKNode {
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
+	}
+	
+	//----------------------------------------------------------------
+	
+	//return the tile at this point
+	func tileAtCartesian (pt:CGPoint) -> Tile {
+		for tile in map {
+			if tile.cartesianPoint == pt {
+				return tile
+			}
+		}
+		return Tile(atPoint: CGPoint(), spriteName: tileType)
 	}
 	
 	//----------------------------------------------------------------
@@ -43,19 +58,63 @@ class World : SKNode {
 		}
 	}
 	
-	//return the tile at this point
-	func tileAtCartesian (pt:CGPoint) -> Tile {
-		for tile in map {
-			if tile.cartesianPoint == pt {
-				return tile
-			}
+	func resetWorld () {
+		for item in items {
+			item.removeFromParent()
 		}
-		return Tile(atPoint: CGPoint(), spriteName: tileType)
+		items.removeAll(keepCapacity: false)
+		for human in population {
+			human.removeFromParent()
+		}
+		population.removeAll(keepCapacity: false)
+		world.generateMap()
 	}
 	
 	//----------------------------------------------------------------
 	
+	func generatePeople () {
+		for tile in world.map {
+			if tile.highlighted {
+				tile.highlight()
+				if !tile.occupied {
+					tile.occupied = true
+					let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Magma") ? "argonian" : "none"
+					let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world, speciesBias: bias)
+					population.append(human)
+					addChild(human)
+				}
+			}
+		}
 	}
+	func generateItems () {
+		for tile in world.map {
+			if tile.highlighted {
+				tile.highlight()
+				if !tile.occupied {
+					tile.occupied = true
+					let item = Item.randomItemAtPoint(tile.cartesianPoint, forBiome: world.tileType)
+					items.append(item)
+					addChild(item)
+				}
+			}
+		}
 	}
-	
+	func removeThings () {
+		for var i=0; i < items.count; i++ {
+			if world.tileAtCartesian(items[i].cartesianPoint).highlighted {
+				items[i].removeFromParent()
+				world.tileAtCartesian(items[i].cartesianPoint).occupied = false
+				items.removeAtIndex(i)
+				i--
+			}
+		}
+		for var i=0; i < population.count; i++ {
+			if world.tileAtCartesian(population[i].cartesianPoint).highlighted {
+				population[i].removeFromParent()
+				world.tileAtCartesian(population[i].immediateDestination).occupied = false
+				population.removeAtIndex(i)
+				i--
+			}
+		}
+	}
 }

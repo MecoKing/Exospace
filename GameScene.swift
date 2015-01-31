@@ -10,8 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene {
 	
-	var population = Array<Person> ()
-	var itemses = Array<Item> ()
+	
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var timerTick = 0
 	var state = "noAction"
@@ -31,9 +30,10 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
 		game = self
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
+		
 		addChild(world)
 		world.generateMap()
-		generateItems()
+		
 		for button in UIButtons {
 			button.zPosition = 256
 			addChild(button)
@@ -110,9 +110,9 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			
-			if state == "addPeople" { generatePeople() }
-			else if state == "addItems" { generateItems() }
-			else if state == "removeItems" { removeThings() }
+			if state == "addPeople" { world.generatePeople() }
+			else if state == "addItems" { world.generateItems() }
+			else if state == "removeItems" { world.removeThings() }
 			
 			for tile in world.map {
 				if tile.highlighted { tile.highlight() }
@@ -123,73 +123,7 @@ class GameScene: SKScene {
 	//----------------------------------------------------------------
 	
 	//Make a random destination and send a person there
-	func giveDestinationTo (human:Person) {
-		let destination = human.randomDestination()
-		if destination.x >= 0 && destination.x <= 11 && destination.y >= 0 && destination.y <= 11 {
-			if !world.tileAtCartesian(destination).occupied {
-				human.destination = destination
-				human.pathFind()
-			}
-		}
-	}
 	
-	func resetWorld () {
-		for item in itemses {
-			item.removeFromParent()
-		}
-		itemses.removeAll(keepCapacity: false)
-		for human in population {
-			human.removeFromParent()
-		}
-		population.removeAll(keepCapacity: false)
-		world.generateMap()
-	}
-	
-	func generatePeople () {
-		for tile in world.map {
-			if tile.highlighted {
-				tile.highlight()
-				if !tile.occupied {
-					tile.occupied = true
-					let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Magma") ? "argonian" : "none"
-					let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world, speciesBias: bias)
-					population.append(human)
-					addChild(human)
-				}
-			}
-		}
-	}
-	func generateItems () {
-		for tile in world.map {
-			if tile.highlighted {
-				tile.highlight()
-				if !tile.occupied {
-					tile.occupied = true
-					let item = Item.randomItemAtPoint(tile.cartesianPoint, forBiome: world.tileType)
-					itemses.append(item)
-					addChild(item)
-				}
-			}
-		}
-	}
-	func removeThings () {
-		for var i=0; i < itemses.count; i++ {
-			if world.tileAtCartesian(itemses[i].cartesianPoint).highlighted {
-				itemses[i].removeFromParent()
-				world.tileAtCartesian(itemses[i].cartesianPoint).occupied = false
-				itemses.removeAtIndex(i)
-				i--
-			}
-		}
-		for var i=0; i < population.count; i++ {
-			if world.tileAtCartesian(population[i].cartesianPoint).highlighted {
-				population[i].removeFromParent()
-				world.tileAtCartesian(population[i].immediateDestination).occupied = false
-				population.removeAtIndex(i)
-				i--
-			}
-		}
-	}
 	
 	//----------------------------------------------------------------
 	
@@ -198,11 +132,8 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
 		timerTick++
 		if timerTick % 5 == 0 {
-			for human in population {
-				if human.state == "idle" && World.randomInt(50) == 0 { giveDestinationTo(human) }
-				human.updateZPosition ()
-				human.animate()
-				if World.randomInt(500) == 0 { human.chat() }
+			for human in world.population {
+				human.runAI ()
 			}
 		}
 		if timerTick - chatLabelTrigger >= 100 { chatLabel.runAction(SKAction.fadeAlphaBy(-0.01, duration: 5)) }

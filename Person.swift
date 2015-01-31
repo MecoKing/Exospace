@@ -70,9 +70,25 @@ class Person : SKSpriteNode {
 	
 	//----------------------------------------------------------------
 	
+	func runAI () {
+		if randomInt(500) == 0 { chat() }
+		else if state == "idle" && randomInt(50) == 0 { setDestination() }
+		updateZPosition ()
+		animate()
+	}
+	
 	//Create a random destination
 	func randomDestination () -> CGPoint {
 		return CGPoint(x: randomInt(12), y: randomInt(12))
+	}
+	func setDestination () {
+		let newDest = randomDestination()
+		if newDest.x >= 0 && newDest.x <= 11 && newDest.y >= 0 && newDest.y <= 11 {
+			if !world.tileAtCartesian(newDest).occupied {
+				destination = newDest
+				pathFind()
+			}
+		}
 	}
 	
 	func updateZPosition () {
