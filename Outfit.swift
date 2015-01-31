@@ -38,7 +38,7 @@ class Outfit : SKSpriteNode {
 	class func randomOutfitForGender ( gender:String) -> Outfit {
 		let path = NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")
 		let jobs:Array<Dictionary<String, String>> = NSArray (contentsOfFile: path!) as Array<Dictionary<String, String>>
-		let jobIndex = World.randomInt(jobs.count)
+		let jobIndex = randomInt(jobs.count)
 		return Outfit(
 			spriteName: jobs [jobIndex]["Name"]! + gender,
 			hasHeadpiece: (jobs [jobIndex]["Headpiece"]! == "YES") ? true : false

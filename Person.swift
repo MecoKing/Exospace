@@ -53,9 +53,9 @@ class Person : SKSpriteNode {
 	//Create a random Person
 	class func randomPersonAtPoint (pt:CGPoint, world:World, speciesBias:String) -> Person {
 		let allSpecies = ["human", "argonian"]
-		let index = (speciesBias != "none") ? World.randomInt(allSpecies.count + 3) : World.randomInt(allSpecies.count)
+		let index = (speciesBias != "none") ? randomInt(allSpecies.count + 3) : randomInt(allSpecies.count)
 		let species = (index >= allSpecies.count) ? speciesBias : allSpecies [index]
-		let gender = (World.randomInt(2) == 0) ? "Male" : "Female"
+		let gender = (randomInt(2) == 0) ? "Male" : "Female"
 		return Person(atPoint: pt, species: species, genderName: gender)
 	}
 	
@@ -63,7 +63,7 @@ class Person : SKSpriteNode {
 	class func randomName (speciesName:String, genderName:String) -> String {
 		let path = NSBundle.mainBundle().pathForResource("Names", ofType: "plist")
 		let names:Dictionary<String, Dictionary<String, Array<String>>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-		let index:Int = World.randomInt(names [speciesName]![genderName]!.count)
+		let index:Int = randomInt(names [speciesName]![genderName]!.count)
 		let namesForSpeciesGender = names [speciesName]![genderName]!
 		return namesForSpeciesGender [index]
 	}
@@ -72,7 +72,7 @@ class Person : SKSpriteNode {
 	
 	//Create a random destination
 	func randomDestination () -> CGPoint {
-		return CGPoint(x: World.randomInt(12), y: World.randomInt(12))
+		return CGPoint(x: randomInt(12), y: randomInt(12))
 	}
 	
 	func updateZPosition () {
@@ -136,10 +136,10 @@ class Person : SKSpriteNode {
 	}
 	
 	func chat () {
-		let chatType = (World.randomInt(2) == 0) ? "Environmental" : "Complaints"
+		let chatType = (randomInt(2) == 0) ? "Environmental" : "Complaints"
 		let path = NSBundle.mainBundle().pathForResource("Chat", ofType: "plist")
 		let sentence:Dictionary<String, Array<String>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Array<String>>
-		let index = World.randomInt(sentence [chatType]!.count)
+		let index = randomInt(sentence [chatType]!.count)
 		game.chatLabel.removeAllActions()
 		game.chatLabel.text = ("[\(fullName)] " + sentence [chatType]![index])
 		println ("[\(fullName)]" + sentence [chatType]![index])

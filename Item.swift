@@ -36,7 +36,7 @@ class Item : SKSpriteNode {
 	class func randomItemAtPoint (pt:CGPoint, forBiome biome:String) -> Item {
 		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
 		let availableItems:Dictionary<String, Array<Dictionary<String, String>>> = NSDictionary(contentsOfFile: path!) as Dictionary<String, Array<Dictionary<String, String>>>
-		let itemIndex = World.randomInt(availableItems [biome]!.count)
+		let itemIndex = randomInt(availableItems [biome]!.count)
 		let stackItem = (availableItems [biome]?[itemIndex]["stackable"] == "YES") ? true : false
 		let imageName = availableItems [biome]?[itemIndex]["imageName"]
 		let newItem = Item(atPoint: pt, spriteName: imageName!, stackable: stackItem)
