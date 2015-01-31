@@ -86,7 +86,7 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			let screenLocation = touch.locationInNode (self)
-			if state == "removeItems" {
+			if state == "removeItems" || state == "addPeople" {
 			}
 			else {
 				for tile in world.map {
