@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import SceneKit
 
 class Item : SKSpriteNode {
 	var isStackable:Bool
@@ -15,7 +16,7 @@ class Item : SKSpriteNode {
 	
 	//----------------------------------------------------------------
 	
-	init (atPoint:CGPoint, spriteName:String, stackable:Bool) {
+	init (atPoint:CGPoint, spriteName:String, stackable:Bool, effect:String) {
 		let image = SKTexture(imageNamed: spriteName)
 		isStackable = stackable
 		cartesianPoint = atPoint
@@ -26,6 +27,13 @@ class Item : SKSpriteNode {
 		position = cartesianPoint.toUsefulIsometric()
 		position.y += 24
 		updateZPosition()
+		if effect != "None" {
+			let particles = SKEmitterNode(fileNamed: effect)
+			particles.zPosition = 1
+			particles.position.y = -6
+			particles.particleTexture?.filteringMode = SKTextureFilteringMode.Nearest
+			addChild(particles)
+		}
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -39,7 +47,8 @@ class Item : SKSpriteNode {
 		let itemIndex = randomInt(availableItems [biome]!.count)
 		let stackItem = (availableItems [biome]?[itemIndex]["stackable"] == "YES") ? true : false
 		let imageName = availableItems [biome]?[itemIndex]["imageName"]
-		let newItem = Item(atPoint: pt, spriteName: imageName!, stackable: stackItem)
+		let effectName = availableItems [biome]?[itemIndex]["effectName"]
+		let newItem = Item(atPoint: pt, spriteName: imageName!, stackable: stackItem, effect: effectName!)
 		return newItem
 	}
 	

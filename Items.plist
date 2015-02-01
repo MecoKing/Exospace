@@ -9,24 +9,32 @@
 			<string>firePit</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>Flame</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>logWall</string>
 			<key>stackable</key>
 			<string>YES</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>pineTree</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>wishingWell</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>Jungle</key>
@@ -36,12 +44,16 @@
 			<string>stoneBricksMossy</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>woodenLogs</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>Magma</key>
@@ -51,12 +63,16 @@
 			<string>stoneBricks</string>
 			<key>stackable</key>
 			<string>YES</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>stoneBricksDamaged</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>Ice</key>
@@ -66,12 +82,16 @@
 			<string>iceBlocks</string>
 			<key>stackable</key>
 			<string>YES</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>snowman</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>Steel</key>
@@ -81,6 +101,8 @@
 			<string>steelCrate</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>Sand</key>
@@ -90,18 +112,24 @@
 			<string>buriedChest</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>cactus</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>None</string>
 		</dict>
 		<dict>
 			<key>imageName</key>
 			<string>firePit</string>
 			<key>stackable</key>
 			<string>NO</string>
+			<key>effectName</key>
+			<string>Flame</string>
 		</dict>
 	</array>
 </dict>
