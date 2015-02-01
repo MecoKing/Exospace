@@ -65,15 +65,9 @@ class GameScene: SKScene {
 			}
 
 			firstSelect = location
-			var tileSelected = false
 			for tile in world.map {
-				if tile.highlighted {
-					tile.highlight()
-				}
-				if location == tile.cartesianPoint {
-					tile.highlight()
-					tileSelected = true
-				}
+				if tile.highlighted { tile.highlight() }
+				if location == tile.cartesianPoint { tile.highlight() }
 			}
         }
     }
@@ -98,6 +92,12 @@ class GameScene: SKScene {
 						}
 					}
 				
+				}
+			}
+			else {
+				for tile in world.map {
+					if tile.highlighted { tile.highlight() }
+					if location == tile.cartesianPoint { tile.highlight() }
 				}
 			}
 		}
