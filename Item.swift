@@ -12,23 +12,31 @@ import SceneKit
 
 class Item : SKSpriteNode {
 	var isStackable:Bool
+	var isTraversable:Bool
+	var isCraftable:Bool
 	var cartesianPoint:CGPoint
 	
 	//----------------------------------------------------------------
 	
-	init (atPoint:CGPoint, spriteName:String, stackable:Bool, effect:String) {
-		let image = SKTexture(imageNamed: spriteName)
-		isStackable = stackable
-		cartesianPoint = atPoint
-		super.init(texture: image, color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
+	init (itemID:String, atPoint pt:CGPoint) {
+		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
+		let availableItems:Dictionary<String, Dictionary<String, String>> = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, String>>
+		let spriteName = availableItems [itemID]! ["spriteName"]
+		isStackable = (availableItems [itemID]! ["stackable"] == "YES") ? true : false
+		isTraversable = (availableItems [itemID]! ["traversable"] == "YES") ? true : false
+		isCraftable = (availableItems [itemID]! ["craftable"] == "YES") ? true : false
+		let effect = availableItems [itemID]! ["effect"]
+		cartesianPoint = pt
+		super.init(texture: SKTexture(imageNamed: spriteName!), color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
+		name = itemID
 		xScale = 4
 		yScale = 4
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		position = cartesianPoint.toUsefulIsometric()
 		position.y += 24
-		updateZPosition()
+		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
 		if effect != "None" {
-			let particles = SKEmitterNode(fileNamed: effect)
+			let particles = SKEmitterNode(fileNamed: effect!)
 			particles.zPosition = 1
 			particles.position.y = -6
 			particles.particleTexture?.filteringMode = SKTextureFilteringMode.Nearest
@@ -38,18 +46,6 @@ class Item : SKSpriteNode {
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
-	}
-	
-	//Create a random Item
-	class func randomItemAtPoint (pt:CGPoint, forBiome biome:String) -> Item {
-		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
-		let availableItems:Dictionary<String, Array<Dictionary<String, String>>> = NSDictionary(contentsOfFile: path!) as Dictionary<String, Array<Dictionary<String, String>>>
-		let itemIndex = randomInt(availableItems [biome]!.count)
-		let stackItem = (availableItems [biome]?[itemIndex]["stackable"] == "YES") ? true : false
-		let imageName = availableItems [biome]?[itemIndex]["imageName"]
-		let effectName = availableItems [biome]?[itemIndex]["effectName"]
-		let newItem = Item(atPoint: pt, spriteName: imageName!, stackable: stackItem, effect: effectName!)
-		return newItem
 	}
 	
 	//----------------------------------------------------------------

@@ -107,7 +107,7 @@ class World : SKNode {
 				tile.highlight()
 				if !tile.occupied {
 					tile.occupied = true
-					let item = Item.randomItemAtPoint(tile.cartesianPoint, forBiome: world.tileType)
+					let item = Item(itemID: "Wood_Resource", atPoint: tile.cartesianPoint)
 					items.append(item)
 					addChild(item)
 				}

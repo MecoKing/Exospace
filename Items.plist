@@ -8,10 +8,10 @@
 		<string>imageName</string>
 		<key>type</key>
 		<string>Decoration/Resource/Container/Building</string>
-		<key>biome</key>
-		<string>Grass/Jungle/Ice/Desert/Ocean/Steel/Magma</string>
 		<key>recipe</key>
 		<string>Item:Item:Thing:Stuff</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>YES/NO Can people build this?</string>
 		<key>stackable</key>
@@ -25,10 +25,10 @@
 		<string>buriedChest</string>
 		<key>type</key>
 		<string>Container</string>
-		<key>biome</key>
-		<string>Desert</string>
 		<key>recipe</key>
 		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>NO</string>
 		<key>stackable</key>
@@ -42,10 +42,10 @@
 		<string>cactus</string>
 		<key>type</key>
 		<string>Decoration</string>
-		<key>biome</key>
-		<string>Desert</string>
 		<key>recipe</key>
 		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>NO</string>
 		<key>stackable</key>
@@ -59,9 +59,9 @@
 		<string>resourceLeather</string>
 		<key>type</key>
 		<string>Resource</string>
-		<key>biome</key>
-		<string>None</string>
 		<key>recipe</key>
+		<string>None</string>
+		<key>effect</key>
 		<string>None</string>
 		<key>craftable</key>
 		<string>NO</string>
@@ -76,10 +76,10 @@
 		<string>logWall</string>
 		<key>type</key>
 		<string>Decoration</string>
-		<key>biome</key>
-		<string>none</string>
 		<key>recipe</key>
 		<string>Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>NO</string>
 		<key>stackable</key>
@@ -93,10 +93,10 @@
 		<string>pineTree</string>
 		<key>type</key>
 		<string>Decoration</string>
-		<key>biome</key>
-		<string>Jungle:Grass</string>
 		<key>recipe</key>
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>NO</string>
 		<key>stackable</key>
@@ -110,10 +110,10 @@
 		<string>snowman</string>
 		<key>type</key>
 		<string>Decoration</string>
-		<key>biome</key>
-		<string>Ice</string>
 		<key>recipe</key>
 		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>YES</string>
 		<key>stackable</key>
@@ -127,10 +127,10 @@
 		<string>resourceWood</string>
 		<key>type</key>
 		<string>Resource</string>
-		<key>biome</key>
-		<string>Jungle</string>
 		<key>recipe</key>
-		<string>none</string>
+		<string>None</string>
+		<key>effect</key>
+		<string>None</string>
 		<key>craftable</key>
 		<string>NO</string>
 		<key>stackable</key>
