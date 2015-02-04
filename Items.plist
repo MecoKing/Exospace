@@ -53,6 +53,40 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Fire_Pit</key>
+	<dict>
+		<key>spriteName</key>
+		<string>firePit</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>Flame</string>
+		<key>craftable</key>
+		<string>YES</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Ice_Blocks</key>
+	<dict>
+		<key>spriteName</key>
+		<string>iceBlocks</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>YES</string>
+		<key>stackable</key>
+		<string>YES</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Leather_Resource</key>
 	<dict>
 		<key>spriteName</key>
@@ -87,10 +121,78 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Palm_Tree</key>
+	<dict>
+		<key>spriteName</key>
+		<string>palmTree</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Pine_Tree</key>
 	<dict>
 		<key>spriteName</key>
 		<string>pineTree</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Dead_Tree</key>
+	<dict>
+		<key>spriteName</key>
+		<string>deadTree</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Snow_Tree</key>
+	<dict>
+		<key>spriteName</key>
+		<string>snowTree</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Oak_Tree</key>
+	<dict>
+		<key>spriteName</key>
+		<string>oakTree</string>
 		<key>type</key>
 		<string>Decoration</string>
 		<key>recipe</key>

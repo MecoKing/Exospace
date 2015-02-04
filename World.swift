@@ -46,7 +46,7 @@ class World : SKNode {
 		removeAllChildren()
 		map.removeAll(keepCapacity: false)
 		
-		let tileTypes = ["Grass", "Sand", "Steel", "Magma", "Ice", "Jungle"]
+		let tileTypes = ["Grass", "Sand", "Magma", "Ice", "Jungle"]
 		tileType = tileTypes [randomInt(tileTypes.count)]
 		for var x = 0; x < 12; x++ {
 			for var y = 0; y < 12; y++ {
@@ -56,6 +56,7 @@ class World : SKNode {
 				addChild(groundTile)
 			}
 		}
+		generateItems()
 	}
 	func generateMap (biome:String) {
 		removeAllChildren()
@@ -86,7 +87,7 @@ class World : SKNode {
 	
 	//----------------------------------------------------------------
 	
-	func generatePeople () {
+	func placePeople () {
 		for tile in world.map {
 			if tile.highlighted {
 				tile.highlight()
@@ -103,11 +104,34 @@ class World : SKNode {
 	
 	func generateItems () {
 		for tile in world.map {
+			if !tile.occupied && randomInt(10) == 0{
+				tile.occupied = true
+				
+				let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
+				let availableItems = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
+				let itemArray:Array<String> = availableItems [tileType]! ["Items"]!
+				let itemName = itemArray [randomInt(itemArray.count)]
+				
+				let item = Item(itemID: itemName, atPoint: tile.cartesianPoint)
+				items.append(item)
+				addChild(item)
+			}
+		}
+	}
+	
+	func placeItems () {
+		for tile in world.map {
 			if tile.highlighted {
 				tile.highlight()
 				if !tile.occupied {
 					tile.occupied = true
-					let item = Item(itemID: "Wood_Resource", atPoint: tile.cartesianPoint)
+					
+					let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
+					let availableItems = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
+					let itemArray:Array<String> = availableItems [tileType]! ["Items"]!
+					let itemName = itemArray [randomInt(itemArray.count)]
+					
+					let item = Item(itemID: itemName, atPoint: tile.cartesianPoint)
 					items.append(item)
 					addChild(item)
 				}

@@ -108,8 +108,8 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			
-			if state == "addPeople" { world.generatePeople() }
-			else if state == "addItems" { world.generateItems() }
+			if state == "addPeople" { world.placePeople() }
+			else if state == "addItems" { world.placeItems() }
 			else if state == "removeItems" { world.removeThings() }
 			else if state == "selection" && selectedObject == nil {
 				if world.tileAtCartesian(location).occupied {
