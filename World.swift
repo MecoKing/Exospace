@@ -57,6 +57,7 @@ class World : SKNode {
 			}
 		}
 		generateItems()
+		generatePeople()
 	}
 	func generateMap (biome:String) {
 		removeAllChildren()
@@ -86,6 +87,26 @@ class World : SKNode {
 	}
 	
 	//----------------------------------------------------------------
+	
+	func generatePeople () {
+		var generatedPeople = 0
+		while generatedPeople != 8 {
+			let tile = tileAtCartesian(CGPoint(x: randomInt(12), y: randomInt(12)))
+			if !tile.occupied && randomInt(10) == 0{
+				tile.occupied = true
+				
+				let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
+				let availableSpecies = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
+				let speciesArray:Array<String> = availableSpecies [tileType]! ["Species"]!
+				let speciesName = speciesArray [randomInt(speciesArray.count)]
+				
+				let person = Person(atPoint: tile.cartesianPoint, species: speciesName, genderName: (randomInt(2) == 0) ? "Male" : "Female")
+				population.append(person)
+				addChild(person)
+				generatedPeople++
+			}
+		}
+	}
 	
 	func placePeople () {
 		for tile in world.map {

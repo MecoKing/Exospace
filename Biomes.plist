@@ -9,6 +9,10 @@
 			<string>Oak_Tree</string>
 			<string>Pine_Tree</string>
 		</array>
+		<key>Species</key>
+		<array>
+			<string>human</string>
+		</array>
 	</dict>
 	<key>Jungle</key>
 	<dict>
@@ -17,6 +21,10 @@
 			<string>Oak_Tree</string>
 			<string>Palm_Tree</string>
 		</array>
+		<key>Species</key>
+		<array>
+			<string>argonian</string>
+		</array>
 	</dict>
 	<key>Ice</key>
 	<dict>
@@ -24,12 +32,22 @@
 		<array>
 			<string>Snow_Tree</string>
 		</array>
+		<key>Species</key>
+		<array>
+			<string>human</string>
+			<string>argonian</string>
+		</array>
 	</dict>
 	<key>Magma</key>
 	<dict>
 		<key>Items</key>
 		<array>
 			<string>Dead_Tree</string>
+		</array>
+		<key>Species</key>
+		<array>
+			<string>human</string>
+			<string>argonian</string>
 		</array>
 	</dict>
 	<key>Sand</key>
@@ -39,6 +57,11 @@
 			<string>Cactus</string>
 			<string>Dead_Tree</string>
 			<string>Palm_Tree</string>
+		</array>
+		<key>Species</key>
+		<array>
+			<string>human</string>
+			<string>argonian</string>
 		</array>
 	</dict>
 </dict>
