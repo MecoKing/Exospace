@@ -53,6 +53,23 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Dead_Tree</key>
+	<dict>
+		<key>spriteName</key>
+		<string>deadTree</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Fire_Pit</key>
 	<dict>
 		<key>spriteName</key>
@@ -121,6 +138,23 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Mossy_Stone_Bricks</key>
+	<dict>
+		<key>spriteName</key>
+		<string>stoneBricksMossy</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone:Stone</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>YES</string>
+		<key>stackable</key>
+		<string>YES</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Palm_Tree</key>
 	<dict>
 		<key>spriteName</key>
@@ -155,10 +189,10 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
-	<key>Dead_Tree</key>
+	<key>Snow_Tree</key>
 	<dict>
 		<key>spriteName</key>
-		<string>deadTree</string>
+		<string>snowTree</string>
 		<key>type</key>
 		<string>Decoration</string>
 		<key>recipe</key>
@@ -172,18 +206,35 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
-	<key>Snow_Tree</key>
+	<key>Stone_Bricks</key>
 	<dict>
 		<key>spriteName</key>
-		<string>snowTree</string>
+		<string>stoneBricks</string>
 		<key>type</key>
 		<string>Decoration</string>
 		<key>recipe</key>
-		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<string>Stone:Stone</string>
 		<key>effect</key>
 		<string>None</string>
 		<key>craftable</key>
+		<string>YES</string>
+		<key>stackable</key>
+		<string>YES</string>
+		<key>traversable</key>
 		<string>NO</string>
+	</dict>
+	<key>Damaged_Stone_Bricks</key>
+	<dict>
+		<key>spriteName</key>
+		<string>stoneBricksDamaged</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone:Stone</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>YES</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>

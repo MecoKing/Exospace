@@ -20,6 +20,7 @@
 		<array>
 			<string>Oak_Tree</string>
 			<string>Palm_Tree</string>
+			<string>Mossy_Stone_Bricks</string>
 		</array>
 		<key>Species</key>
 		<array>
@@ -31,6 +32,7 @@
 		<key>Items</key>
 		<array>
 			<string>Snow_Tree</string>
+			<string>Snowman</string>
 		</array>
 		<key>Species</key>
 		<array>
@@ -42,7 +44,9 @@
 	<dict>
 		<key>Items</key>
 		<array>
+			<string>Damaged_Stone_Bricks</string>
 			<string>Dead_Tree</string>
+			<string>Stone_Bricks</string>
 		</array>
 		<key>Species</key>
 		<array>
