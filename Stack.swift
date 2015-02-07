@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import SpriteKit
 
 public struct Stack<AnyObject> {
 	public init() {}
 	
+	var cartesianPoint = CGPoint(x: 0, y: 0)
 	var items = [AnyObject]()
 	public var topItem: AnyObject? {
 		return items.isEmpty ? nil : items[items.count - 1]

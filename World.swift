@@ -15,7 +15,7 @@ class World : SKNode {
 	var tileType = "Grass"
 	
 	var population = Array<Person> ()
-	var items = Array<Item> ()
+	var itemStacks = Array<Stack<Item>> ()
 	
 	//----------------------------------------------------------------
 	
@@ -54,6 +54,9 @@ class World : SKNode {
 				map.append(groundTile)
 				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
 				addChild(groundTile)
+				var newStack = Stack<Item>()
+				newStack.cartesianPoint = CGPoint(x: x, y: y)
+				itemStacks.append(newStack)
 			}
 		}
 		generateItems()
@@ -75,10 +78,12 @@ class World : SKNode {
 	}
 	
 	func resetWorld () {
-		for item in items {
-			item.removeFromParent()
+		for stack in itemStacks {
+			for item in stack.items {
+				item.removeFromParent()
+			}
 		}
-		items.removeAll(keepCapacity: false)
+		itemStacks.removeAll(keepCapacity: false)
 		for human in population {
 			human.removeFromParent()
 		}
@@ -126,16 +131,7 @@ class World : SKNode {
 	func generateItems () {
 		for tile in world.map {
 			if !tile.occupied && randomInt(10) == 0{
-				tile.occupied = true
-				
-				let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
-				let availableItems = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-				let itemArray:Array<String> = availableItems [tileType]! ["Items"]!
-				let itemName = itemArray [randomInt(itemArray.count)]
-				
-				let item = Item(itemID: itemName, atPoint: tile.cartesianPoint)
-				items.append(item)
-				addChild(item)
+				placeItemOnTile(tile)
 			}
 		}
 	}
@@ -144,31 +140,43 @@ class World : SKNode {
 		for tile in world.map {
 			if tile.highlighted {
 				tile.highlight()
-				if !tile.occupied {
-					tile.occupied = true
-					
-					let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
-					let availableItems = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-					let itemArray:Array<String> = availableItems [tileType]! ["Items"]!
-					let itemName = itemArray [randomInt(itemArray.count)]
-					
-					let item = Item(itemID: itemName, atPoint: tile.cartesianPoint)
-					items.append(item)
-					addChild(item)
-				}
+				placeItemOnTile(tile)
+			}
+		}
+	}
+	
+	func placeItemOnTile(tile: Tile) {
+		for (index, var stack) in enumerate(itemStacks) {
+			if stack.cartesianPoint == tile.cartesianPoint && (stack.topItem?.isStackable ?? true) == true {
+				let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
+				let availableItems = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
+				let itemArray:Array<String> = availableItems [tileType]! ["Items"]!
+				let itemName = itemArray [randomInt(itemArray.count)]
+				
+				let generatedItem = Item(itemID: itemName, atPoint: tile.cartesianPoint)
+				generatedItem.position.y += CGFloat(stack.items.endIndex * 48)
+				generatedItem.zPosition += CGFloat(stack.items.endIndex)
+				stack.push(generatedItem)
+				addChild(generatedItem)
+				itemStacks[index] = stack
+				tile.occupied = true
 			}
 		}
 	}
 	
 	func removeThings () {
-		for var i=0; i < items.count; i++ {
-			if world.tileAtCartesian(items[i].cartesianPoint).highlighted {
-				items[i].removeFromParent()
-				world.tileAtCartesian(items[i].cartesianPoint).occupied = false
-				items.removeAtIndex(i)
-				i--
+		for (index, var stack) in enumerate(itemStacks) {
+			if world.tileAtCartesian(stack.cartesianPoint).highlighted {
+				if !stack.items.isEmpty {
+					stack.pop().removeFromParent()
+				}
+				if stack.items.isEmpty {
+					world.tileAtCartesian(stack.cartesianPoint).occupied = false
+				}
 			}
+			itemStacks[index] = stack
 		}
+		
 		for var i=0; i < population.count; i++ {
 			if world.tileAtCartesian(population[i].cartesianPoint).highlighted {
 				population[i].removeFromParent()

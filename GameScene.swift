@@ -113,9 +113,9 @@ class GameScene: SKScene {
 			else if state == "removeItems" { world.removeThings() }
 			else if state == "selection" && selectedObject == nil {
 				if world.tileAtCartesian(location).occupied {
-					for item in world.items {
-						if world.tileAtCartesian(location) == world.tileAtCartesian(item.cartesianPoint) {
-							selectedObject = item
+					for stack in world.itemStacks {
+						if world.tileAtCartesian(location) == world.tileAtCartesian(stack.cartesianPoint) {
+							selectedObject = stack.topItem
 							break
 						}
 					}
@@ -139,7 +139,7 @@ class GameScene: SKScene {
 					}
 				}
 				else if selectedObject is Item {
-					for item in world.items {
+					for item in world.itemStacks {
 						//Set job to move item to that point
 					}
 				}
