@@ -119,10 +119,14 @@ class World : SKNode {
 				tile.highlight()
 				if !tile.occupied {
 					tile.occupied = true
-					let bias = (world.tileType == "Grass") ? "human" : (world.tileType == "Jungle") ? "argonian" : "none"
-					let human = Person.randomPersonAtPoint(tile.cartesianPoint, world:world, speciesBias: bias)
-					population.append(human)
-					addChild(human)
+					let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
+					let availableSpecies = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
+					let speciesArray:Array<String> = availableSpecies [tileType]! ["Species"]!
+					let speciesName = speciesArray [randomInt(speciesArray.count)]
+					
+					let person = Person(atPoint: tile.cartesianPoint, species: speciesName, genderName: (randomInt(2) == 0) ? "Male" : "Female")
+					population.append(person)
+					addChild(person)
 				}
 			}
 		}
