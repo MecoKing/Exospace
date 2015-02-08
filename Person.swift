@@ -182,6 +182,9 @@ class Person : SKSpriteNode {
 		game.chatLabel.text = ("[\(fullName)] " + sentence [chatType]![index])
 		game.chatLabel.alpha = 1
 		game.chatLabelTrigger = game.timerTick
+		emote("speechBubble")
+	}
+	
 	func emote (emotion:String) {
 		var emoteSprite = SKSpriteNode(imageNamed: emotion)
 		emoteSprite.position.y = 12
