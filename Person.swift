@@ -182,6 +182,13 @@ class Person : SKSpriteNode {
 		game.chatLabel.text = ("[\(fullName)] " + sentence [chatType]![index])
 		game.chatLabel.alpha = 1
 		game.chatLabelTrigger = game.timerTick
+	func emote (emotion:String) {
+		var emoteSprite = SKSpriteNode(imageNamed: emotion)
+		emoteSprite.position.y = 12
+		emoteSprite.texture?.filteringMode = SKTextureFilteringMode.Nearest
+		addChild(emoteSprite)
+		emoteSprite.runAction(SKAction.moveToY(16, duration: 2))
+		emoteSprite.runAction(SKAction.fadeAlphaBy(-1, duration: 2), completion: { emoteSprite.removeFromParent() })
 	}
 	
 }
