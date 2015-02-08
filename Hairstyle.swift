@@ -34,6 +34,7 @@ class Hairstyle : SKSpriteNode {
 	
 	//Get a random hair name
 	class func randomHair () -> String {
-		return (randomInt(2) == 0) ? "Hair01" : "Hair02"
+		let hairs = ["Hair01", "Hair02", "Hair03"]
+		return hairs [randomInt (hairs.count)]
 	}
 }
