@@ -93,6 +93,7 @@ class Person : SKSpriteNode {
 	
 	func runAI () {
 		if randomInt(500) == 0 { chat() }
+		else if randomInt(500) == 0 { emote("hungry") }
 		else if state == "idle" && randomInt(50) == 0 { setDestination() }
 		updateZPosition ()
 		animate()
