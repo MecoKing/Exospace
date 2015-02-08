@@ -189,10 +189,14 @@ class Person : SKSpriteNode {
 	func emote (emotion:String) {
 		var emoteSprite = SKSpriteNode(imageNamed: emotion)
 		emoteSprite.position.y = 12
+		emoteSprite.alpha = 0
+		if xScale < 0 { emoteSprite.xScale = -1 }
 		emoteSprite.texture?.filteringMode = SKTextureFilteringMode.Nearest
 		addChild(emoteSprite)
-		emoteSprite.runAction(SKAction.moveToY(16, duration: 2))
-		emoteSprite.runAction(SKAction.fadeAlphaBy(-1, duration: 2), completion: { emoteSprite.removeFromParent() })
+		emoteSprite.runAction(SKAction.fadeAlphaBy(1, duration: 0.5), completion: {
+			emoteSprite.runAction(SKAction.moveToY(20, duration: 2))
+			emoteSprite.runAction(SKAction.fadeAlphaBy(-1, duration: 2), completion: { emoteSprite.removeFromParent() })
+		})
 	}
 	
 }
