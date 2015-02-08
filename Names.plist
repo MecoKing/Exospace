@@ -12,6 +12,7 @@
 			<string>Kayla</string>
 			<string>Hannah</string>
 			<string>Sam</string>
+			<string>Emma</string>
 		</array>
 		<key>Male</key>
 		<array>
@@ -21,6 +22,7 @@
 			<string>Cam</string>
 			<string>Zane</string>
 			<string>Ty</string>
+			<string>Eli</string>
 		</array>
 	</dict>
 	<key>argonian</key>
@@ -33,6 +35,7 @@
 			<string>Jema</string>
 			<string>Ola</string>
 			<string>Sola</string>
+			<string>Ilza</string>
 		</array>
 		<key>Male</key>
 		<array>
@@ -42,6 +45,7 @@
 			<string>Nohs</string>
 			<string>Choe</string>
 			<string>Cal</string>
+			<string>Grahz</string>
 		</array>
 	</dict>
 </dict>
