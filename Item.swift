@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import SceneKit
 
-class Item : SKSpriteNode {
+public class Item : SKSpriteNode {
 	var isStackable:Bool
 	var isTraversable:Bool
 	var isCraftable:Bool
@@ -44,7 +44,7 @@ class Item : SKSpriteNode {
 		}
 	}
 
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
