@@ -163,6 +163,6 @@ class GameScene: SKScene {
 				human.runAI ()
 			}
 		}
-		if timerTick - chatLabelTrigger >= 100 { chatLabel.runAction(SKAction.fadeAlphaBy(-0.01, duration: 5)) }
+		if timerTick - chatLabelTrigger >= 100 { chatLabel.runAction(SKAction.fadeAlphaBy(-1, duration: 2)) }
     }
 }
