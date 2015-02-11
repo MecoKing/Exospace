@@ -13,6 +13,7 @@ class World : SKNode {
 	
 	var map = Array<Tile> ()
 	var tileType = "Grass"
+	var tasks = Array<Task> ()
 	
 	var population = Array<Person> ()
 	var itemStacks = Array<Stack<Item>> ()

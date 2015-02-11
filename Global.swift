@@ -11,8 +11,6 @@ import Foundation
 var world = World ()
 var game = GameScene ()
 
-var jobsList = ["MOVEITEM:(0, 0):(11, 11)", "BUILDITEM:Couch:(0, 0)"]
-
 func randomInt (range:Int) -> Int {
 	return random () % range
 }
