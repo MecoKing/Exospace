@@ -10,7 +10,7 @@ import Foundation
 
 var world = World ()
 var game = GameScene ()
-var worldSize = 16
+var worldSize = 8
 
 func randomInt (range:Int) -> Int {
 	return random () % range
