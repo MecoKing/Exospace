@@ -49,8 +49,8 @@ class World : SKNode {
 		
 		let tileTypes = ["Grass", "Sand", "Magma", "Ice", "Jungle"]
 		tileType = tileTypes [randomInt(tileTypes.count)]
-		for var x = 0; x < 12; x++ {
-			for var y = 0; y < 12; y++ {
+		for var x = 0; x < worldSize; x++ {
+			for var y = 0; y < worldSize; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
 				map.append(groundTile)
 				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
@@ -68,8 +68,8 @@ class World : SKNode {
 		map.removeAll(keepCapacity: false)
 		
 		tileType = biome
-		for var x = 0; x < 12; x++ {
-			for var y = 0; y < 12; y++ {
+		for var x = 0; x < worldSize; x++ {
+			for var y = 0; y < worldSize; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
 				map.append(groundTile)
 				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))

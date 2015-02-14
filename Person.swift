@@ -106,7 +106,7 @@ class Person : SKSpriteNode {
 	}
 	func setDestination () {
 		let newDest = randomDestination()
-		if newDest.x >= 0 && newDest.x <= 11 && newDest.y >= 0 && newDest.y <= 11 {
+		if newDest.x >= 0 && newDest.x <= CGFloat(worldSize-1) && newDest.y >= 0 && newDest.y <= CGFloat(worldSize-1) {
 			if !world.tileAtCartesian(newDest).occupied {
 				destination = newDest
 				pathFind()
@@ -127,7 +127,7 @@ class Person : SKSpriteNode {
 		
 		var bestPath = cartesianPoint
 		for point in [north, east, south, west] {
-			if point.x >= 0 && point.x <= 11 && point.y >= 0 && point.y <= 11 {
+			if point.x >= 0 && point.x <= CGFloat(worldSize-1) && point.y >= 0 && point.y <= CGFloat(worldSize-1) {
 				if !world.tileAtCartesian(point).occupied {
 					let pointF = H + (abs(point.x - destination.x) + abs(point.y - destination.y)) + 1
 					if pointF < H + (abs(bestPath.x - destination.x) + abs(bestPath.y - destination.y)) + 1 {
