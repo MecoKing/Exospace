@@ -10,11 +10,11 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchTitle" translatesAutoresizingMaskIntoConstraints="NO" id="lzu-yl-a6X">
-                    <rect key="frame" x="8" y="8" width="284" height="80"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="u8i-cH-lTG">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="u8i-cH-lTG">
-                    <rect key="frame" x="0.0" y="96" width="480" height="225"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchTitle" translatesAutoresizingMaskIntoConstraints="NO" id="lzu-yl-a6X">
+                    <rect key="frame" x="8" y="200" width="284" height="80"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.37376458959999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -26,7 +26,7 @@
         </view>
     </objects>
     <resources>
-        <image name="LaunchImage" width="480" height="240"/>
+        <image name="LaunchImage" width="1136" height="640"/>
         <image name="LaunchTitle" width="284" height="80"/>
     </resources>
 </document>
