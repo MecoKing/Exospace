@@ -12,6 +12,7 @@ class GameScene: SKScene {
 	
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var firstScreenLocation = CGPoint(x: 0, y:0)
+	var firstAnchor = CGPoint(x: 0, y: 0);
 	var selectedObject: SKSpriteNode?
 	var UINode = SKNode()
 	var timerTick = 0
@@ -72,6 +73,7 @@ class GameScene: SKScene {
 
 			firstSelect = cartLocation
 			firstScreenLocation = screenLocation
+			firstAnchor = anchorPoint;
 			for tile in world.map {
 				if tile.highlighted { tile.highlight() }
 				if cartLocation == tile.cartesianPoint { tile.highlight() }
@@ -102,8 +104,11 @@ class GameScene: SKScene {
 				}
 			}
 			else if state == "moveMap" {
-				let screenX = (abs(screenLocation.x)/size.width) + (abs(firstScreenLocation.x)/size.width)
-				let screenY = -(abs(screenLocation.y)/size.height) + (abs(firstScreenLocation.y)/size.height)
+				let mapOffset = CGPoint(
+					x: firstAnchor.x - (abs(firstScreenLocation.x)/size.width),
+					y: firstAnchor.y + (abs(firstScreenLocation.y)/size.height))
+				let screenX = (abs(screenLocation.x)/size.width) + mapOffset.x
+				let screenY = -(abs(screenLocation.y)/size.height) + mapOffset.y
 				anchorPoint = CGPoint(x: screenX, y: screenY)
 				UINode.position = CGPoint(x: (-anchorPoint.x)*size.width, y: (-anchorPoint.y)*size.height)
 			}
