@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
 	
 	var firstSelect = CGPoint(x: 0, y: 0)
+	var firstScreenLocation = CGPoint(x: 0, y:0)
 	var selectedObject: SKSpriteNode?
 	var timerTick = 0
 	var state = "noAction"
@@ -53,7 +54,7 @@ class GameScene: SKScene {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self).toCartesian()
-			let screenLocation = touch.locationInNode(self)
+			let screenLocation = touch.locationInView(self.view)
 	
 			for button in UIButtons {
 				if button.frame.contains(screenLocation) {
@@ -66,6 +67,7 @@ class GameScene: SKScene {
 			}
 
 			firstSelect = location
+			firstScreenLocation = screenLocation
 			for tile in world.map {
 				if tile.highlighted { tile.highlight() }
 				if location == tile.cartesianPoint { tile.highlight() }
@@ -77,8 +79,8 @@ class GameScene: SKScene {
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
-			let screenLocation = touch.locationInNode (self)
-			if !(state == "removeItems" || state == "addPeople" || state == "selection") {
+			let screenLocation = touch.locationInView(self.view)
+			if !(state == "removeItems" || state == "addPeople" || state == "selection" || state == "moveMap") {
 				for tile in world.map {
 					if tile.highlighted {
 						tile.highlight()
@@ -94,6 +96,11 @@ class GameScene: SKScene {
 					}
 				
 				}
+			}
+			else if state == "moveMap" {
+				let screenX = (abs(screenLocation.x)/size.width) + (abs(firstScreenLocation.x)/size.width)
+				let screenY = -(abs(screenLocation.y)/size.height) + (abs(firstScreenLocation.y)/size.height)
+				anchorPoint = CGPoint(x: screenX, y: screenY)
 			}
 			else {
 				for tile in world.map {
