@@ -13,6 +13,7 @@ class GameScene: SKScene {
 	var firstSelect = CGPoint(x: 0, y: 0)
 	var firstScreenLocation = CGPoint(x: 0, y:0)
 	var selectedObject: SKSpriteNode?
+	var UINode = SKNode()
 	var timerTick = 0
 	var state = "noAction"
 	var chatLabel = SKLabelNode(fontNamed: "Copperplate")
@@ -33,19 +34,21 @@ class GameScene: SKScene {
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
 		anchorPoint = CGPoint(x: 0.5, y: 0.2)
 		
+		UINode.zPosition = 500
+		UINode.position = CGPoint(x: (-anchorPoint.x)*size.width, y: (-anchorPoint.y)*size.height)
+		addChild(UINode)
+		
 		addChild(world)
 		world.generateMap()
 		
 		for button in UIButtons {
-			button.zPosition = 256
-			addChild(button)
+			UINode.addChild(button)
 		}
-		chatLabel.zPosition = 256
 		chatLabel.text = "Welcome to Exospace"
 		chatLabel.fontColor = SKColor.yellowColor()
 		chatLabel.fontSize = 24
 		chatLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height - 128)
-		addChild(chatLabel)
+		UINode.addChild(chatLabel)
     }
 	
 	//----------------------------------------------------------------
@@ -53,11 +56,12 @@ class GameScene: SKScene {
 	//Select the tile you touched
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
-            let location = touch.locationInNode(self).toCartesian()
+            let cartLocation = touch.locationInNode(self).toCartesian()
+			let UILocation = touch.locationInNode(UINode)
 			let screenLocation = touch.locationInView(self.view)
 	
 			for button in UIButtons {
-				if button.frame.contains(screenLocation) {
+				if button.frame.contains(UILocation) {
 					button.select()
 					button.runAction()
 					for otherButton in UIButtons {
@@ -66,11 +70,11 @@ class GameScene: SKScene {
 				}
 			}
 
-			firstSelect = location
+			firstSelect = cartLocation
 			firstScreenLocation = screenLocation
 			for tile in world.map {
 				if tile.highlighted { tile.highlight() }
-				if location == tile.cartesianPoint { tile.highlight() }
+				if cartLocation == tile.cartesianPoint { tile.highlight() }
 			}
         }
     }
@@ -78,17 +82,17 @@ class GameScene: SKScene {
 	//Select all the tiles in a rectangle from where you first touched to where you are touching
 	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
-			let location = touch.locationInNode(self).toCartesian()
+			let cartLocation = touch.locationInNode(self).toCartesian()
 			let screenLocation = touch.locationInView(self.view)
 			if !(state == "removeItems" || state == "addPeople" || state == "selection" || state == "moveMap") {
 				for tile in world.map {
 					if tile.highlighted {
 						tile.highlight()
 					}
-					var minX = (location.x < firstSelect.x) ? location.x : firstSelect.x
-					var maxX = (location.x > firstSelect.x) ? location.x : firstSelect.x
-					var minY = (location.y < firstSelect.y) ? location.y : firstSelect.y
-					var maxY = (location.y > firstSelect.y) ? location.y : firstSelect.y
+					var minX = (cartLocation.x < firstSelect.x) ? cartLocation.x : firstSelect.x
+					var maxX = (cartLocation.x > firstSelect.x) ? cartLocation.x : firstSelect.x
+					var minY = (cartLocation.y < firstSelect.y) ? cartLocation.y : firstSelect.y
+					var maxY = (cartLocation.y > firstSelect.y) ? cartLocation.y : firstSelect.y
 					if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
 						if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
 							tile.highlight()
@@ -101,11 +105,12 @@ class GameScene: SKScene {
 				let screenX = (abs(screenLocation.x)/size.width) + (abs(firstScreenLocation.x)/size.width)
 				let screenY = -(abs(screenLocation.y)/size.height) + (abs(firstScreenLocation.y)/size.height)
 				anchorPoint = CGPoint(x: screenX, y: screenY)
+				UINode.position = CGPoint(x: (-anchorPoint.x)*size.width, y: (-anchorPoint.y)*size.height)
 			}
 			else {
 				for tile in world.map {
 					if tile.highlighted { tile.highlight() }
-					if location == tile.cartesianPoint { tile.highlight() }
+					if cartLocation == tile.cartesianPoint { tile.highlight() }
 				}
 			}
 		}

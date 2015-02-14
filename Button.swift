@@ -30,7 +30,9 @@ class Button : SKSpriteNode {
 		selectBox.texture?.filteringMode = SKTextureFilteringMode.Nearest
 		super.init(texture: SKTexture(imageNamed: buttonName), color: SKColor.clearColor(), size: CGSize(width: 72, height: 72))
 		name = buttonName
-		position = CGPoint(x: 36 + (72 * index), y: 132)
+		let xPos = 36 + (72 * index)
+		let yPos = 132
+		position = CGPoint(x: xPos,	y: yPos)
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
 	
