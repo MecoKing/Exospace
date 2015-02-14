@@ -8,6 +8,7 @@
 		<array>
 			<string>Oak_Tree</string>
 			<string>Pine_Tree</string>
+			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>
 		<array>
@@ -21,6 +22,7 @@
 			<string>Oak_Tree</string>
 			<string>Palm_Tree</string>
 			<string>Mossy_Stone_Bricks</string>
+			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>
 		<array>
@@ -61,6 +63,7 @@
 			<string>Cactus</string>
 			<string>Dead_Tree</string>
 			<string>Palm_Tree</string>
+			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>
 		<array>
