@@ -17,7 +17,7 @@ extension CGPoint {
 	//Converts a Cartesian point to an Isometric point scaled for the game
 	func toUsefulIsometric () -> CGPoint {
 		let isoPt = toIsometric();
-		return CGPoint(x: (isoPt.x + 10.75) * 48, y: (isoPt.y + 2.5) * 48)
+		return CGPoint(x: (isoPt.x) * 48, y: (isoPt.y) * 48)
 	}
 	//Converts a Isometric point to Cartesian
 	func toCartesian () -> CGPoint {
@@ -26,7 +26,7 @@ extension CGPoint {
 	}
 	//Converts a useful Isometric point to Cartesian
 	func fromUsefulIsometric () -> CGPoint {
-		return CGPoint(x: (x / 48) - 10.75, y: (y / 48) - 2.5)
+		return CGPoint(x: (x / 48), y: (y / 48))
 	}
 	//Calculates the distance from this point to another
 	func distanceFrom (pt:CGPoint) -> Int {

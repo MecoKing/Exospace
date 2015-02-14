@@ -30,6 +30,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
 		game = self
 		backgroundColor = SKColor(red: 0.1, green: 0, blue: 0.3, alpha: 1.0)
+		anchorPoint = CGPoint(x: 0.5, y: 0.2)
 		
 		addChild(world)
 		world.generateMap()
