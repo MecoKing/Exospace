@@ -20,5 +20,11 @@
 		<key>Headpiece</key>
 		<string>NO</string>
 	</dict>
+	<dict>
+		<key>Name</key>
+		<string>craftsperson</string>
+		<key>Headpiece</key>
+		<string>NO</string>
+	</dict>
 </array>
 </plist>
