@@ -76,6 +76,8 @@ class World : SKNode {
 				addChild(groundTile)
 			}
 		}
+		generateItems()
+		generatePeople()
 	}
 	
 	func resetWorld () {
