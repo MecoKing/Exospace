@@ -19,13 +19,11 @@ public class Item : SKSpriteNode {
 	//----------------------------------------------------------------
 	
 	init (itemID:String, atPoint pt:CGPoint) {
-		let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist")
-		let availableItems:Dictionary<String, Dictionary<String, String>> = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, String>>
-		let spriteName = availableItems [itemID]! ["spriteName"]
-		isStackable = (availableItems [itemID]! ["stackable"] == "YES") ? true : false
-		isTraversable = (availableItems [itemID]! ["traversable"] == "YES") ? true : false
-		isCraftable = (availableItems [itemID]! ["craftable"] == "YES") ? true : false
-		let effect = availableItems [itemID]! ["effect"]
+		let spriteName = allItems [itemID]! ["spriteName"]
+		isStackable = (allItems [itemID]! ["stackable"] == "YES") ? true : false
+		isTraversable = (allItems [itemID]! ["traversable"] == "YES") ? true : false
+		isCraftable = (allItems [itemID]! ["craftable"] == "YES") ? true : false
+		let effect = allItems [itemID]! ["effect"]
 		cartesianPoint = pt
 		super.init(texture: SKTexture(imageNamed: spriteName!), color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
 		name = itemID

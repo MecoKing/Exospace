@@ -101,9 +101,7 @@ class World : SKNode {
 			if !tile.occupied && randomInt(10) == 0{
 				tile.occupied = true
 				
-				let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
-				let availableSpecies = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-				let speciesArray:Array<String> = availableSpecies [tileType]! ["Species"]!
+				let speciesArray:Array<String> = biomeData [tileType]! ["Species"]!
 				let speciesName = speciesArray [randomInt(speciesArray.count)]
 				
 				let person = Person(atPoint: tile.cartesianPoint, species: speciesName, genderName: (randomInt(2) == 0) ? "Male" : "Female")
@@ -120,9 +118,8 @@ class World : SKNode {
 				tile.highlight()
 				if !tile.occupied {
 					tile.occupied = true
-					let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
-					let availableSpecies = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-					let speciesArray:Array<String> = availableSpecies [tileType]! ["Species"]!
+					
+					let speciesArray:Array<String> = biomeData [tileType]! ["Species"]!
 					let speciesName = speciesArray [randomInt(speciesArray.count)]
 					
 					let person = Person(atPoint: tile.cartesianPoint, species: speciesName, genderName: (randomInt(2) == 0) ? "Male" : "Female")
@@ -153,9 +150,8 @@ class World : SKNode {
 	func placeItemOnTile(tile: Tile) {
 		for (index, var stack) in enumerate(itemStacks) {
 			if stack.cartesianPoint == tile.cartesianPoint && (stack.topItem?.isStackable ?? true) == true {
-				let path = NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")
-				let availableItems = NSDictionary(contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-				let itemArray:Array<String> = availableItems [tileType]! ["Items"]!
+				
+				let itemArray:Array<String> = biomeData [tileType]! ["Items"]!
 				let itemName = itemArray [randomInt(itemArray.count)]
 				
 				let generatedItem = Item(itemID: itemName, atPoint: tile.cartesianPoint)

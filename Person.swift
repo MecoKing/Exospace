@@ -19,6 +19,7 @@ class Person : SKSpriteNode {
 	var immediateDestination:CGPoint
 	var fullName = "Person"
 	
+	var currentTask:Task?
 	var state = "idle"
 	var facingFore = true
 	
@@ -177,11 +178,9 @@ class Person : SKSpriteNode {
 	func chat () {
 		let chatTypes = ["Environmental", "Complaints", "Social"]
 		let chatType = chatTypes [randomInt(chatTypes.count)]
-		let path = NSBundle.mainBundle().pathForResource("Chat", ofType: "plist")
-		let sentence:Dictionary<String, Array<String>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Array<String>>
-		let index = randomInt(sentence [chatType]!.count)
+		let index = randomInt(chatOptions [chatType]!.count)
 		game.chatLabel.removeAllActions()
-		game.chatLabel.text = ("[\(fullName)] " + sentence [chatType]![index])
+		game.chatLabel.text = ("[\(fullName)] " + chatOptions [chatType]![index])
 		game.chatLabel.alpha = 1
 		game.chatLabelTrigger = game.timerTick
 		emote("speechBubble")
