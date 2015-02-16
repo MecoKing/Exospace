@@ -99,14 +99,13 @@ class Person : SKSpriteNode {
 				if !task.claimed {
 					currentTask = task
 					state = "workingTask"
-					println ("[\(name)] I have a task!")
+					chat ("I have a purpose!")
 					break
 				}
 			}
 		}
 		if state == "idle" {
-			if randomInt(500) == 0 { chat() }
-			else if randomInt(500) == 0 { emote("hungry") }
+			if randomInt(500) == 0 { emote("hungry") }
 			else if randomInt(500) == 0 { emote("tired") }
 			else if randomInt(50) == 0 { setDestination() }
 		}
@@ -151,7 +150,11 @@ class Person : SKSpriteNode {
 				}
 			}
 		}
-		if bestPath == cartesianPoint { state = "idle"; println("[\(fullName)] I'm stuck!") }
+		if bestPath == cartesianPoint {
+			state = "idle"
+			let stuckWords = ["Argh! I'm Stuck!", "When'd this get here!?", "Outta my way!", "Who put this here!"]
+			chat (stuckWords [randomInt(stuckWords.count)])
+		}
 		else { moveTo(bestPath) }
 	}
 	
@@ -189,12 +192,9 @@ class Person : SKSpriteNode {
 		}
 	}
 	
-	func chat () {
-		let chatTypes = ["Environmental", "Complaints", "Social"]
-		let chatType = chatTypes [randomInt(chatTypes.count)]
-		let index = randomInt(chatOptions [chatType]!.count)
+	func chat (sentence:String) {
 		game.chatLabel.removeAllActions()
-		game.chatLabel.text = ("[\(fullName)] " + chatOptions [chatType]![index])
+		game.chatLabel.text = ("[\(fullName)] " + sentence)
 		game.chatLabel.alpha = 1
 		game.chatLabelTrigger = game.timerTick
 		emote("speechBubble")
