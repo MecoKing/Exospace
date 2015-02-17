@@ -19,8 +19,7 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Oak_Tree</string>
-			<string>Palm_Tree</string>
+			<string>Alien_Spiral_Plant</string>
 			<string>Mossy_Stone_Bricks</string>
 			<string>Stone_Resource</string>
 		</array>

@@ -19,6 +19,23 @@
 		<key>traversable</key>
 		<string>YES/NO Can people walk through the item?</string>
 	</dict>
+	<key>Alien_Spiral_Plant</key>
+	<dict>
+		<key>spriteName</key>
+		<string>alienSpiralPlant</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Buried_Chest</key>
 	<dict>
 		<key>spriteName</key>
