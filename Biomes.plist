@@ -19,9 +19,9 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Alien_Spiral_Plant</string>
-			<string>Mossy_Stone_Bricks</string>
+			<string>Bulberry_Plant</string>
 			<string>Stone_Resource</string>
+			<string>Twirlycrop_Plant</string>
 		</array>
 		<key>Species</key>
 		<array>
