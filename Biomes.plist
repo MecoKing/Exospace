@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Grass</key>
+	<key>Terra</key>
 	<dict>
 		<key>Items</key>
 		<array>
@@ -29,7 +29,7 @@
 			<string>argonian</string>
 		</array>
 	</dict>
-	<key>Ice</key>
+	<key>Glacier</key>
 	<dict>
 		<key>Items</key>
 		<array>
@@ -56,7 +56,7 @@
 			<string>argonian</string>
 		</array>
 	</dict>
-	<key>Sand</key>
+	<key>Desert</key>
 	<dict>
 		<key>Items</key>
 		<array>
@@ -64,6 +64,31 @@
 			<string>Dead_Tree</string>
 			<string>Fire_Pit</string>
 			<string>Palm_Tree</string>
+			<string>Stone_Resource</string>
+		</array>
+		<key>Species</key>
+		<array>
+			<string>human</string>
+			<string>argonian</string>
+		</array>
+	</dict>
+	<key>Starship</key>
+	<dict>
+		<key>Items</key>
+		<array>
+			<string>Wood_Resource</string>
+			<string>Leather_Resource</string>
+		</array>
+		<key>Species</key>
+		<array>
+			<string>human</string>
+			<string>argonian</string>
+		</array>
+	</dict>
+	<key>Asteroid</key>
+	<dict>
+		<key>Items</key>
+		<array>
 			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>

@@ -47,7 +47,7 @@ class World : SKNode {
 		removeAllChildren()
 		map.removeAll(keepCapacity: false)
 		
-		let tileTypes = ["Grass", "Sand", "Magma", "Ice", "Jungle"]
+		let tileTypes = ["Terra", "Desert", "Magma", "Glacier", "Jungle", "Asteroid", "Starship"]
 		tileType = tileTypes [randomInt(tileTypes.count)]
 		for var x = 0; x < worldSize; x++ {
 			for var y = 0; y < worldSize; y++ {

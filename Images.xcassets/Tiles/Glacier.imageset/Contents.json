@@ -3,17 +3,15 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Ice.png"
+      "filename" : "Glacier.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Ice2x.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "Ice3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {
