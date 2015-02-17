@@ -134,7 +134,7 @@ class World : SKNode {
 	
 	func generateItems () {
 		for tile in world.map {
-			if !tile.occupied && randomInt(10) == 0{
+			if !tile.occupied && randomInt(5) == 0{
 				placeItemOnTile(tile)
 			}
 		}
