@@ -71,12 +71,11 @@
 			<string>argonian</string>
 		</array>
 	</dict>
-	<key>Starship</key>
+	<key>Asteroid</key>
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Wood_Resource</string>
-			<string>Leather_Resource</string>
+			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>
 		<array>
@@ -84,11 +83,12 @@
 			<string>argonian</string>
 		</array>
 	</dict>
-	<key>Asteroid</key>
+	<key>Starship</key>
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Stone_Resource</string>
+			<string>Wood_Resource</string>
+			<string>Leather_Resource</string>
 		</array>
 		<key>Species</key>
 		<array>
