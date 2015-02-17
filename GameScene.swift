@@ -74,9 +74,11 @@ class GameScene: SKScene {
 			firstSelect = cartLocation
 			firstScreenLocation = screenLocation
 			firstAnchor = anchorPoint;
-			for tile in world.map {
-				if tile.highlighted { tile.highlight() }
-				if cartLocation == tile.cartesianPoint { tile.highlight() }
+			if !(state == "moveMap") {
+				for tile in world.map {
+					if tile.highlighted { tile.highlight() }
+					if cartLocation == tile.cartesianPoint { tile.highlight() }
+				}
 			}
         }
     }
@@ -88,9 +90,7 @@ class GameScene: SKScene {
 			let screenLocation = touch.locationInView(self.view)
 			if !(state == "removeItems" || state == "addPeople" || state == "selection" || state == "moveMap") {
 				for tile in world.map {
-					if tile.highlighted {
-						tile.highlight()
-					}
+					if tile.highlighted { tile.highlight() }
 					var minX = (cartLocation.x < firstSelect.x) ? cartLocation.x : firstSelect.x
 					var maxX = (cartLocation.x > firstSelect.x) ? cartLocation.x : firstSelect.x
 					var minY = (cartLocation.y < firstSelect.y) ? cartLocation.y : firstSelect.y
