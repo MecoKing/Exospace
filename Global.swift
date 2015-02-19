@@ -17,7 +17,7 @@ let allItems = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResourc
 //PROPERTIES
 var world = World ()
 var game = GameScene ()
-var worldSize = 16
+var worldSize = 8
 
 
 //FUNCTIONS
