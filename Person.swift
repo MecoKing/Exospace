@@ -129,7 +129,7 @@ class Person : SKSpriteNode {
 	}
 	
 	func updateZPosition () {
-		zPosition = (worldSize * 4) - (cartesianPoint.x + cartesianPoint.y)
+		zPosition = (CGFloat(worldSize) * 4) - (cartesianPoint.x + cartesianPoint.y)
 	}
 	
 	func pathFind () {
