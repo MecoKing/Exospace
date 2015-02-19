@@ -53,7 +53,7 @@ class World : SKNode {
 			for var y = 0; y < worldSize; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
 				map.append(groundTile)
-				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
+				groundTile.zPosition = CGFloat((worldSize * 2) - CGFloat(x + y))
 				addChild(groundTile)
 				var newStack = Stack<Item>()
 				newStack.cartesianPoint = CGPoint(x: x, y: y)
@@ -72,7 +72,7 @@ class World : SKNode {
 			for var y = 0; y < worldSize; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
 				map.append(groundTile)
-				groundTile.zPosition = CGFloat(24 - CGFloat(x + y))
+				groundTile.zPosition = CGFloat((worldSize * 2) - CGFloat(x + y))
 				addChild(groundTile)
 			}
 		}

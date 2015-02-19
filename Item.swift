@@ -49,7 +49,7 @@ public class Item : SKSpriteNode {
 	//----------------------------------------------------------------
 	
 	func updateZPosition () {
-		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
+		zPosition = (worldSize * 4) - (cartesianPoint.x + cartesianPoint.y)
 	}
 	
 }
