@@ -70,23 +70,6 @@
 		<key>traversable</key>
 		<string>YES</string>
 	</dict>
-	<key>Cactus</key>
-	<dict>
-		<key>spriteName</key>
-		<string>cactus</string>
-		<key>type</key>
-		<string>Decoration</string>
-		<key>recipe</key>
-		<string>Wood_Resource</string>
-		<key>effect</key>
-		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
-		<key>stackable</key>
-		<string>NO</string>
-		<key>traversable</key>
-		<string>NO</string>
-	</dict>
 	<key>Damaged_Stone_Bricks</key>
 	<dict>
 		<key>spriteName</key>
@@ -172,23 +155,6 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
-	<key>Log_Wall</key>
-	<dict>
-		<key>spriteName</key>
-		<string>logWall</string>
-		<key>type</key>
-		<string>Decoration</string>
-		<key>recipe</key>
-		<string>Wood_Resource:Wood_Resource</string>
-		<key>effect</key>
-		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
-		<key>stackable</key>
-		<string>YES</string>
-		<key>traversable</key>
-		<string>NO</string>
-	</dict>
 	<key>Mossy_Stone_Bricks</key>
 	<dict>
 		<key>spriteName</key>
@@ -210,23 +176,6 @@
 	<dict>
 		<key>spriteName</key>
 		<string>oakTree</string>
-		<key>type</key>
-		<string>Decoration</string>
-		<key>recipe</key>
-		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
-		<key>effect</key>
-		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
-		<key>stackable</key>
-		<string>NO</string>
-		<key>traversable</key>
-		<string>NO</string>
-	</dict>
-	<key>Palm_Tree</key>
-	<dict>
-		<key>spriteName</key>
-		<string>palmTree</string>
 		<key>type</key>
 		<string>Decoration</string>
 		<key>recipe</key>
@@ -269,6 +218,23 @@
 		<string>None</string>
 		<key>craftable</key>
 		<string>YES</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Splinterthorn_Plant</key>
+	<dict>
+		<key>spriteName</key>
+		<string>splinterthornPlant</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>craftable</key>
+		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
