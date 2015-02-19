@@ -30,7 +30,7 @@ public class Item : SKSpriteNode {
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		position = cartesianPoint.toUsefulIsometric()
 		position.y += 24
-		zPosition = 48 - (cartesianPoint.x + cartesianPoint.y)
+		updateZPosition()
 		if effect != "None" {
 			let particles = SKEmitterNode(fileNamed: effect!)
 			particles.zPosition = 1
