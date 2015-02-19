@@ -59,10 +59,7 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Cactus</string>
-			<string>Dead_Tree</string>
-			<string>Fire_Pit</string>
-			<string>Palm_Tree</string>
+			<string>Splinterthorn_Plant</string>
 			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>
