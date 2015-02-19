@@ -12,8 +12,6 @@
 		<string>Item:Item:Thing:Stuff</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES/NO Can people build this?</string>
 		<key>stackable</key>
 		<string>YES/NO Can items stack on this?</string>
 		<key>traversable</key>
@@ -29,8 +27,6 @@
 		<string>Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -46,8 +42,6 @@
 		<string>Berry_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -63,8 +57,6 @@
 		<string>Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -80,8 +72,6 @@
 		<string>Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -97,8 +87,6 @@
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -114,8 +102,6 @@
 		<string>Wood_Resource:Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>Flame</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -131,8 +117,6 @@
 		<string>Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>YES</string>
 		<key>traversable</key>
@@ -148,8 +132,6 @@
 		<string>None</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -165,8 +147,6 @@
 		<string>Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>YES</string>
 		<key>traversable</key>
@@ -182,8 +162,6 @@
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -199,8 +177,6 @@
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -216,8 +192,6 @@
 		<string>Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -233,8 +207,6 @@
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -250,8 +222,6 @@
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -267,8 +237,6 @@
 		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>YES</string>
 		<key>traversable</key>
@@ -284,8 +252,6 @@
 		<string>Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -301,8 +267,6 @@
 		<string>None</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>NO</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>
@@ -318,8 +282,6 @@
 		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
-		<key>craftable</key>
-		<string>YES</string>
 		<key>stackable</key>
 		<string>NO</string>
 		<key>traversable</key>

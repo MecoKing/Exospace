@@ -13,7 +13,6 @@ import SceneKit
 public class Item : SKSpriteNode {
 	var isStackable:Bool
 	var isTraversable:Bool
-	var isCraftable:Bool
 	var cartesianPoint:CGPoint
 	
 	//----------------------------------------------------------------
@@ -22,7 +21,6 @@ public class Item : SKSpriteNode {
 		let spriteName = allItems [itemID]! ["spriteName"]
 		isStackable = (allItems [itemID]! ["stackable"] == "YES") ? true : false
 		isTraversable = (allItems [itemID]! ["traversable"] == "YES") ? true : false
-		isCraftable = (allItems [itemID]! ["craftable"] == "YES") ? true : false
 		let effect = allItems [itemID]! ["effect"]
 		cartesianPoint = pt
 		super.init(texture: SKTexture(imageNamed: spriteName!), color: SKColor.clearColor(), size: CGSize(width: 24, height: 24))
