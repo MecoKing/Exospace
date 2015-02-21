@@ -7,8 +7,8 @@
 		<key>Items</key>
 		<array>
 			<string>Fruit_Tree</string>
+			<string>Large_Rock</string>
 			<string>Pine_Tree</string>
-			<string>Stone_Resource</string>
 		</array>
 		<key>Species</key>
 		<array>

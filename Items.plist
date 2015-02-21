@@ -152,6 +152,21 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Large_Rock</key>
+	<dict>
+		<key>spriteName</key>
+		<string>largeRock</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Leather_Resource</key>
 	<dict>
 		<key>spriteName</key>
@@ -260,7 +275,7 @@
 	<key>Stone_Resource</key>
 	<dict>
 		<key>spriteName</key>
-		<string>mediumRock</string>
+		<string>resourceStone</string>
 		<key>type</key>
 		<string>Resource</string>
 		<key>recipe</key>
