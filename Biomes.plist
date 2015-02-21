@@ -45,9 +45,8 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Damaged_Stone_Bricks</string>
 			<string>Dead_Tree</string>
-			<string>Stone_Bricks</string>
+			<string>Ember_Crystal</string>
 		</array>
 		<key>Species</key>
 		<array>

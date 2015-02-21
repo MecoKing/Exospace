@@ -92,6 +92,21 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Ember_Crystal</key>
+	<dict>
+		<key>spriteName</key>
+		<string>emberCrystal</string>
+		<key>type</key>
+		<string>Resource</string>
+		<key>recipe</key>
+		<string>Stone_Resource</string>
+		<key>effect</key>
+		<string>Sparkle</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Fire_Pit</key>
 	<dict>
 		<key>spriteName</key>
