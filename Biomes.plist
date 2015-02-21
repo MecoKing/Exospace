@@ -83,8 +83,8 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Wood_Resource</string>
-			<string>Leather_Resource</string>
+			<string>Fire_Pit</string>
+			<string>Ember_Crystal</string>
 		</array>
 		<key>Species</key>
 		<array>
