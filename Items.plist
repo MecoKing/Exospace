@@ -182,6 +182,21 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Mossy_Rock</key>
+	<dict>
+		<key>spriteName</key>
+		<string>mossyRock</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Mossy_Stone_Bricks</key>
 	<dict>
 		<key>spriteName</key>
