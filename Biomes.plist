@@ -47,6 +47,7 @@
 		<array>
 			<string>Dead_Tree</string>
 			<string>Ember_Crystal</string>
+			<string>Magma_Rock</string>
 		</array>
 		<key>Species</key>
 		<array>
@@ -71,7 +72,8 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Stone_Resource</string>
+			<string>Crater_Rock</string>
+			<string>Dead_Tree</string>
 		</array>
 		<key>Species</key>
 		<array>

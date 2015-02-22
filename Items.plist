@@ -62,6 +62,21 @@
 		<key>traversable</key>
 		<string>YES</string>
 	</dict>
+	<key>Crater_Rock</key>
+	<dict>
+		<key>spriteName</key>
+		<string>craterRock</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Damaged_Stone_Bricks</key>
 	<dict>
 		<key>spriteName</key>
@@ -175,6 +190,21 @@
 		<string>Resource</string>
 		<key>recipe</key>
 		<string>None</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Magma_Rock</key>
+	<dict>
+		<key>spriteName</key>
+		<string>fieryRock</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
 		<key>stackable</key>
