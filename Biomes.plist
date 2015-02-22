@@ -53,6 +53,7 @@
 		<array>
 			<string>human</string>
 			<string>argonian</string>
+			<string>cybernaut</string>
 		</array>
 	</dict>
 	<key>Desert</key>
@@ -66,6 +67,7 @@
 		<array>
 			<string>human</string>
 			<string>argonian</string>
+			<string>cybernaut</string>
 		</array>
 	</dict>
 	<key>Asteroid</key>
@@ -77,8 +79,7 @@
 		</array>
 		<key>Species</key>
 		<array>
-			<string>human</string>
-			<string>argonian</string>
+			<string>cybernaut</string>
 		</array>
 	</dict>
 	<key>Starship</key>
@@ -92,6 +93,7 @@
 		<array>
 			<string>human</string>
 			<string>argonian</string>
+			<string>cybernaut</string>
 		</array>
 	</dict>
 </dict>

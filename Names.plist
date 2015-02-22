@@ -48,5 +48,28 @@
 			<string>Grahz</string>
 		</array>
 	</dict>
+	<key>cybernaut</key>
+	<dict>
+		<key>Female</key>
+		<array>
+			<string>F-256</string>
+			<string>F-529</string>
+			<string>F-759</string>
+			<string>F-251</string>
+			<string>F-759</string>
+			<string>F-420</string>
+			<string>F-062</string>
+		</array>
+		<key>Male</key>
+		<array>
+			<string>M-351</string>
+			<string>M-128</string>
+			<string>M-478</string>
+			<string>M-017</string>
+			<string>M-628</string>
+			<string>M-592</string>
+			<string>M-661</string>
+		</array>
+	</dict>
 </dict>
 </plist>
