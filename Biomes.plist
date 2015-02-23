@@ -32,6 +32,7 @@
 	<dict>
 		<key>Items</key>
 		<array>
+			<string>Frostberry_Plant</string>
 			<string>Snowy_Rock</string>
 			<string>Snowy_Tree</string>
 		</array>
@@ -60,6 +61,7 @@
 	<dict>
 		<key>Items</key>
 		<array>
+			<string>Sandstone_Rock</string>
 			<string>Splinterthorn_Plant</string>
 			<string>Buried_Chest</string>
 		</array>

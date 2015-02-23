@@ -137,6 +137,21 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Frostberry_Plant</key>
+	<dict>
+		<key>spriteName</key>
+		<string>frostberryPlant</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Fruit_Tree</key>
 	<dict>
 		<key>spriteName</key>
@@ -250,6 +265,21 @@
 		<string>Decoration</string>
 		<key>recipe</key>
 		<string>Wood_Resource:Wood_Resource:Wood_Resource:Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
+	<key>Sandstone_Rock</key>
+	<dict>
+		<key>spriteName</key>
+		<string>sandstoneRock</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Stone_Resource:Stone_Resource:Stone_Resource</string>
 		<key>effect</key>
 		<string>None</string>
 		<key>stackable</key>
