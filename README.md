@@ -1,20 +1,24 @@
 # Exospace
-An isometric space sandbox city-builder
+An isometric, Space-Themed, City-Building, RPG/Sandbox
 
-The year 3628, The entire galaxy has been at war for the last 3 centuries. A group of scientists from each of the 5 races has sent 5 crews of 8 people (a crew for each race) to the andromeda galaxy. With their minds wiped and no memory of the history of the Milky Way. These 40 people will start their respective species' life anew.
+The year 3628. A group of scientists from each of the 6 races has sent crews of 8 people to the andromeda galaxy. With their minds wiped and no memory of the history of their species. These new settlers will start their respective species' life anew somewhere in exospace...
 
 
 You the player are tasked with bringing your people from colony to civilisation. But beware! there may already be life on this world as well...
 
 
-5 SPECIES:
+6 SPECIES:
 
 Human - Hey that's us!
 
 Clazix - Your typical green bug-eyed antennae alien!
 
-Argonians - A warlike species from the volcano planet Argon!
+Argonians - Peaceful Jungle dwellers seeking expansion!
 
 Venusian - Our next door neighbours!
+
+Cybernauts - A robotic species built and nearly wiped out by man!
+
+????? - ????? ?? ? ??? ???? ?????? ? ??? ???
 
 ????? - ????? ?? ? ??? ???? ?????? ? ??? ???
