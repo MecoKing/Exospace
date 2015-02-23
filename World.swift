@@ -148,25 +148,27 @@ class World : SKNode {
 		}
 	}
 	
-	func removeThings () {
-		for (index, var stack) in enumerate(itemStacks) {
-			if world.tileAtCartesian(stack.cartesianPoint).highlighted {
-				if !stack.items.isEmpty {
-					stack.pop().removeFromParent()
-				}
-				if stack.items.isEmpty {
-					world.tileAtCartesian(stack.cartesianPoint).occupied = false
+	func removeAtTile (tile:Tile) {
+		if tile.occupied {
+			var objectRemoved = false;
+			for var i = 0; i < population.count; i++ {
+				if population [i].cartesianPoint == tile.cartesianPoint && population [i].immediateDestination == tile.cartesianPoint {
+					population[i].removeFromParent()
+					tile.occupied = false
+					population.removeAtIndex(i)
+					objectRemoved = true
+					break
 				}
 			}
-			itemStacks[index] = stack
-		}
-		
-		for var i=0; i < population.count; i++ {
-			if world.tileAtCartesian(population[i].cartesianPoint).highlighted {
-				population[i].removeFromParent()
-				world.tileAtCartesian(population[i].immediateDestination).occupied = false
-				population.removeAtIndex(i)
-				i--
+			if !objectRemoved {
+				for (index, var stack) in enumerate(itemStacks) {
+					if stack.cartesianPoint == tile.cartesianPoint {
+						if !stack.items.isEmpty { stack.pop().removeFromParent() }
+						if stack.items.isEmpty { tile.occupied = false }
+						itemStacks[index] = stack
+						break
+					}
+				}
 			}
 		}
 	}
