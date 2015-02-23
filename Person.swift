@@ -25,9 +25,9 @@ class Person : SKSpriteNode {
 	
 	//----------------------------------------------------------------
 	
-	init(atPoint:CGPoint, species:String, genderName:String) {
+	init(atPoint:CGPoint, species:String) {
 		animFrame = CGRect(x: 0, y: 0, width: 0.25, height: 0.25)
-		gender = genderName
+		gender = (randomInt(2) == 0) ? "Male" : "Female"
 		cartesianPoint = atPoint
 		destination = cartesianPoint
 		immediateDestination = cartesianPoint
@@ -70,15 +70,6 @@ class Person : SKSpriteNode {
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
-	}
-	
-	//Create a random Person
-	class func randomPersonAtPoint (pt:CGPoint, world:World, speciesBias:String) -> Person {
-		let allSpecies = ["human", "argonian"]
-		let index = (speciesBias != "none") ? randomInt(allSpecies.count + 3) : randomInt(allSpecies.count)
-		let species = (index >= allSpecies.count) ? speciesBias : allSpecies [index]
-		let gender = (randomInt(2) == 0) ? "Male" : "Female"
-		return Person(atPoint: pt, species: species, genderName: gender)
 	}
 	
 	//Get a random name from Names.plist
