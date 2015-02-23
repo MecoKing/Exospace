@@ -100,35 +100,21 @@ class World : SKNode {
 		var generatedPeople = 0
 		while generatedPeople != 8 {
 			let tile = tileAtCartesian(CGPoint(x: randomInt(worldSize), y: randomInt(worldSize)))
-			if !tile.occupied && randomInt(10) == 0{
-				tile.occupied = true
-				
-				let speciesArray:Array<String> = biomeData [tileType]! ["Species"]!
-				let speciesName = speciesArray [randomInt(speciesArray.count)]
-				
-				let person = Person(atPoint: tile.cartesianPoint, species: speciesName, genderName: (randomInt(2) == 0) ? "Male" : "Female")
-				population.append(person)
-				addChild(person)
+			if !tile.occupied {//Double check tile isnt occupied to guarantee 8 spawns
+				placePersonAtTile(tile)
 				generatedPeople++
 			}
 		}
 	}
 	
-	func placePeople () {
-		for tile in world.map {
-			if tile.highlighted {
-				tile.highlight()
-				if !tile.occupied {
-					tile.occupied = true
-					
-					let speciesArray:Array<String> = biomeData [tileType]! ["Species"]!
-					let speciesName = speciesArray [randomInt(speciesArray.count)]
-					
-					let person = Person(atPoint: tile.cartesianPoint, species: speciesName, genderName: (randomInt(2) == 0) ? "Male" : "Female")
-					population.append(person)
-					addChild(person)
-				}
-			}
+	func placePersonAtTile (tile:Tile) {
+		if !tile.occupied {
+			tile.occupied = true
+			let speciesArray:Array<String> = biomeData [tileType]! ["Species"]!
+			let speciesName = speciesArray [randomInt(speciesArray.count)]
+			let person = Person(atPoint: tile.cartesianPoint, species: speciesName)
+			population.append(person)
+			addChild(person)
 		}
 	}
 	
