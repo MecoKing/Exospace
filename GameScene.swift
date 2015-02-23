@@ -126,46 +126,47 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			
-			if state == "addPeople" { world.placePeople() }
-			else if state == "addItems" { world.placeItems() }
-			else if state == "removeItems" { world.removeThings() }
-			else if state == "selection" && selectedObject == nil {
-				if world.tileAtCartesian(location).occupied {
-					for stack in world.itemStacks {
-						if world.tileAtCartesian(location) == world.tileAtCartesian(stack.cartesianPoint) {
-							selectedObject = stack.topItem
-							break
-						}
-					}
-					if selectedObject == nil {
-						for person in world.population {
-							if world.tileAtCartesian(location) == world.tileAtCartesian(person.cartesianPoint) {
-								selectedObject = person
-								break
+			for tile in world.map {
+				if tile.highlighted {
+					if state == "addPeople" { world.placePersonAtTile(tile) }
+					else if state == "addItems" { world.placeItemOnTile(tile) }
+					else if state == "removeItems" { world.removeAtTile(tile) }
+					else if state == "selection" && selectedObject == nil {
+						if world.tileAtCartesian(location).occupied {
+							for person in world.population {
+								if tile.cartesianPoint == person.cartesianPoint {
+									selectedObject = person
+									break
+								}
+							}
+							if selectedObject == nil {
+								for stack in world.itemStacks {
+									if tile.cartesianPoint == stack.cartesianPoint {
+										selectedObject = stack.topItem
+										break
+									}
+								}
 							}
 						}
 					}
-				}
-			}
-			else if state == "selection" {
-				if selectedObject is Person {
-					for person in world.population {
-						if person == selectedObject {
-							person.destination = location
-							if person.state == "idle" { person.pathFind () }
+					else if state == "selection" {
+						if selectedObject is Person {
+							for person in world.population {
+								if person == selectedObject {
+									person.destination = location
+									if person.state == "idle" { person.pathFind () }
+								}
+							}
 						}
+						else if selectedObject is Item {
+							for item in world.itemStacks {
+								//Set task to move item to that point
+							}
+						}
+						selectedObject = nil
 					}
+					tile.highlight()
 				}
-				else if selectedObject is Item {
-					for item in world.itemStacks {
-						//Set job to move item to that point
-					}
-				}
-				selectedObject = nil
-			}
-			
-			for tile in world.map {
-				if tile.highlighted { tile.highlight() }
 			}
 		}
 	}
