@@ -140,29 +140,22 @@ class World : SKNode {
 		}
 	}
 	
-	func placeItems () {
-		for tile in world.map {
-			if tile.highlighted {
-				tile.highlight()
-				placeItemOnTile(tile)
-			}
-		}
-	}
-	
 	func placeItemOnTile(tile: Tile) {
 		for (index, var stack) in enumerate(itemStacks) {
-			if stack.cartesianPoint == tile.cartesianPoint && (stack.topItem?.isStackable ?? true) == true {
+			if stack.cartesianPoint == tile.cartesianPoint {
+				if (stack.topItem?.isStackable ?? true) == true {
+					let itemArray:Array<String> = biomeData [tileType]! ["Items"]!
+					let itemName = itemArray [randomInt(itemArray.count)]
 				
-				let itemArray:Array<String> = biomeData [tileType]! ["Items"]!
-				let itemName = itemArray [randomInt(itemArray.count)]
-				
-				let generatedItem = Item(itemID: itemName, atPoint: tile.cartesianPoint)
-				generatedItem.position.y += CGFloat(stack.items.endIndex * 48)
-				generatedItem.zPosition += CGFloat(stack.items.endIndex)
-				stack.push(generatedItem)
-				addChild(generatedItem)
-				itemStacks[index] = stack
-				tile.occupied = true
+					let generatedItem = Item(itemID: itemName, atPoint: tile.cartesianPoint)
+					generatedItem.position.y += CGFloat(stack.items.endIndex * 48)
+					generatedItem.zPosition += CGFloat(stack.items.endIndex)
+					stack.push(generatedItem)
+					addChild(generatedItem)
+					itemStacks[index] = stack
+					tile.occupied = true
+				}
+				break
 			}
 		}
 	}
