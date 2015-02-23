@@ -88,7 +88,7 @@ class GameScene: SKScene {
 		for touch: AnyObject in touches {
 			let cartLocation = touch.locationInNode(self).toCartesian()
 			let screenLocation = touch.locationInView(self.view)
-			if !(state == "removeItems" || state == "addPeople" || state == "selection" || state == "moveMap") {
+			if !(/*state == "removeItems" ||*/ state == "addPeople" || state == "selection" || state == "moveMap") {
 				for tile in world.map {
 					if tile.highlighted { tile.highlight() }
 					var minX = (cartLocation.x < firstSelect.x) ? cartLocation.x : firstSelect.x
