@@ -141,21 +141,23 @@ class World : SKNode {
 	}
 	
 	func placeItemOnTile(tile: Tile) {
-		for (index, var stack) in enumerate(itemStacks) {
-			if stack.cartesianPoint == tile.cartesianPoint {
-				if (stack.topItem?.isStackable ?? true) == true {
-					let itemArray:Array<String> = biomeData [tileType]! ["Items"]!
-					let itemName = itemArray [randomInt(itemArray.count)]
+		if !tile.occupied {
+			for (index, var stack) in enumerate(itemStacks) {
+				if stack.cartesianPoint == tile.cartesianPoint {
+					if (stack.topItem?.isStackable ?? true) == true {
+						let itemArray:Array<String> = biomeData [tileType]! ["Items"]!
+						let itemName = itemArray [randomInt(itemArray.count)]
 				
-					let generatedItem = Item(itemID: itemName, atPoint: tile.cartesianPoint)
-					generatedItem.position.y += CGFloat(stack.items.endIndex * 48)
-					generatedItem.zPosition += CGFloat(stack.items.endIndex)
-					stack.push(generatedItem)
-					addChild(generatedItem)
-					itemStacks[index] = stack
-					tile.occupied = true
+						let generatedItem = Item(itemID: itemName, atPoint: tile.cartesianPoint)
+						generatedItem.position.y += CGFloat(stack.items.endIndex * 48)
+						generatedItem.zPosition += CGFloat(stack.items.endIndex)
+						stack.push(generatedItem)
+						addChild(generatedItem)
+						itemStacks[index] = stack
+						tile.occupied = true
+					}
+					break
 				}
-				break
 			}
 		}
 	}
