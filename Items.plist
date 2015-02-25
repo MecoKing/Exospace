@@ -302,6 +302,21 @@
 		<key>traversable</key>
 		<string>NO</string>
 	</dict>
+	<key>Snow_Lump</key>
+	<dict>
+		<key>spriteName</key>
+		<string>snowLump</string>
+		<key>type</key>
+		<string>Decoration</string>
+		<key>recipe</key>
+		<string>Wood_Resource</string>
+		<key>effect</key>
+		<string>None</string>
+		<key>stackable</key>
+		<string>NO</string>
+		<key>traversable</key>
+		<string>NO</string>
+	</dict>
 	<key>Snowman</key>
 	<dict>
 		<key>spriteName</key>
