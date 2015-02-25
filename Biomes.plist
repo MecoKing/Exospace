@@ -89,8 +89,10 @@
 	<dict>
 		<key>Items</key>
 		<array>
-			<string>Fire_Pit</string>
-			<string>Ember_Crystal</string>
+			<string>Bacta_Tank</string>
+			<string>Rolly_Chair</string>
+			<string>Hologram</string>
+			<string>Steel_Crate</string>
 		</array>
 		<key>Species</key>
 		<array>
