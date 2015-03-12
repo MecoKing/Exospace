@@ -19,7 +19,7 @@ class Person : SKSpriteNode {
 	var destination:CGPoint
 	var immediateDestination:CGPoint
 	var fullName = "Person"
-	
+	var inventory:Item?
 	var currentTask:Task?
 	var state = "idle"
 	var facingFore = true
@@ -81,28 +81,39 @@ class Person : SKSpriteNode {
 	}
 	
 	//----------------------------------------------------------------
+	//STATE MACHINE
+	//(stack.topItem?.isStackable ?? true) == true
+	var taskComplete:Bool { get { return currentTask?.completed ?? true } }
+	var taskAvailable:Bool { get { return !world.tasks.isEmpty } }
+	var hungerIsLow:Bool { get { return randomInt(500) == 0 } }
+	var fatigueIsLow:Bool { get { return randomInt(500) == 0 } }
+	var inventoryFull:Bool { get { return inventory != nil } }
 	
-	func runAI () {
-		
-		if !world.tasks.isEmpty && state == "idle" {
-			for task in world.tasks {
-				if !task.claimed {
-					currentTask = task
-					state = "workingTask"
-					chat ("I have a purpose!")
-					break
-				}
+	func runState () {
+		updateZPosition ()
+		animate ()
+		if state == "idle" { runIdle () }
+		else if state == "getTask" { runGetTask () }
+	}
+	func runGetTask () {
+		for task in world.tasks {
+			if !task.claimed {
+				currentTask = task
+				state = "workingTask"
+				chat ("I have a purpose!")
+				break
 			}
 		}
-		if state == "idle" {
-			if randomInt(500) == 0 { emote("hungry") }
-			else if randomInt(500) == 0 { emote("tired") }
-			else if randomInt(50) == 0 { setDestination() }
-		}
-		
-		updateZPosition ()
-		animate()
+		if taskComplete { state = "idle" }
 	}
+	func runIdle () {
+		if hungerIsLow { emote("hungry") }
+		else if fatigueIsLow { emote("tired") }
+		else if randomInt(50) == 0 { setDestination() }
+		else { state = "getTask" }
+	}
+	
+	//----------------------------------------------------------------
 	
 	//Create a random destination
 	func randomDestination () -> CGPoint {
@@ -150,7 +161,7 @@ class Person : SKSpriteNode {
 	
 	//Animate the person sprite as well as all accessories
 	func animate () {
-		if state != "idle" { animFrame.origin.x += 0.25 }
+		if state == "walking" || state == "harvesting" { animFrame.origin.x += 0.25 }
 		else { animFrame.origin.x = 0 }
 		
 		if animFrame.origin.x >= 1 { animFrame.origin.x = 0 }

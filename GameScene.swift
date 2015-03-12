@@ -179,7 +179,7 @@ class GameScene: SKScene {
 		timerTick++
 		if timerTick % 5 == 0 {
 			for human in world.population {
-				human.runAI ()
+				human.runState ()
 			}
 		}
 		if timerTick - chatLabelTrigger >= 100 { chatLabel.runAction(SKAction.fadeAlphaBy(-1, duration: 2)) }
