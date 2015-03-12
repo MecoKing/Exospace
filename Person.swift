@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class Person : SKSpriteNode {
+	
 	var cartesianPoint:CGPoint
 	var animFrame:CGRect
 	var clothes:Outfit
@@ -65,7 +66,7 @@ class Person : SKSpriteNode {
 		texture?.filteringMode = SKTextureFilteringMode.Nearest
 		position = cartesianPoint.toUsefulIsometric()
 		position.y += 28
-		zPosition = 100
+		updateZPosition()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
