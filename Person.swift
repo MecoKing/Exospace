@@ -74,10 +74,8 @@ class Person : SKSpriteNode {
 	
 	//Get a random name from Names.plist
 	class func randomName (speciesName:String, genderName:String) -> String {
-		let path = NSBundle.mainBundle().pathForResource("Names", ofType: "plist")
-		let names:Dictionary<String, Dictionary<String, Array<String>>> = NSDictionary (contentsOfFile: path!) as Dictionary<String, Dictionary<String, Array<String>>>
-		let index:Int = randomInt(names [speciesName]![genderName]!.count)
-		let namesForSpeciesGender = names [speciesName]![genderName]!
+		let index:Int = randomInt(allNames [speciesName]![genderName]!.count)
+		let namesForSpeciesGender = allNames [speciesName]![genderName]!
 		return namesForSpeciesGender [index]
 	}
 	
