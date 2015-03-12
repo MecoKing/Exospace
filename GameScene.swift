@@ -177,7 +177,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
 		timerTick++
-		if timerTick % 5 == 0 {
+		if timerTick % 4 == 0 {
 			for human in world.population {
 				human.runState ()
 			}

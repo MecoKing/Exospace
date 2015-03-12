@@ -88,12 +88,16 @@ class Person : SKSpriteNode {
 	var hungerIsLow:Bool { get { return randomInt(500) == 0 } }
 	var fatigueIsLow:Bool { get { return randomInt(500) == 0 } }
 	var inventoryFull:Bool { get { return inventory != nil } }
+	var atDestination:Bool { get { return destination == cartesianPoint } }
+	var atNearestDestination:Bool { get { return immediateDestination == cartesianPoint } }
 	
 	func runState () {
 		updateZPosition ()
 		animate ()
+		
 		if state == "idle" { runIdle () }
 		else if state == "getTask" { runGetTask () }
+		if state == "moveSpace" { runMoveToNearest () }
 	}
 	func runGetTask () {
 		for task in world.tasks {
@@ -107,10 +111,26 @@ class Person : SKSpriteNode {
 		if taskComplete { state = "idle" }
 	}
 	func runIdle () {
-		if hungerIsLow { emote("hungry") }
+		if !atNearestDestination { state = "moveSpace" }
+		else if !atDestination { pathFind() }
+		else if hungerIsLow { emote("hungry") }
 		else if fatigueIsLow { emote("tired") }
 		else if randomInt(50) == 0 { setDestination() }
 		else { state = "getTask" }
+	}
+	func runMoveToNearest () {
+		state = "walking"
+		let isoLocation = CGPoint(x: immediateDestination.toUsefulIsometric().x, y: immediateDestination.toUsefulIsometric().y + 28)
+		let moveTime = position.distanceFrom(isoLocation) / 24
+		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
+		facingFore = (isoLocation.y < position.y) ? true : false
+		world.tileAtCartesian(cartesianPoint).occupied = false
+		world.tileAtCartesian(immediateDestination).occupied = true
+		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
+			self.cartesianPoint = self.immediateDestination
+			if self.atDestination { self.state = "idle" }
+			else { self.pathFind () }
+		}
 	}
 	
 	//----------------------------------------------------------------
@@ -153,10 +173,14 @@ class Person : SKSpriteNode {
 		}
 		if bestPath == cartesianPoint {
 			state = "idle"
+			destination = cartesianPoint;
 			let stuckWords = ["Argh! I'm Stuck!", "When'd this get here!?", "Outta my way!", "Who put this here!"]
 			chat (stuckWords [randomInt(stuckWords.count)])
 		}
-		else { moveTo(bestPath) }
+		else {
+			immediateDestination = bestPath;
+			state = "moveSpace"
+		}
 	}
 	
 	//Animate the person sprite as well as all accessories
@@ -170,27 +194,6 @@ class Person : SKSpriteNode {
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
 		clothes.animateWithFrame(animFrame)
 		hairdo.animateWithFrame(animFrame, outfitHasHat: clothes.hasHair)
-	}
-	
-	//Move me to this destination
-	func moveTo (cartesian:CGPoint) {
-		state = "walking"
-		let isoLocation = CGPoint(x: cartesian.toUsefulIsometric().x, y: cartesian.toUsefulIsometric().y + 28)
-		let moveTime = position.distanceFrom(isoLocation) / 26
-		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
-		facingFore = (isoLocation.y < position.y) ? true : false
-		world.tileAtCartesian(cartesianPoint).occupied = false
-		world.tileAtCartesian(cartesian).occupied = true
-		immediateDestination = cartesian
-		runAction(SKAction .moveTo(isoLocation, duration: NSTimeInterval(moveTime))) {
-			self.cartesianPoint = cartesian
-			if self.destination == self.cartesianPoint {
-				self.state = "idle"
-			}
-			else {
-				self.pathFind()
-			}
-		}
 	}
 	
 	func chat (sentence:String) {
