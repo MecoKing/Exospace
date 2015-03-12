@@ -23,6 +23,7 @@ public struct HarvestTask : Task {
 		}
 		return true
 	}
+	public var initialState = "harvest"
 	
 	public let location:CGPoint
 	public let object:Item

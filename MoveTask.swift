@@ -23,6 +23,7 @@ public struct MoveTask : Task {
 		}
 		return false
 	}
+	public var initialState = "moveItem"
 	
 	public let location:CGPoint
 	public let destination:CGPoint

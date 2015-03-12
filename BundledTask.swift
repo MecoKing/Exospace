@@ -11,6 +11,12 @@ import SpriteKit
 
 public struct BundledTask : Task {
 	public var claimed = false
+	public var initialState:String {
+		for task in bundle {
+			if !task.completed { return task.initialState }
+		}
+		return "idle"
+	}
 	public var completed:Bool {
 		for task in bundle {
 			if !task.completed { return false }

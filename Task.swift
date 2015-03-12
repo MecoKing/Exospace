@@ -11,4 +11,5 @@ import Foundation
 public protocol Task {
 	var claimed:Bool {get set}
 	var completed:Bool {get}
+	var initialState:String {get}
 }

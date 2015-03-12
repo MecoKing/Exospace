@@ -82,7 +82,6 @@ class Person : SKSpriteNode {
 	
 	//----------------------------------------------------------------
 	//STATE MACHINE
-	//(stack.topItem?.isStackable ?? true) == true
 	var taskComplete:Bool { get { return currentTask?.completed ?? true } }
 	var taskAvailable:Bool { get { return !world.tasks.isEmpty } }
 	var hungerIsLow:Bool { get { return randomInt(500) == 0 } }
@@ -99,6 +98,15 @@ class Person : SKSpriteNode {
 		else if state == "getTask" { runGetTask () }
 		if state == "moveSpace" { runMoveToNearest () }
 	}
+	func runIdle () {
+		if !atNearestDestination { state = "moveSpace" }
+		else if !atDestination { pathFind() }
+		else if !taskComplete { state = currentTask!.initialState }
+		else if hungerIsLow { emote("hungry") }
+		else if fatigueIsLow { emote("tired") }
+		else if randomInt(50) == 0 { setDestination() }
+		else { state = "getTask" }
+	}
 	func runGetTask () {
 		for task in world.tasks {
 			if !task.claimed {
@@ -109,14 +117,6 @@ class Person : SKSpriteNode {
 			}
 		}
 		if taskComplete { state = "idle" }
-	}
-	func runIdle () {
-		if !atNearestDestination { state = "moveSpace" }
-		else if !atDestination { pathFind() }
-		else if hungerIsLow { emote("hungry") }
-		else if fatigueIsLow { emote("tired") }
-		else if randomInt(50) == 0 { setDestination() }
-		else { state = "getTask" }
 	}
 	func runMoveToNearest () {
 		state = "walking"
