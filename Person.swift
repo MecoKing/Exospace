@@ -100,7 +100,6 @@ class Person : SKSpriteNode {
 	}
 	func runIdle () {
 		if !atNearestDestination { state = "moveSpace" }
-		else if !atDestination { pathFind() }
 		else if !taskComplete { state = currentTask!.initialState }
 		else if hungerIsLow { emote("hungry") }
 		else if fatigueIsLow { emote("tired") }
