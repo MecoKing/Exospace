@@ -131,6 +131,15 @@ class Person : SKSpriteNode {
 			else { self.pathFind () }
 		}
 	}
+	func runMoveItem () {//MoveItemTask stateDelegator
+		let moveTask = currentTask as MoveTask
+		if inventory?.name == moveTask.object.name {
+			if cartesianPoint.distanceFrom(moveTask.destination) <= 1 {
+				world.placeItemOnTile(moveTask.object, tile: world.tileAtCartesian(moveTask.destination))
+				inventory = nil
+			}
+		}
+	}
 	
 	//----------------------------------------------------------------
 	
