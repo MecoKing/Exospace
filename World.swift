@@ -147,6 +147,23 @@ class World : SKNode {
 			}
 		}
 	}
+	func placeItemOnTile(item: Item, tile: Tile) {
+		if !tile.occupied {
+			for (index, var stack) in enumerate(itemStacks) {
+				if stack.cartesianPoint == tile.cartesianPoint {
+					if (stack.topItem?.isStackable ?? true) == true {
+						item.position.y += CGFloat(stack.items.endIndex * 48)
+						item.zPosition += CGFloat(stack.items.endIndex)
+						stack.push(item)
+						addChild(item)
+						itemStacks[index] = stack
+						tile.occupied = true
+					}
+					break
+				}
+			}
+		}
+	}
 	
 	func removeAtTile (tile:Tile) {
 		if tile.occupied {
