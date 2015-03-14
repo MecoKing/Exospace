@@ -98,7 +98,7 @@ class World : SKNode {
 	
 	func generatePeople () {
 		var generatedPeople = 0
-		while generatedPeople != 1 {
+		while generatedPeople != 8 {
 			let tile = tileAtCartesian(CGPoint(x: randomInt(worldSize), y: randomInt(worldSize)))
 			if !tile.occupied {//Double check tile isnt occupied to guarantee 8 spawns
 				placePersonAtTile(tile)
