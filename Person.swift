@@ -113,7 +113,7 @@ class Person : SKSpriteNode {
 			if !task.claimed {
 				currentTask = task
 				world.tasks.removeAtIndex(index);
-				state = "workingTask"
+				state = currentTask!.initialState
 				chat ("I have a purpose!")
 				break
 			}
@@ -138,7 +138,7 @@ class Person : SKSpriteNode {
 		let moveTask = currentTask as MoveTask
 		var didSomethingUseful = false
 		if inventory?.name == moveTask.object.name {
-			if cartesianPoint.distanceFrom(moveTask.destination) <= 1 {
+			if cartesianPoint.distanceFrom(moveTask.destination) <= 1 && cartesianPoint.distanceFrom (moveTask.destination) > 0 {
 				world.placeItemOnTile(moveTask.object, tile: world.tileAtCartesian(moveTask.destination))
 				inventory = nil
 				didSomethingUseful = true
@@ -167,10 +167,10 @@ class Person : SKSpriteNode {
 				didSomethingUseful = true
 			} else {
 				let adjacentTiles = [
-					CGPoint(x: moveTask.location.x + 1, y: moveTask.destination.y),
-					CGPoint(x: moveTask.location.x, y: moveTask.destination.y + 1),
-					CGPoint(x: moveTask.location.x - 1, y: moveTask.destination.y),
-					CGPoint(x: moveTask.location.x, y: moveTask.destination.y - 1)
+					CGPoint(x: moveTask.location.x + 1, y: moveTask.location.y),
+					CGPoint(x: moveTask.location.x, y: moveTask.location.y + 1),
+					CGPoint(x: moveTask.location.x - 1, y: moveTask.location.y),
+					CGPoint(x: moveTask.location.x, y: moveTask.location.y - 1)
 				]
 				for adjacentPoint in adjacentTiles {
 					if !world.tileAtCartesian(adjacentPoint).occupied {
@@ -181,6 +181,12 @@ class Person : SKSpriteNode {
 					}
 				}
 			}
+		}
+		else {
+			chat ("I can't find a \(moveTask.object.name!)")
+			currentTask = nil
+			didSomethingUseful = true
+			state = "idle"
 		}
 		if !didSomethingUseful {
 			world.tasks.append(currentTask!)

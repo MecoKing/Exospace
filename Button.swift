@@ -22,7 +22,8 @@ class Button : SKSpriteNode {
 			"spawnButton":"spawnPeople",
 			"itemButton":"spawnItems",
 			"deleteButton":"removeItems",
-			"moveButton":"moveMap"
+			"moveButton":"moveMap",
+			"moveItemButton":"moveItem"
 		]
 		if jobs [buttonName] != nil { job = jobs [buttonName]! }
 		else { job = "noJob" }
@@ -66,6 +67,8 @@ class Button : SKSpriteNode {
 				game.state = "selection"
 			case "moveMap":
 				game.state = "moveMap"
+			case "moveItem":
+				game.state = "moveItem"
 			default:
 				game.state = "noAction"
 				println("Button: \(name) has no job")

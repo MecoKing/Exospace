@@ -24,7 +24,7 @@ class GameScene: SKScene {
 		Button(buttonName: "diceRollButton", index: 0),
 		Button(buttonName: "moveButton", index: 1),
 		Button(buttonName: "spawnButton", index: 2),
-		Button(buttonName: "itemButton", index: 3),
+		Button(buttonName: "moveItemButton", index: 3),
 		Button(buttonName: "deleteButton", index: 4),
 	]
 	
@@ -131,14 +131,8 @@ class GameScene: SKScene {
 					if state == "addPeople" { world.placePersonAtTile(tile) }
 					else if state == "addItems" { world.placeItemOnTile(tile) }
 					else if state == "removeItems" { world.removeAtTile(tile) }
-					else if state == "selection" && selectedObject == nil {
+					else if state == "moveItem" && selectedObject == nil {
 						if world.tileAtCartesian(location).occupied {
-							for person in world.population {
-								if tile.cartesianPoint == person.cartesianPoint {
-									selectedObject = person
-									break
-								}
-							}
 							if selectedObject == nil {
 								for stack in world.itemStacks {
 									if tile.cartesianPoint == stack.cartesianPoint {
@@ -149,19 +143,10 @@ class GameScene: SKScene {
 							}
 						}
 					}
-					else if state == "selection" {
-						if selectedObject is Person {
-							for person in world.population {
-								if person == selectedObject {
-									person.destination = location
-									if person.state == "idle" { person.pathFind () }
-								}
-							}
-						}
-						else if selectedObject is Item {
-							for item in world.itemStacks {
-								//Set task to move item to that point
-							}
+					else if state == "moveItem" {
+						if selectedObject is Item {
+							let selectedItem = selectedObject as Item
+							world.tasks.append(MoveTask (loc: selectedItem.cartesianPoint, obj: selectedItem, dest: location))
 						}
 						selectedObject = nil
 					}

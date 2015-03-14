@@ -98,7 +98,7 @@ class World : SKNode {
 	
 	func generatePeople () {
 		var generatedPeople = 0
-		while generatedPeople != 8 {
+		while generatedPeople != 1 {
 			let tile = tileAtCartesian(CGPoint(x: randomInt(worldSize), y: randomInt(worldSize)))
 			if !tile.occupied {//Double check tile isnt occupied to guarantee 8 spawns
 				placePersonAtTile(tile)
@@ -148,19 +148,20 @@ class World : SKNode {
 		}
 	}
 	func placeItemOnTile(item: Item, tile: Tile) {
-		if !tile.occupied {
-			for (index, var stack) in enumerate(itemStacks) {
-				if stack.cartesianPoint == tile.cartesianPoint {
-					if (stack.topItem?.isStackable ?? true) == true {
-						item.position.y += CGFloat(stack.items.endIndex * 48)
-						item.zPosition += CGFloat(stack.items.endIndex)
-						stack.push(item)
-						addChild(item)
-						itemStacks[index] = stack
-						tile.occupied = true
-					}
-					break
+		for (index, var stack) in enumerate(itemStacks) {
+			if stack.cartesianPoint == tile.cartesianPoint {
+				if (stack.topItem?.isStackable ?? true) == true {
+					item.position = tile.position
+					item.position.y += CGFloat(stack.items.endIndex * 48) + 24
+					item.cartesianPoint = tile.cartesianPoint
+					item.updateZPosition()
+					item.zPosition += CGFloat(stack.items.endIndex)
+					stack.push(item)
+					addChild(item)
+					itemStacks[index] = stack
+					tile.occupied = true
 				}
+				break
 			}
 		}
 	}
@@ -186,6 +187,19 @@ class World : SKNode {
 			}
 		}
 		return false
+	}
+	
+	func removeItemAtTile (tile:Tile) {
+		if tile.occupied {
+			for (index, var stack) in enumerate(itemStacks) {
+				if stack.cartesianPoint == tile.cartesianPoint {
+					if !stack.items.isEmpty { stack.pop().removeFromParent() }
+					if stack.items.isEmpty { tile.occupied = false }
+					itemStacks[index] = stack
+					break
+				}
+			}
+		}
 	}
 	
 	func removeAtTile (tile:Tile) {
