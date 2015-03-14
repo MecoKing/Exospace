@@ -96,7 +96,9 @@ class Person : SKSpriteNode {
 		
 		if state == "idle" { runIdle () }
 		else if state == "getTask" { runGetTask () }
-		if state == "moveSpace" { runMoveToNearest () }
+		else if state == "moveSpace" { runMoveToNearest () }
+		else if state == "moveItem" { runMoveItem() }
+		
 	}
 	func runIdle () {
 		if !atNearestDestination { state = "moveSpace" }
@@ -107,9 +109,10 @@ class Person : SKSpriteNode {
 		else { state = "getTask" }
 	}
 	func runGetTask () {
-		for task in world.tasks {
+		for (index, var task) in enumerate(world.tasks) {
 			if !task.claimed {
 				currentTask = task
+				world.tasks.removeAtIndex(index);
 				state = "workingTask"
 				chat ("I have a purpose!")
 				break
@@ -133,11 +136,56 @@ class Person : SKSpriteNode {
 	}
 	func runMoveItem () {//MoveItemTask stateDelegator
 		let moveTask = currentTask as MoveTask
+		var didSomethingUseful = false
 		if inventory?.name == moveTask.object.name {
 			if cartesianPoint.distanceFrom(moveTask.destination) <= 1 {
 				world.placeItemOnTile(moveTask.object, tile: world.tileAtCartesian(moveTask.destination))
 				inventory = nil
+				didSomethingUseful = true
+				state = "harvesting"
+			} else {
+				let adjacentTiles = [
+					CGPoint(x: moveTask.destination.x + 1, y: moveTask.destination.y),
+					CGPoint(x: moveTask.destination.x, y: moveTask.destination.y + 1),
+					CGPoint(x: moveTask.destination.x - 1, y: moveTask.destination.y),
+					CGPoint(x: moveTask.destination.x, y: moveTask.destination.y - 1)
+				]
+				for adjacentPoint in adjacentTiles {
+					if !world.tileAtCartesian(adjacentPoint).occupied {
+						destination = adjacentPoint
+						pathFind()
+						didSomethingUseful = true
+						break
+					}
+				}
 			}
+		} else if world.containsItem(moveTask.object, atPoint: moveTask.location) {
+			if (cartesianPoint.distanceFrom(moveTask.location) <= 1) {
+				state = "harvesting"
+				inventory = moveTask.object
+				world.removeAtTile(world.tileAtCartesian(moveTask.location))
+				didSomethingUseful = true
+			} else {
+				let adjacentTiles = [
+					CGPoint(x: moveTask.location.x + 1, y: moveTask.destination.y),
+					CGPoint(x: moveTask.location.x, y: moveTask.destination.y + 1),
+					CGPoint(x: moveTask.location.x - 1, y: moveTask.destination.y),
+					CGPoint(x: moveTask.location.x, y: moveTask.destination.y - 1)
+				]
+				for adjacentPoint in adjacentTiles {
+					if !world.tileAtCartesian(adjacentPoint).occupied {
+						destination = adjacentPoint
+						pathFind()
+						didSomethingUseful = true
+						break
+					}
+				}
+			}
+		}
+		if !didSomethingUseful {
+			world.tasks.append(currentTask!)
+			currentTask = nil
+			state = "idle"
 		}
 	}
 	
@@ -196,7 +244,7 @@ class Person : SKSpriteNode {
 		if state == "walking" || state == "harvesting" { animFrame.origin.x += 0.25 }
 		else { animFrame.origin.x = 0 }
 		
-		if animFrame.origin.x >= 1 { animFrame.origin.x = 0 }
+		if animFrame.origin.x >= 1 { animFrame.origin.x = 0; state = (state == "harvesting") ? "idle" : state }
 		animFrame.origin.y = (state == "walking") ? 0.75 : 0.5
 		animFrame.origin.y -= (facingFore) ? 0 : 0.5
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
