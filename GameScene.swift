@@ -147,6 +147,7 @@ class GameScene: SKScene {
 						if selectedObject is Item {
 							let selectedItem = selectedObject as Item
 							world.tasks.append(MoveTask (loc: selectedItem.cartesianPoint, obj: selectedItem, dest: location))
+							world.tileAtCartesian(location).occupied = true
 						}
 						selectedObject = nil
 					}
