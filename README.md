@@ -7,18 +7,21 @@ The year 3628. A group of scientists from each of the 6 races has sent crews of 
 You the player are tasked with bringing your people from colony to civilisation. But beware! there may already be life on this world as well...
 
 
-6 SPECIES:
-
-Human - Hey that's us!
-
-Argonians - Peaceful Jungle dwellers seeking expansion!
-
-Venusian - Our next door neighbours!
-
-Cybernauts - A robotic species built and nearly wiped out by man!
-
-????? - ????? ?? ? ??? ???? ?????? ? ??? ???
-
-????? - ????? ?? ? ??? ???? ?????? ? ??? ???
-
-????? - ????? ?? ? ??? ???? ?????? ? ??? ???
+Several Playable Species:
+- Human [Terra]
+  - Hey thats us!
+- Argonian [Jungle]
+  - Peaceful jungle dwellers seeking expansion
+- Venusian [Magma]
+  - Our next door neigbours!
+- Cybernaut [Asteroid]
+  - A robotic race built and nearly wiped out by man!
+- Unknown [Glacier]
+  - Comical Description
+- Unknown [Desert]
+  - Comical Description
+- Unknown [?Crystal?]
+  - Comical Description
+- Unknown [?Ocean?]
+  - Comical Description
+- ...
