@@ -150,12 +150,13 @@ class Person : SKSpriteNode {
 					CGPoint(x: moveTask.destination.x - 1, y: moveTask.destination.y),
 					CGPoint(x: moveTask.destination.x, y: moveTask.destination.y - 1)
 				]
+				var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
 				for adjacentPoint in adjacentTiles {
-					if !world.tileAtCartesian(adjacentPoint).occupied {
+					if !world.tileAtCartesian(adjacentPoint).occupied && cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
 						destination = adjacentPoint
+						closestDistance = cartesianPoint.distanceFrom(adjacentPoint)
 						pathFind()
 						didSomethingUseful = true
-						break
 					}
 				}
 			}
@@ -163,7 +164,7 @@ class Person : SKSpriteNode {
 			if (cartesianPoint.distanceFrom(moveTask.location) <= 1) {
 				state = "harvesting"
 				inventory = moveTask.object
-				world.removeAtTile(world.tileAtCartesian(moveTask.location))
+				world.removeItemAtTile(world.tileAtCartesian(moveTask.location))
 				didSomethingUseful = true
 			} else {
 				let adjacentTiles = [
@@ -172,12 +173,13 @@ class Person : SKSpriteNode {
 					CGPoint(x: moveTask.location.x - 1, y: moveTask.location.y),
 					CGPoint(x: moveTask.location.x, y: moveTask.location.y - 1)
 				]
+				var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
 				for adjacentPoint in adjacentTiles {
-					if !world.tileAtCartesian(adjacentPoint).occupied {
+					if !world.tileAtCartesian(adjacentPoint).occupied && cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
 						destination = adjacentPoint
+						closestDistance = cartesianPoint.distanceFrom(adjacentPoint)
 						pathFind()
 						didSomethingUseful = true
-						break
 					}
 				}
 			}
