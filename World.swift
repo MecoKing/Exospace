@@ -165,6 +165,29 @@ class World : SKNode {
 		}
 	}
 	
+	func containsItem (thing: Item) -> Bool {
+		for stack in itemStacks {
+			for item in stack.items {
+				if item == thing {
+					return true
+				}
+			}
+		}
+		return false
+	}
+	func containsItem (thing: Item, atPoint pt:CGPoint) -> Bool {
+		for stack in itemStacks {
+			if stack.cartesianPoint == pt {
+				for item in stack.items {
+					if item == thing {
+						return true
+					}
+				}
+			}
+		}
+		return false
+	}
+	
 	func removeAtTile (tile:Tile) {
 		if tile.occupied {
 			var objectRemoved = false;
