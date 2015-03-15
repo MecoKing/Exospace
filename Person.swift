@@ -105,8 +105,8 @@ class Person : SKSpriteNode {
 		else if !taskComplete { state = currentTask!.initialState }
 		else if hungerIsLow { emote("hungry") }
 		else if fatigueIsLow { emote("tired") }
-		else if randomInt(50) == 0 { setDestination() }
-		else { state = "getTask" }
+		else if randomInt(50) == 0 { setDestination(randomDestination()); pathFind() }
+		else if taskAvailable { state = "getTask" }
 	}
 	func runGetTask () {
 		for (index, var task) in enumerate(world.tasks) {
@@ -183,9 +183,8 @@ class Person : SKSpriteNode {
 					}
 				}
 			}
-		}
-		else {
-			chat ("I can't find a \(moveTask.object.name!)")
+		} else {
+			chat ("I can't find the \(moveTask.object.name!)")
 			currentTask = nil
 			didSomethingUseful = true
 			state = "idle"
@@ -203,12 +202,10 @@ class Person : SKSpriteNode {
 	func randomDestination () -> CGPoint {
 		return CGPoint(x: randomInt(12), y: randomInt(12))
 	}
-	func setDestination () {
-		let newDest = randomDestination()
+	func setDestination (newDest:CGPoint) {
 		if newDest.x >= 0 && newDest.x <= CGFloat(worldSize-1) && newDest.y >= 0 && newDest.y <= CGFloat(worldSize-1) {
 			if !world.tileAtCartesian(newDest).occupied {
 				destination = newDest
-				pathFind()
 			}
 		}
 	}
