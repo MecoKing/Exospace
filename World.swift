@@ -112,7 +112,7 @@ class World : SKNode {
 			tile.occupied = true
 			let speciesArray:Array<String> = biomeData [tileType]! ["Species"]!
 			let speciesName = speciesArray [randomInt(speciesArray.count)]
-			let person = Person(atPoint: tile.cartesianPoint, species: speciesName)
+			let person = Person(atPoint: tile.cartesianPoint, species: speciesName, jobName: "caveperson")
 			population.append(person)
 			addChild(person)
 		}
