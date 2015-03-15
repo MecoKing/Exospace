@@ -144,21 +144,8 @@ class Person : SKSpriteNode {
 				didSomethingUseful = true
 				state = "harvesting"
 			} else {
-				let adjacentTiles = [
-					CGPoint(x: moveTask.destination.x + 1, y: moveTask.destination.y),
-					CGPoint(x: moveTask.destination.x, y: moveTask.destination.y + 1),
-					CGPoint(x: moveTask.destination.x - 1, y: moveTask.destination.y),
-					CGPoint(x: moveTask.destination.x, y: moveTask.destination.y - 1)
-				]
-				var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
-				for adjacentPoint in adjacentTiles {
-					if !world.tileAtCartesian(adjacentPoint).occupied && cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
-						destination = adjacentPoint
-						closestDistance = cartesianPoint.distanceFrom(adjacentPoint)
-						pathFind()
-						didSomethingUseful = true
-					}
-				}
+				setDestinationAdjacentTo(moveTask.destination)
+				didSomethingUseful = true
 			}
 		} else if world.containsItem(moveTask.object, atPoint: moveTask.location) {
 			if (cartesianPoint.distanceFrom(moveTask.location) <= 1) {
@@ -167,21 +154,8 @@ class Person : SKSpriteNode {
 				world.removeItemAtTile(world.tileAtCartesian(moveTask.location))
 				didSomethingUseful = true
 			} else {
-				let adjacentTiles = [
-					CGPoint(x: moveTask.location.x + 1, y: moveTask.location.y),
-					CGPoint(x: moveTask.location.x, y: moveTask.location.y + 1),
-					CGPoint(x: moveTask.location.x - 1, y: moveTask.location.y),
-					CGPoint(x: moveTask.location.x, y: moveTask.location.y - 1)
-				]
-				var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
-				for adjacentPoint in adjacentTiles {
-					if !world.tileAtCartesian(adjacentPoint).occupied && cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
-						destination = adjacentPoint
-						closestDistance = cartesianPoint.distanceFrom(adjacentPoint)
-						pathFind()
-						didSomethingUseful = true
-					}
-				}
+				setDestinationAdjacentTo(moveTask.location)
+				didSomethingUseful = true
 			}
 		} else {
 			chat ("I can't find the \(moveTask.object.name!)")
@@ -208,6 +182,19 @@ class Person : SKSpriteNode {
 				destination = newDest
 			}
 		}
+	}
+	func setDestinationAdjacentTo (pt:CGPoint) {
+		let adjacentTiles = [
+			CGPoint(x: pt.x + CGFloat(1), y: pt.y), CGPoint(x: pt.x, y: pt.y + CGFloat(1)),
+			CGPoint(x: pt.x - CGFloat(1), y: pt.y), CGPoint(x: pt.x, y: pt.y - CGFloat(1))
+		]
+		var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
+		for adjacentPoint in adjacentTiles {
+			if cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
+				setDestination(adjacentPoint)
+			}
+		}
+		pathFind()
 	}
 	
 	func updateZPosition () {
