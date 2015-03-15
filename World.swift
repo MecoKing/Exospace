@@ -48,7 +48,8 @@ class World : SKNode {
 		map.removeAll(keepCapacity: false)
 		
 		let tileTypes = ["Terra", "Desert", "Magma", "Glacier", "Jungle", "Asteroid", "Starship"]
-		tileType = tileTypes [randomInt(tileTypes.count)]
+//		tileType = tileTypes [randomInt(tileTypes.count)]
+		tileType = "Terra"
 		for var x = 0; x < worldSize; x++ {
 			for var y = 0; y < worldSize; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
