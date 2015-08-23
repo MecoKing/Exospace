@@ -55,7 +55,7 @@ class GameScene: SKScene {
 	//----------------------------------------------------------------
 	
 	//Select the tile you touched
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let cartLocation = touch.locationInNode(self).toCartesian()
 			let UILocation = touch.locationInNode(UINode)
@@ -84,7 +84,7 @@ class GameScene: SKScene {
     }
 	
 	//Select all the tiles in a rectangle from where you first touched to where you are touching
-	override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let cartLocation = touch.locationInNode(self).toCartesian()
 			let screenLocation = touch.locationInView(self.view)
@@ -122,7 +122,7 @@ class GameScene: SKScene {
 	}
 	
 	//When touches are released, do something with the selected tiles
-	override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			
@@ -145,7 +145,7 @@ class GameScene: SKScene {
 					}
 					else if state == "moveItem" {
 						if selectedObject is Item {
-							let selectedItem = selectedObject as Item
+							let selectedItem = selectedObject as! Item
 							world.tasks.append(MoveTask (loc: selectedItem.cartesianPoint, obj: selectedItem, dest: location))
 							world.tileAtCartesian(location).occupied = true
 						}
