@@ -123,7 +123,7 @@ class Person : SKSpriteNode {
 	func runMoveToNearest () {
 		state = "walking"
 		let isoLocation = CGPoint(x: immediateDestination.toUsefulIsometric().x, y: immediateDestination.toUsefulIsometric().y + 28)
-		let moveTime = position.distanceFrom(isoLocation) / 24
+		let moveTime = position.distanceFrom(isoLocation) / 48
 		xScale = (isoLocation.x > position.x) ? 4.0 : -4.0
 		facingFore = (isoLocation.y < position.y) ? true : false
 		world.tileAtCartesian(cartesianPoint).occupied = false
