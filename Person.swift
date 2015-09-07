@@ -105,7 +105,7 @@ class Person : SKSpriteNode {
 		else if !taskComplete { state = currentTask!.initialState }
 		else if hungerIsLow { emote("hungry") }
 		else if fatigueIsLow { emote("tired") }
-		else if randomInt(50) == 0 { setDestination(randomDestination()); pathFind() }
+		else if randomInt(50) == 0 { setNewDestination(randomDestination()); pathFind() }
 		else if taskAvailable { state = "getTask" }
 	}
 	func runGetTask () {
@@ -135,7 +135,7 @@ class Person : SKSpriteNode {
 		}
 	}
 	func runMoveItem () {//MoveItemTask stateDelegator
-		let moveTask = currentTask as MoveTask
+		let moveTask = currentTask as! MoveTask
 		var didSomethingUseful = false
 		if inventory?.name == moveTask.object.name {
 			if cartesianPoint.distanceFrom(moveTask.destination) <= 1 && cartesianPoint.distanceFrom (moveTask.destination) > 0 {
@@ -176,7 +176,7 @@ class Person : SKSpriteNode {
 	func randomDestination () -> CGPoint {
 		return CGPoint(x: randomInt(12), y: randomInt(12))
 	}
-	func setDestination (newDest:CGPoint) {
+	func setNewDestination (newDest:CGPoint) {
 		if newDest.x >= 0 && newDest.x <= CGFloat(worldSize-1) && newDest.y >= 0 && newDest.y <= CGFloat(worldSize-1) {
 			if !world.tileAtCartesian(newDest).occupied {
 				destination = newDest
@@ -191,7 +191,7 @@ class Person : SKSpriteNode {
 		var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
 		for adjacentPoint in adjacentTiles {
 			if cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
-				setDestination(adjacentPoint)
+				setNewDestination(adjacentPoint)
 			}
 		}
 		pathFind()

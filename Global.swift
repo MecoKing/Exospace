@@ -9,11 +9,11 @@
 import Foundation
 
 //RESOURCES
-let allJobs = NSArray (contentsOfFile: NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")!) as Array<Dictionary<String, String>>
-let chatOptions = NSDictionary (contentsOfFile: NSBundle.mainBundle().pathForResource("Chat", ofType: "plist")!) as Dictionary<String, Array<String>>
-let biomeData = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")!) as Dictionary<String, Dictionary<String, Array<String>>>
-let allItems = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Items", ofType: "plist")!) as Dictionary<String, Dictionary<String, String>>
-let allNames = NSDictionary (contentsOfFile: NSBundle.mainBundle().pathForResource("Names", ofType: "plist")!) as Dictionary<String, Dictionary<String, Array<String>>>
+let allJobs = NSArray (contentsOfFile: NSBundle.mainBundle().pathForResource("Jobs", ofType: "plist")!) as! Array<Dictionary<String, String>>
+let chatOptions = NSDictionary (contentsOfFile: NSBundle.mainBundle().pathForResource("Chat", ofType: "plist")!) as! Dictionary<String, Array<String>>
+let biomeData = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Biomes", ofType: "plist")!) as! Dictionary<String, Dictionary<String, Array<String>>>
+let allItems = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Items", ofType: "plist")!) as! Dictionary<String, Dictionary<String, String>>
+let allNames = NSDictionary (contentsOfFile: NSBundle.mainBundle().pathForResource("Names", ofType: "plist")!) as! Dictionary<String, Dictionary<String, Array<String>>>
 
 //PROPERTIES
 var world = World ()
