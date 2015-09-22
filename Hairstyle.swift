@@ -30,6 +30,7 @@ class Hairstyle : SKSpriteNode {
 	func animateWithFrame (newFrame:CGRect, outfitHasHat:Bool) {
 		animFrame = (!outfitHasHat) ? newFrame : CGRect(x: 0, y: 0, width: 0, height: 0)
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
+		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
 	
 	//Get a random hair name

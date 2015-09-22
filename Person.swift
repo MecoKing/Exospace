@@ -242,6 +242,7 @@ class Person : SKSpriteNode {
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
 		clothes.animateWithFrame(animFrame)
 		hairdo.animateWithFrame(animFrame, outfitHasHat: clothes.hasHair)
+		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
 	
 	func chat (sentence:String) {

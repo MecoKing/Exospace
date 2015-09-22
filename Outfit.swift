@@ -42,6 +42,7 @@ class Outfit : SKSpriteNode {
 	func animateWithFrame (newFrame:CGRect) {
 		animFrame = newFrame
 		texture = SKTexture(rect: animFrame, inTexture: SKTexture(imageNamed: name!))
+		texture?.filteringMode = SKTextureFilteringMode.Nearest
 	}
 	
 	//Get a random job name
