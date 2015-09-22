@@ -109,7 +109,7 @@ class Person : SKSpriteNode {
 		else if taskAvailable { state = "getTask" }
 	}
 	func runGetTask () {
-		for (index, var task) in enumerate(world.tasks) {
+		for (index, var task) in world.tasks.enumerate() {
 			if !task.claimed {
 				currentTask = task
 				world.tasks.removeAtIndex(index);
@@ -188,7 +188,7 @@ class Person : SKSpriteNode {
 			CGPoint(x: pt.x + CGFloat(1), y: pt.y), CGPoint(x: pt.x, y: pt.y + CGFloat(1)),
 			CGPoint(x: pt.x - CGFloat(1), y: pt.y), CGPoint(x: pt.x, y: pt.y - CGFloat(1))
 		]
-		var closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
+		let closestDistance = cartesianPoint.distanceFrom(adjacentTiles [0])
 		for adjacentPoint in adjacentTiles {
 			if cartesianPoint.distanceFrom(adjacentPoint) <= closestDistance {
 				setNewDestination(adjacentPoint)
@@ -253,7 +253,7 @@ class Person : SKSpriteNode {
 	}
 	
 	func emote (emotion:String) {
-		var emoteSprite = SKSpriteNode(imageNamed: emotion)
+		let emoteSprite = SKSpriteNode(imageNamed: emotion)
 		emoteSprite.position.y = 12
 		emoteSprite.alpha = 0
 		if xScale < 0 { emoteSprite.xScale = -1 }

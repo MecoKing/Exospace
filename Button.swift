@@ -71,7 +71,7 @@ class Button : SKSpriteNode {
 				game.state = "moveItem"
 			default:
 				game.state = "noAction"
-				println("Button: \(name) has no job")
+				print("Button: \(name) has no job")
 		}
 	}
 	

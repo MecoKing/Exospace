@@ -48,8 +48,8 @@ class World : SKNode {
 		map.removeAll(keepCapacity: false)
 		
 		let tileTypes = ["Terra", "Desert", "Magma", "Glacier", "Jungle", "Asteroid", "Starship"]
-//		tileType = tileTypes [randomInt(tileTypes.count)]
-		tileType = "Terra"
+		tileType = tileTypes [randomInt(tileTypes.count)]
+//		tileType = "Terra"
 		for var x = 0; x < worldSize; x++ {
 			for var y = 0; y < worldSize; y++ {
 				let groundTile = Tile(atPoint: CGPoint(x: x, y: y), spriteName: tileType)
@@ -121,7 +121,7 @@ class World : SKNode {
 	
 	func generateItems () {
 		for tile in world.map {
-			if !tile.occupied && randomInt(5) == 0{
+			if !tile.occupied && randomInt(10) == 0{
 				placeItemOnTile(tile)
 			}
 		}
@@ -129,7 +129,7 @@ class World : SKNode {
 	
 	func placeItemOnTile(tile: Tile) {
 		if !tile.occupied {
-			for (index, var stack) in enumerate(itemStacks) {
+			for (index, var stack) in itemStacks.enumerate() {
 				if stack.cartesianPoint == tile.cartesianPoint {
 					if (stack.topItem?.isStackable ?? true) == true {
 						let itemArray:Array<String> = biomeData [tileType]! ["Items"]!
@@ -149,7 +149,7 @@ class World : SKNode {
 		}
 	}
 	func placeItemOnTile(item: Item, tile: Tile) {
-		for (index, var stack) in enumerate(itemStacks) {
+		for (index, var stack) in itemStacks.enumerate() {
 			if stack.cartesianPoint == tile.cartesianPoint {
 				if (stack.topItem?.isStackable ?? true) == true {
 					item.position = tile.position
@@ -192,7 +192,7 @@ class World : SKNode {
 	
 	func removeItemAtTile (tile:Tile) {
 		if tile.occupied {
-			for (index, var stack) in enumerate(itemStacks) {
+			for (index, var stack) in itemStacks.enumerate() {
 				if stack.cartesianPoint == tile.cartesianPoint {
 					if !stack.items.isEmpty { stack.pop().removeFromParent() }
 					if stack.items.isEmpty { tile.occupied = false }
@@ -216,7 +216,7 @@ class World : SKNode {
 				}
 			}
 			if !objectRemoved {
-				for (index, var stack) in enumerate(itemStacks) {
+				for (index, var stack) in itemStacks.enumerate() {
 					if stack.cartesianPoint == tile.cartesianPoint {
 						if !stack.items.isEmpty { stack.pop().removeFromParent() }
 						if stack.items.isEmpty { tile.occupied = false }

@@ -30,9 +30,9 @@ extension CGPoint {
 	}
 	//Calculates the distance from this point to another
 	func distanceFrom (pt:CGPoint) -> Int {
-		var xDist = (pt.x - x) * (pt.x - x)
-		var yDist = (pt.y - y) * (pt.y - y)
-		var xPlusY = xDist + yDist
+		let xDist = (pt.x - x) * (pt.x - x)
+		let yDist = (pt.y - y) * (pt.y - y)
+		let xPlusY = xDist + yDist
 		return Int(sqrt(xPlusY))
 	}
 }

@@ -33,10 +33,10 @@ public class Item : SKSpriteNode {
 		updateZPosition()
 		if effect != "None" {
 			let particles = SKEmitterNode(fileNamed: effect!)
-			particles.zPosition = 1
-			particles.position.y = -6
-			particles.particleTexture?.filteringMode = SKTextureFilteringMode.Nearest
-			addChild(particles)
+			particles!.zPosition = 1
+			particles!.position.y = -6
+			particles!.particleTexture?.filteringMode = SKTextureFilteringMode.Nearest
+			addChild(particles!)
 		}
 	}
 

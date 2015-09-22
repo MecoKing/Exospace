@@ -55,7 +55,7 @@ class GameScene: SKScene {
 	//----------------------------------------------------------------
 	
 	//Select the tile you touched
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let cartLocation = touch.locationInNode(self).toCartesian()
 			let UILocation = touch.locationInNode(UINode)
@@ -84,17 +84,17 @@ class GameScene: SKScene {
     }
 	
 	//Select all the tiles in a rectangle from where you first touched to where you are touching
-	override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let cartLocation = touch.locationInNode(self).toCartesian()
 			let screenLocation = touch.locationInView(self.view)
 			if !(/*state == "removeItems" ||*/ state == "addPeople" || state == "selection" || state == "moveMap") {
 				for tile in world.map {
 					if tile.highlighted { tile.highlight() }
-					var minX = (cartLocation.x < firstSelect.x) ? cartLocation.x : firstSelect.x
-					var maxX = (cartLocation.x > firstSelect.x) ? cartLocation.x : firstSelect.x
-					var minY = (cartLocation.y < firstSelect.y) ? cartLocation.y : firstSelect.y
-					var maxY = (cartLocation.y > firstSelect.y) ? cartLocation.y : firstSelect.y
+					let minX = (cartLocation.x < firstSelect.x) ? cartLocation.x : firstSelect.x
+					let maxX = (cartLocation.x > firstSelect.x) ? cartLocation.x : firstSelect.x
+					let minY = (cartLocation.y < firstSelect.y) ? cartLocation.y : firstSelect.y
+					let maxY = (cartLocation.y > firstSelect.y) ? cartLocation.y : firstSelect.y
 					if tile.cartesianPoint.x >= minX && tile.cartesianPoint.x <= maxX {
 						if tile.cartesianPoint.y >= minY && tile.cartesianPoint.y <= maxY {
 							tile.highlight()
@@ -122,7 +122,7 @@ class GameScene: SKScene {
 	}
 	
 	//When touches are released, do something with the selected tiles
-	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.locationInNode(self).toCartesian()
 			
@@ -163,7 +163,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
 		timerTick++
-		if timerTick % 2 == 0 {
+		if timerTick % 6 == 0 {
 			for human in world.population {
 				human.runState ()
 			}
